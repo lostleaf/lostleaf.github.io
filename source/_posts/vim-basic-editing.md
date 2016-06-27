@@ -1,5 +1,5 @@
 ---
-title: "Note on vim editing"
+title: "Note on Vim Editing"
 date: 2016-04-02 16:22:14
 tags:
 - Vim
