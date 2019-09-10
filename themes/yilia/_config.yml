@@ -10,11 +10,11 @@ subnav:
   facebook: "https://www.facebook.com/lostleafmeow"
   weibo: "http://weibo.com/lostleaf9361"
   rss: "#"
-  # zhihu: "#"
-  #douban: "#"
+  zhihu: "https://www.zhihu.com/people/lostleaf"
+  douban: "https://www.douban.com/people/58601345/"
   #mail: "#"
   #google: "#"
-  #twitter: "#"
+  twitter: "https://twitter.com/L0STLEAF"
 
 rss: /atom.xml
 
