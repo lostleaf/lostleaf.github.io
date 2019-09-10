@@ -3,10 +3,11 @@ title: Set Solarized Color Scheme in Ubuntu
 date: 2016-06-27 09:24:59
 tags:
 - Linux
-- Vim
 ---
 
 I always want to find a fancy color scheme for my terminal. Then I settled down with Solarized.
+
+<!--- more --->
 
 ## Install Solarized Colorscheme
 To install solarized in Ubuntu, first make sure you have git installed.
