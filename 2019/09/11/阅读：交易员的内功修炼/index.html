@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>【live笔记】阅读：交易员的内功修炼 | lostleaf&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="知乎live：阅读：交易员的内功修炼, by 用Python的交易员">
+<meta name="keywords" content="Zhihu,Quant">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【live笔记】阅读：交易员的内功修炼">
+<meta property="og:url" content="http://yoursite.com/2019/09/11/阅读：交易员的内功修炼/index.html">
+<meta property="og:site_name" content="lostleaf&#39;s Blog">
+<meta property="og:description" content="知乎live：阅读：交易员的内功修炼, by 用Python的交易员">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-09-10T05:39:04.842Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【live笔记】阅读：交易员的内功修炼">
+<meta name="twitter:description" content="知乎live：阅读：交易员的内功修炼, by 用Python的交易员">
+  
+    <link rel="alternative" href="/atom.xml" title="lostleaf&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/avatar.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">lostleaf</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						
+						<li>About</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">Home</a></li>
+				        
+							<li><a href="/archives">Archives</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/lostleaf" title="github">github</a>
+					        
+								<a class="linkedin" target="_blank" href="https://www.linkedin.com/in/qinglin-li-29b23364" title="linkedin">linkedin</a>
+					        
+								<a class="facebook" target="_blank" href="https://www.facebook.com/lostleafmeow" title="facebook">facebook</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/lostleaf9361" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="#" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Compiler/" style="font-size: 10px;">Compiler</a> <a href="/tags/Conference/" style="font-size: 10px;">Conference</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Machine-Learning/" style="font-size: 10px;">Machine Learning</a> <a href="/tags/Quant/" style="font-size: 20px;">Quant</a> <a href="/tags/Sci-Fi/" style="font-size: 20px;">Sci-Fi</a> <a href="/tags/Vim/" style="font-size: 10px;">Vim</a> <a href="/tags/Zhihu/" style="font-size: 20px;">Zhihu</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">Machine Learning Enthusiast / Sci-Fi Fan / Programmer</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">lostleaf</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="/img/avatar.jpg" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">lostleaf</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">Home</a></li>
+		        
+					<li><a href="/archives">Archives</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/lostleaf" title="github">github</a>
+			        
+						<a class="linkedin" target="_blank" href="https://www.linkedin.com/in/qinglin-li-29b23364" title="linkedin">linkedin</a>
+			        
+						<a class="facebook" target="_blank" href="https://www.facebook.com/lostleafmeow" title="facebook">facebook</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/lostleaf9361" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="#" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-阅读：交易员的内功修炼" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/09/11/阅读：交易员的内功修炼/" class="article-date">
+  	<time datetime="2019-09-10T16:27:54.000Z" itemprop="datePublished">2019-09-10</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      【live笔记】阅读：交易员的内功修炼
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Quant/">Quant</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Zhihu/">Zhihu</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>知乎live：<a href="https://www.zhihu.com/lives/819952218865287168" target="_blank" rel="noopener">阅读：交易员的内功修炼</a>, by 用Python的交易员<br><a id="more"></a></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>quant和交易员的区别：</p>
+<ul>
+<li>quant：数据分析，模型开发，交易策略开发</li>
+<li>交易员：交易决策，下单操作（手动或自动），可以主观判断</li>
+</ul>
+<p>交易员的能力：</p>
+<ul>
+<li>绝对收益，对比无风险；相对收益，对比沪深300</li>
+<li>长期盈利，避免爆赚爆亏或爆仓</li>
+<li>法律&amp;道德，对投资人负责</li>
+<li>风控，不要赌博，不要赌气，判断错了不要与市场作对</li>
+<li>运气&amp;实力，很多时候只是碰巧撞上了行情</li>
+</ul>
+<p>交易员的内功：</p>
+<ul>
+<li>赚钱的能力（alpha）</li>
+<li>对金融市场的了解：知道各个通道怎么走</li>
+<li>法律法规的知识：反面教材，徐翔</li>
+<li>抗压和风控能力：没有仓位，理性；亏了一大笔钱，可能会赌气，后果严重；遇到亏损要抗压，保持风控能力</li>
+<li>少走错路：识别诈骗；鉴别金融大神自传，有可能描述的是100 ～ 50年前的市场</li>
+</ul>
+<h2 id="书单"><a href="#书单" class="headerlink" title="书单"></a>书单</h2><h4 id="了解交易员"><a href="#了解交易员" class="headerlink" title="了解交易员"></a>了解交易员</h4><ul>
+<li>《说谎者的扑克牌》，作者在所罗门兄弟的亲身经历，80年代华尔街投行交易部门的情景，市场运作的规律在今天仍然有用，what-if 游戏，训练交易员 sense</li>
+<li>《乱世华尔街》，债券交易员的视角看待次贷危机，交易员对市场的嗅觉</li>
+<li>《交易员，枪，和钞票》，复杂结构衍生品交易员，利用客户的无知赚钱，了解流氓交易员存在，防范被坑</li>
+<li>《投资学》，必须知道的投资或交易方式，避免对工作范围以外的东西一无所知</li>
+</ul>
+<h4 id="技术面"><a href="#技术面" class="headerlink" title="技术面"></a>技术面</h4><p>有很多人看，就会形成自实现的预言；代表了诞生时期最先进的分析方法</p>
+<ul>
+<li>《日本蜡烛图技术》：如何看K线</li>
+<li>《期货市场技术分析》：如何看K线组合出来的东西，技术指标，波浪理论</li>
+<li>《以交易为生》：交易系统的建立，可以形成量化交易程序</li>
+</ul>
+<h4 id="基本面"><a href="#基本面" class="headerlink" title="基本面"></a>基本面</h4><p>与交易关系不那么大, 适合投资而非交易</p>
+<ul>
+<li>《公司理财》，介绍一家公司如何运作自己财务，来达成公司金融目标，估值模型，风险对冲，非常重要辅助作用</li>
+<li>《证券分析》《聪明的投资者》格雷厄姆，基本面分析的原理，价值投资的投资体系</li>
+<li>彼得林奇，成长股投资，小盘成长股的筛选方法，寻找在未来能飞速成长的公司，享受公司成长带来的收益</li>
+</ul>
+<h4 id="经济学"><a href="#经济学" class="headerlink" title="经济学"></a>经济学</h4><p>目的是看懂经济新闻和研报</p>
+<ul>
+<li>《经济学原理》</li>
+<li>《就业，利息和货币通论》，凯恩斯主义</li>
+<li>《通往奴役之路》，货币主义</li>
+</ul>
+<h4 id="量化"><a href="#量化" class="headerlink" title="量化"></a>量化</h4><ul>
+<li>《海龟交易法则》，第一本非常全面系统地描述 CTA 交易系统的书，很全面介绍了 CTA 策略，策略的优化方法</li>
+<li>《Trading Systems: A New Approach to System Development and Portfolio Optimisation》，全面地介绍了如何使用 TS 软件，从头到尾实现 CTA 策略</li>
+<li>《Trading Systems and Methods + Website》，CTA 策略提高和方法</li>
+<li>《期权，期货及其他衍生品》，衍生品必读，衍生品定价套利原理</li>
+<li>《期权波动率与定价：高级交易策略与技巧》，二阶交易</li>
+<li>《主动投资组合管理》，alpha 策略的</li>
+<li>《Trading and exchange》，市场微观结构，高频交易</li>
+</ul>
+<h4 id="金融考试"><a href="#金融考试" class="headerlink" title="金融考试"></a>金融考试</h4><ul>
+<li>期货、证券从业，了解国内金融市场规则，法律法规的边界</li>
+<li>期货、证券投资分析，更进一步，行业内通用投资方法</li>
+<li>CFA I，全面的考试，国企背景（券商）容易升职，提高英语</li>
+<li>CQF，针对投行卖方quant，和国内脱节相对严重</li>
+<li>CIIA，国内对标CFA，认可度有限</li>
+</ul>
+<h4 id="交易员的鸡汤"><a href="#交易员的鸡汤" class="headerlink" title="交易员的鸡汤"></a>交易员的鸡汤</h4><p>增强信心，从挫折中站起来</p>
+<ul>
+<li>《金融怪杰》</li>
+<li>《新金融怪杰》</li>
+<li>《股市怪杰》</li>
+<li>《对冲基金奇才》</li>
+<li>《滚雪球》，巴菲特的人生，投资方法不建议直接用，中美差距，时代差距</li>
+<li>《宽客》（quants），量化交易的历史，讲述种种套利策略和公司</li>
+<li>《暗池》，高频交易的历史，美国金融市场的如何演变，电子化交易发展</li>
+</ul>
+<h4 id="坑"><a href="#坑" class="headerlink" title="坑"></a>坑</h4><p>要回避的</p>
+<ul>
+<li>《股票做手回忆录》，以赌博的方式做交易，反面教材，100年前的交易手法，参考意义不大，操纵市场</li>
+<li>《短线交易秘诀》，以培训为生的交易员，忽悠，反面教材，手法逻辑上不太解释得通</li>
+<li>《量化投资：策略与技术》，券商金工研报大全，研究所是最弱的，不一定有实盘操作性</li>
+<li>《量化交易》《算法交易》EP Chan，靠培训为生的宽客，内容比较空，离实盘交易远</li>
+</ul>
+<h2 id="有意思的-Q-amp-A"><a href="#有意思的-Q-amp-A" class="headerlink" title="有意思的 Q&amp;A"></a>有意思的 Q&amp;A</h2><ul>
+<li>quant需要哪些数学知识？概率、统计分析</li>
+<li>如何增强对市场的理解？<ol>
+<li>看书</li>
+<li>交易</li>
+<li>social，认识更厉害的交易员</li>
+</ol>
+</li>
+<li>如何建立自己的交易系统？对于CTA策略，按次序看完上面几本书</li>
+<li>主讲人看论文吗？看，英文为主</li>
+<li>推荐一些论文？Cliff Asness，AQR的创始人，Alpha论文</li>
+<li>量化数据分析的书？《用python做数据分析》</li>
+<li>套利策略？套利没有特别复杂的原理，相关品种价差的均值回归，需要很多经验：价差的季节性，如何下单</li>
+<li>应对乌龙指？用一些规则把乌龙指tick过滤掉，or直接把交易程序停掉</li>
+<li>FRM和CPA？FRM有一些企业会认，CPA和交易没太大关系</li>
+<li>CTA vs Alpha？CTA 策略简单，基金多，但是 Alpha 容量更大</li>
+<li>买方 vs 卖方？买方，要能赚钱；卖方，国内证券公司类似国企</li>
+<li>机器学习？线性方法有用；约高维的模型越容易出问题</li>
+<li>A股程序化？没有公开接口，券商反向采购，证监会备案</li>
+<li>毕业生公司推荐？前十名券商自营、资管、研究所</li>
+<li>量化的城市排名？上海 &gt; 深圳 &gt; 北京</li>
+<li>量化和宏观结合？对冲基金把全球经济宏观模型做成量化模型</li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/09/10/董可人的量化交易书单/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">【live笔记】量化交易参考书目</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2019 lostleaf
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
