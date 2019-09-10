@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>【live笔记】带你重新认识海龟交易策略 | lostleaf&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="知乎live：带你重新认识海龟交易策略, by 用Python的交易员">
+<meta name="keywords" content="Zhihu,Quant">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【live笔记】带你重新认识海龟交易策略">
+<meta property="og:url" content="http://yoursite.com/2019/09/11/带你重新认识海龟交易策略/index.html">
+<meta property="og:site_name" content="lostleaf&#39;s Blog">
+<meta property="og:description" content="知乎live：带你重新认识海龟交易策略, by 用Python的交易员">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-09-10T11:58:11.244Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【live笔记】带你重新认识海龟交易策略">
+<meta name="twitter:description" content="知乎live：带你重新认识海龟交易策略, by 用Python的交易员">
+  
+    <link rel="alternative" href="/atom.xml" title="lostleaf&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/avatar.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">lostleaf</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						
+						<li>About</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">Home</a></li>
+				        
+							<li><a href="/archives">Archives</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/lostleaf" title="github">github</a>
+					        
+								<a class="linkedin" target="_blank" href="https://www.linkedin.com/in/qinglin-li-29b23364" title="linkedin">linkedin</a>
+					        
+								<a class="facebook" target="_blank" href="https://www.facebook.com/lostleafmeow" title="facebook">facebook</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/lostleaf9361" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="#" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Compiler/" style="font-size: 10px;">Compiler</a> <a href="/tags/Conference/" style="font-size: 10px;">Conference</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Machine-Learning/" style="font-size: 10px;">Machine Learning</a> <a href="/tags/Quant/" style="font-size: 20px;">Quant</a> <a href="/tags/Sci-Fi/" style="font-size: 15px;">Sci-Fi</a> <a href="/tags/Vim/" style="font-size: 10px;">Vim</a> <a href="/tags/Zhihu/" style="font-size: 20px;">Zhihu</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">Machine Learning Enthusiast / Sci-Fi Fan / Programmer</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">lostleaf</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="/img/avatar.jpg" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">lostleaf</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">Home</a></li>
+		        
+					<li><a href="/archives">Archives</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/lostleaf" title="github">github</a>
+			        
+						<a class="linkedin" target="_blank" href="https://www.linkedin.com/in/qinglin-li-29b23364" title="linkedin">linkedin</a>
+			        
+						<a class="facebook" target="_blank" href="https://www.facebook.com/lostleafmeow" title="facebook">facebook</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/lostleaf9361" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="#" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-带你重新认识海龟交易策略" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/09/11/带你重新认识海龟交易策略/" class="article-date">
+  	<time datetime="2019-09-10T22:58:26.000Z" itemprop="datePublished">2019-09-10</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      【live笔记】带你重新认识海龟交易策略
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Quant/">Quant</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Zhihu/">Zhihu</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>知乎live：<a href="https://www.zhihu.com/lives/1053322888899342336" target="_blank" rel="noopener">带你重新认识海龟交易策略</a>, by 用Python的交易员</p>
+<a id="more"></a>
+<h2 id="海龟的传奇"><a href="#海龟的传奇" class="headerlink" title="海龟的传奇"></a>海龟的传奇</h2><ul>
+<li>起源于 1983 年两位交易员的赌约，“海龟”并没有特殊的含义</li>
+<li>最经典的量化交易策略，属于 CTA 策略，中低频趋势跟踪，策略包含投资组合管理</li>
+<li>柯蒂斯，19岁加入海龟计划，没有做过交易，没有先入为主的观念，效果反而最好，四年狂赚 3000 万美元</li>
+<li>意识到量化分析的重要性，通过表格卡纸手动计算交易信号，到了盘中通过打电话跟场内 Broker 交易，系统化交易</li>
+</ul>
+<h2 id="完整的海龟交易策略"><a href="#完整的海龟交易策略" class="headerlink" title="完整的海龟交易策略"></a>完整的海龟交易策略</h2><h3 id="交易品种"><a href="#交易品种" class="headerlink" title="交易品种"></a>交易品种</h3><p>一般选择期货，也可以 CFD、杠杆外汇、数字币期货</p>
+<ol>
+<li>流动性足够</li>
+<li>带杠杆 —— 最好是期货，股票可能不太适合，股指期货可以</li>
+<li>可以做空，做空成本不大，融券做空不合适</li>
+<li>波动足够大，足够追涨杀跌</li>
+</ol>
+<h3 id="单位持仓"><a href="#单位持仓" class="headerlink" title="单位持仓"></a>单位持仓</h3><ol>
+<li>单位持仓 = (总资本 <em> 1%) / (N </em> 合约乘数)，合约乘数即一个指数跳动对应的钱</li>
+<li>N = TR 的 20 日 EMA，可以用 ATR 代替（SMA）</li>
+<li>ATR 衡量风险，单位持仓和风险反向相关</li>
+</ol>
+<h3 id="风险分配"><a href="#风险分配" class="headerlink" title="风险分配"></a>风险分配</h3><ol>
+<li>强制分散风险，限制同向持仓，有效管理 CTA 策略风险</li>
+<li>同向风险：单一品种上，不能超过 4 单位持仓；高度相关的，不能超过 6 单位；低关联的，不超过 10 单位；整个投资组合，不超过 12 单位</li>
+</ol>
+<h3 id="策略入场"><a href="#策略入场" class="headerlink" title="策略入场"></a>策略入场</h3><ol>
+<li>信号：唐奇安通道</li>
+<li>长周期通道：55 日通道，突破上轨就做多，突破下轨就做空</li>
+<li>短周期通道：20 日通道，突破上轨做多/空；但是如果上一次短周期信号赚了钱，就要过滤这一次的信号；原因是趋势追踪短周期连续出现两次赚钱的情况比较少</li>
+</ol>
+<h3 id="顺势加仓"><a href="#顺势加仓" class="headerlink" title="顺势加仓"></a>顺势加仓</h3><ol>
+<li>逆市加仓非常危险，只在持有仓位盈利的时候才加仓</li>
+<li>交易入场的时候立即记录当时 ATR</li>
+<li>价格顺着建仓方向增加 0.5 * ATR 时，加 1 单位持仓，直到达到上限</li>
+</ol>
+<h3 id="出场信号"><a href="#出场信号" class="headerlink" title="出场信号"></a>出场信号</h3><ol>
+<li>短周期信号：反向突破 10 日通道</li>
+<li>长周期信号：反向突破 20 日通道</li>
+<li>本质上是一种移动止损</li>
+</ol>
+<h3 id="交易止损"><a href="#交易止损" class="headerlink" title="交易止损"></a>交易止损</h3><ol>
+<li>从入场价格算起，最多允许亏 2 * ATR，即每次亏最多亏 2% </li>
+<li>每次加仓之后，将整体入场价格调到最新入场价，而不是平均数，强制锁定一部分利润</li>
+<li>同向风险：单合约4，高关联6，低关联10，整体12</li>
+</ol>
+<h2 id="海龟回测的逻辑拆分"><a href="#海龟回测的逻辑拆分" class="headerlink" title="海龟回测的逻辑拆分"></a>海龟回测的逻辑拆分</h2><h3 id="策略信号"><a href="#策略信号" class="headerlink" title="策略信号"></a>策略信号</h3><p>单合约</p>
+<ol>
+<li>策略入场</li>
+<li>策略出场</li>
+<li>交易止损</li>
+<li>顺势加仓</li>
+</ol>
+<h3 id="策略组合"><a href="#策略组合" class="headerlink" title="策略组合"></a>策略组合</h3><p>整个投资组合</p>
+<ol>
+<li>单位持仓，最大12</li>
+<li>风险分配</li>
+<li>短周期过滤</li>
+</ol>
+<h3 id="回测引擎"><a href="#回测引擎" class="headerlink" title="回测引擎"></a>回测引擎</h3><ol>
+<li>品种选择</li>
+<li>数据回放</li>
+<li>成交记录</li>
+<li>统计分析</li>
+</ol>
+<h2 id="难点"><a href="#难点" class="headerlink" title="难点"></a>难点</h2><h3 id="K线内部成交"><a href="#K线内部成交" class="headerlink" title="Ｋ线内部成交"></a>Ｋ线内部成交</h3><ol>
+<li>无论长短周期，要求在突破通道的瞬间，立即执行交易，而非等到收盘</li>
+<li>Tick 数据量太大，只能用 K 线数据回测（？）</li>
+<li>ZipLine or 三大矿无法回测</li>
+</ol>
+<p>实现逻辑（Stop Order）:</p>
+<ol>
+<li>T-1 时刻 K 线走完后，计算 T 时刻上下轨（可以用 TA-lib），买入价 M</li>
+<li>T 时刻 K 线，如果开盘价 O 高于 M，以 O 成交；否则，如果最高价高于 M，以 M 成交；实际回测时还要考虑滑点</li>
+<li>绝不能以 T 时刻的收盘价成交，否则会错过巨大的 Alpha</li>
+</ol>
+<h3 id="短周期信号的过滤"><a href="#短周期信号的过滤" class="headerlink" title="短周期信号的过滤"></a>短周期信号的过滤</h3><ol>
+<li>短周期通道，容易被频繁触发</li>
+<li>为避免假突破，上次盈利时，要放弃本次指令</li>
+<li>需要在信号中统计，多次加仓（顺势）&amp;一次平仓要算为一次开平</li>
+</ol>
+<p>实现逻辑：vnpy1.9.2 <code>examples/TurtleStrategy/turtleStrategy.py</code> TurtleResult</p>
+<h3 id="多空仓位限制"><a href="#多空仓位限制" class="headerlink" title="多空仓位限制"></a>多空仓位限制</h3><ol>
+<li>单位持仓是由 ATR 计算出来的，是动态的</li>
+<li>策略组合需要将单位持仓，转化为实际持仓</li>
+</ol>
+<p>实现逻辑：vnpy1.9.2 <code>examples/TurtleStrategy/turtleStrategy.py</code> TurtlePortfolio.newSignal</p>
+<h2 id="回测"><a href="#回测" class="headerlink" title="回测"></a>回测</h2><h3 id="准备数据"><a href="#准备数据" class="headerlink" title="准备数据"></a>准备数据</h3><ol>
+<li>海龟基于日线，主力合约存在换月跳空</li>
+<li>跳空可能给出错误的信号，需要进行平滑或者指数合成</li>
+<li>可以使用 RQData</li>
+</ol>
+<h3 id="回测参数"><a href="#回测参数" class="headerlink" title="回测参数"></a>回测参数</h3><ol>
+<li>上期所热门品种：RB ZN CU AL RU</li>
+<li>原始海龟参数：由上世纪美国市场确定，可视为全样本外数据</li>
+<li>2014-2018日线数据：使用产品指数数据</li>
+<li>交易成本：交易所手续费 +10%，滑点 1tick</li>
+<li>起始资金 1000 万，单位仓位使用固定 1000 万</li>
+</ol>
+<h3 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h3><ol>
+<li>5 年时间，收益回测比 10</li>
+<li>sharpe 接近 1</li>
+</ol>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/09/11/阅读：交易员的内功修炼/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">【live笔记】阅读：交易员的内功修炼</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2019 lostleaf
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
