@@ -146,3 +146,13 @@ def on_tick(self, tick: TickData):
 - 优化完成，点优化结果，排序，寻找参数平原
 - 双均线策略在 IF88 上最好的参数为 `fast_window=6, slow_window=80`(无手续费滑点)
 
+## 自动交易(基于 simnow)
+
+- 加载 CTP gateway
+- 连接 7*24 小时环境
+- 若连接成功，则显示合约信息查询成功、资金信息等
+- 点CTA策略，实盘自动交易
+  - strategy_name: 实例名称
+  - vt_symbol: IF1909.CFFEX
+  - ... 其他 parameters
+- 初始化->启动 .... 收盘之后->结束, variables 缓存到 cta_strategy_data.json
