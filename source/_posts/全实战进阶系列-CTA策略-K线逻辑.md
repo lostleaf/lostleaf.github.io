@@ -94,13 +94,10 @@ elif fast_rsi_0 < 30:
   print('Over sold')
 ```
 
-- 快速指标**上穿**慢速指标
+- 快速指标**上穿/下穿**慢速指标
+  
 ``` python
 rsi_cross_over = (fast_rsi_1 < slow_rsi_1 and fast_rsi_0 >= flow_rsi_0)
-```  
-
-- 快速指标**下穿**慢速指标
-``` python
 rsi_cross_below = (fast_rsi_1 > slow_rsi_1 and fast_rsi_0 <= flow_rsi_0)
 ```
 
