@@ -52,3 +52,10 @@ tags:
 - 固定止盈：入场价 + x%
 - 固定止损：入场价 - x%
 - 移动止损：从最高的位置回落超过 x%
+
+## [AtrRsi 策略](https://github.com/vnpy/vnpy/blob/master/vnpy/app/cta_strategy/strategies/atr_rsi_strategy.py)
+
+- 股指期货一分钟线策略
+- 信号：RSI 进入超买/超卖区
+- 过滤：当前 ATR 大于 ATR 的移动平均
+- 出场：移动止损
