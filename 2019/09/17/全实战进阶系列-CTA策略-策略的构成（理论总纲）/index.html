@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="lostleaf&#39;s Blog">
 <meta property="og:description" content="全实战进阶系列-CTA策略, 平台小鹅通，by 用 Python 的交易员">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-09-16T07:01:18.321Z">
+<meta property="og:updated_time" content="2019-09-16T07:23:55.887Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【课程笔记】全实战进阶系列-CTA策略-策略的构成（理论总纲）">
 <meta name="twitter:description" content="全实战进阶系列-CTA策略, 平台小鹅通，by 用 Python 的交易员">
@@ -262,6 +262,12 @@
 <li>固定止盈：入场价 + x%</li>
 <li>固定止损：入场价 - x%</li>
 <li>移动止损：从最高的位置回落超过 x%</li>
+</ul>
+<h2 id="AtrRsi-策略"><a href="#AtrRsi-策略" class="headerlink" title="AtrRsi 策略"></a><a href="https://github.com/vnpy/vnpy/blob/master/vnpy/app/cta_strategy/strategies/atr_rsi_strategy.py" target="_blank" rel="noopener">AtrRsi 策略</a></h2><ul>
+<li>股指期货一分钟线策略</li>
+<li>信号：RSI 进入超买/超卖区</li>
+<li>过滤：当前 ATR 大于 ATR 的移动平均</li>
+<li>出场：移动止损</li>
 </ul>
 
       
