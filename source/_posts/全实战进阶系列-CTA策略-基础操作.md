@@ -3,6 +3,7 @@ title: 【课程笔记】全实战进阶系列-CTA策略-基础操作
 date: 2019-09-11 14:52:50
 tags:
 - Quant
+- 全实战进阶系列-CTA策略
 ---
 
 [全实战进阶系列-CTA策略](https://appszu5scwd6134.h5.xiaoeknow.com/), 平台小鹅通，by 用 Python 的交易员
