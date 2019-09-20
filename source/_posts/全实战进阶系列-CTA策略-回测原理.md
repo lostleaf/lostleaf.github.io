@@ -38,6 +38,12 @@ tags:
   - `add_strategy`: 添加策略类(继承 `CtaTemplate`)和实例化策略对象
   - `load_data`: 载入历史数据, 保存在 `self.history_data`, 会调用 `load_bar_data` 或者 `load_tick_data` 从数据库读取数据
   - `run_backtesting`: 跑回测，本身支持 Tick / K 线，但是图形界面只支持 K 线
+    - 调用 strategy (`CtaTemplate`子类) 的 `on_init` 函数进行初始化
+    - 如果 strategy 调用了 `self.load_bar`，engine 则会把对应的历史数据推送给策略进行初始化
+    - 完成后 engine 标记 `self.strategy.inited = True`
+    - 下一步，engine 调用 `on_start` 函数启动策略
+    - 启动完成后，engine 标记 `self.strategy.trading = True`
+    - 对于剩下的数据，调用 `new_bar` / `new_tick` 将剩下的数据用于回测
   - `calculate_result`: 把交易聚合成逐日盈亏
   - `calculate_statistics`: 基于逐日盈亏计算统计指标，比较多利用了 pandas 的向量化
   - `show_chart`: 用 `matplotlib` 可视化指标
@@ -45,11 +51,3 @@ tags:
     - 缓存最新的 K 线 / Tick 数据，模拟撮合限价单和停止单
     - 将最新的 K 线 / Tick 推给 `strategy.on_bar` (防止未来函数，因为实盘走完 K 线之后才会下单)
     - 更新收盘价，方便计算逐日盯市盈亏
-
-- `run_backtesting`
-   - 调用 strategy (`CtaTemplate`子类) 的 `on_init` 函数进行初始化
-   - 如果 strategy 调用了 `self.load_bar`，engine 则会把对应的历史数据推送给策略进行初始化
-   - 完成后 engine 标记 `self.strategy.inited = True`
-   - 下一步，engine 调用 `on_start` 函数启动策略
-   - 启动完成后，engine 标记 `self.strategy.trading = True`
-   - 对于剩下的数据，调用 `new_bar` / `new_tick` 将剩下的数据用于回测
