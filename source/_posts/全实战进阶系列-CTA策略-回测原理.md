@@ -48,6 +48,16 @@ tags:
   - `calculate_statistics`: 基于逐日盈亏计算统计指标，比较多利用了 pandas 的向量化
   - `show_chart`: 用 `matplotlib` 可视化指标
   - `new_bar` / `new_tick`
-    - 缓存最新的 K 线 / Tick 数据，模拟撮合限价单和停止单
+    - 缓存最新的 K 线 / Tick 数据，模拟撮合限价单(`cross_limit_order`)和停止单(`cross_stop_order`)
     - 将最新的 K 线 / Tick 推给 `strategy.on_bar` (防止未来函数，因为实盘走完 K 线之后才会下单)
     - 更新收盘价，方便计算逐日盯市盈亏
+  - `cross_limit_order` (K 线)
+    - `long_cross_price = self.bar.low_price`, 对于 long (下在 bid), 如果最低价大于**买单**，则有成交机会
+    - `short_cross_price = self.bar.high_price`, 对于 short(下在 ask), 如果最高价大于**卖单**，则有成交机会
+    - `long_best_price = self.bar.open_price`, `short_best_price = self.bar.open_price`, 按 taker 模拟撮合, 可能按开盘价成交
+    - 模拟撮合，遍历所有 limit order:
+      - 对于状态等于 `Status.SUBMITTING` 的，更新为 `Status.NOTTRADED`，调用 `on_order` 回调
+      - 利用 `long_cross_price`/`short_cross_price`, 计算是否成交, 不成交则直接 `continue`
+      - 若成交, 则认为全部成交, 更新状态为 `Status.ALLTRADED`，调用 `on_order` 回调
+      - 按照 limit order 的 price, 以及 best_price, 计算成交价格
+      - 生成成交记录 `TradeData`, 维护 `strategy.pos`, 调用 `on_trade` 回调
