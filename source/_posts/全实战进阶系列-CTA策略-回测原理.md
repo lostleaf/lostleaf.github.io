@@ -53,11 +53,20 @@ tags:
     - 更新收盘价，方便计算逐日盯市盈亏
   - `cross_limit_order` (K 线)
     - `long_cross_price = self.bar.low_price`, 对于 long (下在 bid), 如果最低价大于**买单**，则有成交机会
-    - `short_cross_price = self.bar.high_price`, 对于 short(下在 ask), 如果最高价大于**卖单**，则有成交机会
+    - `short_cross_price = self.bar.high_price`, 对于 short (下在 ask), 如果最高价大于**卖单**，则有成交机会
     - `long_best_price = self.bar.open_price`, `short_best_price = self.bar.open_price`, 按 taker 模拟撮合, 可能按开盘价成交
     - 模拟撮合，遍历所有 limit order:
       - 对于状态等于 `Status.SUBMITTING` 的，更新为 `Status.NOTTRADED`，调用 `on_order` 回调
-      - 利用 `long_cross_price`/`short_cross_price`, 计算是否成交, 不成交则直接 `continue`
+      - 若 `order.price >= long_cross_price`/`order.price <= short_cross_price`, 计算是否成交, 不成交则直接 `continue`
       - 若成交, 则认为全部成交, 更新状态为 `Status.ALLTRADED`，调用 `on_order` 回调
-      - 按照 limit order 的 price, 以及 best_price, 计算成交价格
+      - 按照限价单的 price, 以及 best_price, 计算成交价格
       - 生成成交记录 `TradeData`, 维护 `strategy.pos`, 调用 `on_trade` 回调
+  - `cross_stop_order` (K 线)
+    - `long_cross_price = self.bar.high_price`, `short_cross_price = self.bar.low_price`, `short_best_price = long_best_price = self.bar.open_price`
+    - 模拟撮合，遍历所有 stop order:
+      - 若 `order.price <= long_cross_price`/`order.price >= short_cross_price`, 停止单触发，新增一个限价单`OrderData`
+      - 按照停止单的 price, 以及 best_price, 计算成交价格
+      - 生成成交记录 `TradeData`
+      - 更新原停止单状态为, `StopOrderStatus.TRIGGERED`, 调用 `on_stop_order` 回调
+      - 对生成的限价单, 调用 `on_order` 回调
+      - 维护 `strategy.pos`, 调用 `on_trade` 回调
