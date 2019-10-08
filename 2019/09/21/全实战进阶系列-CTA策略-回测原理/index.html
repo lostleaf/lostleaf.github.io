@@ -4,20 +4,20 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Notes on Vim basics | lostleaf&#39;s Blog</title>
+  <title>【课程笔记】全实战进阶系列-CTA策略-回测原理 | lostleaf&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Vim basic usages">
-<meta name="keywords" content="Vim">
+  <meta name="description" content="全实战进阶系列-CTA策略, 平台小鹅通，by 用 Python 的交易员">
+<meta name="keywords" content="Quant,全实战进阶系列-CTA策略">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Notes on Vim basics">
-<meta property="og:url" content="http://yoursite.com/2016/04/03/vim-movements/index.html">
+<meta property="og:title" content="【课程笔记】全实战进阶系列-CTA策略-回测原理">
+<meta property="og:url" content="http://yoursite.com/2019/09/21/全实战进阶系列-CTA策略-回测原理/index.html">
 <meta property="og:site_name" content="lostleaf&#39;s Blog">
-<meta property="og:description" content="Vim basic usages">
+<meta property="og:description" content="全实战进阶系列-CTA策略, 平台小鹅通，by 用 Python 的交易员">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-09-11T02:03:07.711Z">
+<meta property="og:updated_time" content="2019-10-08T01:48:29.936Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Notes on Vim basics">
-<meta name="twitter:description" content="Vim basic usages">
+<meta name="twitter:title" content="【课程笔记】全实战进阶系列-CTA策略-回测原理">
+<meta name="twitter:description" content="全实战进阶系列-CTA策略, 平台小鹅通，by 用 Python 的交易员">
   
     <link rel="alternative" href="/atom.xml" title="lostleaf&#39;s Blog" type="application/atom+xml">
   
@@ -174,11 +174,11 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-vim-movements" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-全实战进阶系列-CTA策略-回测原理" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/04/03/vim-movements/" class="article-date">
-  	<time datetime="2016-04-02T21:13:44.000Z" itemprop="datePublished">2016-04-02</time>
+      <a href="/2019/09/21/全实战进阶系列-CTA策略-回测原理/" class="article-date">
+  	<time datetime="2019-09-21T04:40:02.000Z" itemprop="datePublished">2019-09-20</time>
 </a>
     </div>
   
@@ -191,7 +191,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Notes on Vim basics
+      【课程笔记】全实战进阶系列-CTA策略-回测原理
     </h1>
   
 
@@ -200,7 +200,7 @@
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vim/">Vim</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Quant/">Quant</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/全实战进阶系列-CTA策略/">全实战进阶系列-CTA策略</a></li></ul>
 	</div>
 
         
@@ -211,36 +211,77 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Vim basic usages</p>
+        <p><a href="https://appszu5scwd6134.h5.xiaoeknow.com/" target="_blank" rel="noopener">全实战进阶系列-CTA策略</a>, 平台小鹅通，by 用 Python 的交易员</p>
 <a id="more"></a>
-<p><strong>Basics</strong> - Character-wise movements with the home keys: <code>h</code>, <code>j</code>, <code>k</code> and <code>l</code>.</p>
-<p><strong>Line terminus</strong> - Beginning of line: <code>^</code> or <code>0</code>(non-blank). End of line: <code>$</code>.</p>
-<p><strong>Forward word movement</strong> - word and WORD: <code>w</code> and <code>W</code>, <code>e</code> and <code>E</code>.</p>
-<p><strong>Backward word movement</strong> - word and WORD: <code>b</code> and <code>B</code>, <code>ge</code> and <code>gE</code>.</p>
-<p><strong>Move to character</strong> - <code>f</code>, <code>F</code>, <code>t</code>, <code>T</code></p>
-<p><strong>Paging</strong> - Full page: <code>CTRL-f</code> and <code>CTRL-b</code>. Half page: <code>CTRL-u</code> and <code>CTRL-d</code>.</p>
-<p><strong>Scroll</strong> - One line: <code>CTRL-y</code> and <code>CTRL-e</code>.</p>
-<p><strong>Cursor jumping</strong> - Head, middle and last line of a screen: <code>H</code>, <code>M</code> and <code>L</code>.</p>
-<p><strong>Top and Bottom</strong> - <code>gg</code> and <code>G</code>.</p>
-<p><strong>Jumping to a particular line</strong> - <code>(number)G</code> or <code>:(number)</code>.</p>
-<p><strong>Seach current word</strong> - <code>*</code> and <code>#</code>, or <code>g*</code> and <code>g#</code>(no word bounds).</p>
-<p><strong>Regular expression searching</strong> - <code>/</code> and <code>?</code>. Next and pervious: <code>n</code> and <code>N</code>.</p>
-<p><strong>Start of Function or Class Jumping</strong> - Beginning of <em>previous</em> and <em>next</em> functions or classes: <code>[[</code> and <code>]]</code></p>
-<p><strong>End of Function or Class Jumping</strong> - <em>Forwards</em> and <em>backwords</em> to the end of a function or class: <code>][</code> and <code>[]</code>.</p>
-<p><strong>Jumping to Matching Braces</strong> - The fantastic <code>%</code> characters.</p>
-<p><strong>Marks</strong> - Basic mark functionality and how it works with <code>m</code>, <code>&#39;</code> and <code>`</code>.</p>
-<p><strong>Insert</strong> - <code>i</code> and <code>I</code> can bring you into the insert mode. Insert <strong>before</strong> the current character by hitting <code>i</code>. Insert at the beginning of the line by hitting <code>I</code>, which equals to <code>^i</code>.</p>
-<p><strong>Insert with a New Line</strong> - Use <code>o</code>(<code>O</code>) to insert with a <strong>new line</strong> after(before) the current.</p>
-<p><strong>Insert with Append</strong> - Insert <strong>after</strong> the current character by hitting <code>a</code>. Insert at the end of the line by hitting <code>A</code>, which equals to <code>$a</code>.</p>
-<p><strong>Replacing Characters</strong> - Replace single character under cursor by hitting <code>r</code>. Switch to <strong>replace mode</strong> by hitting <code>R</code>.</p>
-<p><strong>Changing Things</strong> - Change things by <code>c + &lt;text object&gt;</code> or <code>c + &lt;motion&gt;</code>. <code>cc</code> to change the whole line and <code>C</code> change from the current character to the end of the line, which equals to <code>^c$</code> and <code>c$</code>.</p>
-<p><strong>Deleting Characters</strong> - Delete a single character under the cursor with <code>x</code> and before the cursor with <code>X</code>.</p>
-<p><strong>Deleting Things</strong> - Delete things with <code>d + &lt;text object&gt;</code> or <code>d + &lt;motion&gt;</code>. Delete a single line with <code>dd</code> and delete to the end of the line with <code>D</code>.</p>
-<p><strong>Repeat</strong> - Repeat the last command by hitting <code>.</code>.</p>
-<p><strong>Yanking</strong> - Yanking means “copying”. Yank(copy) with <code>y + &lt;text object&gt;</code>. Yank the whole line with <code>yy</code>.</p>
-<p><strong>Putting</strong> - Putting means “pasting”. Once you’ve yanked, you can put with the <code>p</code> (put after) or <code>P</code> (put before).</p>
-<p><strong>Joining</strong> - Join lines with the <code>J</code>. But if you don’t want the extra space, you need to use <code>gJ</code>.</p>
-<p><strong>Visual Mode</strong> - Use the <code>v</code> key for character-wise visual selection, <code>V</code> for line-wise selection and <code>ctrl-v</code> for block-mode selection. Use <code>gv</code> to help you re-select an area you just selected.</p>
+<h2 id="回测-Demo"><a href="#回测-Demo" class="headerlink" title="回测 Demo"></a>回测 Demo</h2><p>基于 <code>examples/cta_backtesting</code></p>
+<ul>
+<li><p>两个 notebook</p>
+<ul>
+<li><code>backtesting.ipynb</code>: 常规的单标 CTA</li>
+<li><code>portfolio.ipynb</code>: 组合回测</li>
+</ul>
+</li>
+<li><p><code>backtesting.ipynb</code></p>
+<ul>
+<li><p>创建回测</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">engine = BacktestingEngine()</span><br><span class="line">engine.set_parameters(...) <span class="comment"># 回测参数</span></span><br><span class="line">engine.add_strategy(AtrRsiStrategy, &#123;&#125;) <span class="comment"># 添加策略</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>运行回测</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">engine.load_data() <span class="comment"># 载入数据</span></span><br><span class="line">engine.run_backtesting() <span class="comment"># 跑回测, 得到成交记录</span></span><br><span class="line">df = engine.calculate_result() <span class="comment"># 从成交记录到盯市盈亏</span></span><br><span class="line">engine.calculate_statistics() <span class="comment"># 计算统计指标</span></span><br><span class="line">engine.show_chart() <span class="comment"># 显示结果</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="引擎-BacktestingEngine-代码"><a href="#引擎-BacktestingEngine-代码" class="headerlink" title="引擎(BacktestingEngine)代码"></a>引擎(BacktestingEngine)代码</h2><ul>
+<li><code>set_parameters</code>: 仅仅保存参数</li>
+<li><code>add_strategy</code>: 添加策略类(继承 <code>CtaTemplate</code>)和实例化策略对象</li>
+<li><code>load_data</code>: 载入历史数据, 保存在 <code>self.history_data</code>, 会调用 <code>load_bar_data</code> 或者 <code>load_tick_data</code> 从数据库读取数据</li>
+<li><code>run_backtesting</code>: 跑回测，本身支持 Tick / K 线，但是图形界面只支持 K 线<ul>
+<li>调用 strategy (<code>CtaTemplate</code>子类) 的 <code>on_init</code> 函数进行初始化</li>
+<li>如果 strategy 调用了 <code>self.load_bar</code>，engine 则会把对应的历史数据推送给策略进行初始化</li>
+<li>完成后 engine 标记 <code>self.strategy.inited = True</code></li>
+<li>下一步，engine 调用 <code>on_start</code> 函数启动策略</li>
+<li>启动完成后，engine 标记 <code>self.strategy.trading = True</code></li>
+<li>对于剩下的数据，调用 <code>new_bar</code> / <code>new_tick</code> 将剩下的数据用于回测</li>
+</ul>
+</li>
+<li><code>calculate_result</code>: 把交易聚合成逐日盈亏</li>
+<li><code>calculate_statistics</code>: 基于逐日盈亏计算统计指标，比较多利用了 pandas 的向量化</li>
+<li><code>show_chart</code>: 用 <code>matplotlib</code> 可视化指标</li>
+<li><code>new_bar</code> / <code>new_tick</code><ul>
+<li>缓存最新的 K 线 / Tick 数据，模拟撮合限价单(<code>cross_limit_order</code>)和停止单(<code>cross_stop_order</code>)</li>
+<li>将最新的 K 线 / Tick 推给 <code>strategy.on_bar</code> (防止未来函数，因为实盘走完 K 线之后才会下单)</li>
+<li>更新收盘价，方便计算逐日盯市盈亏</li>
+</ul>
+</li>
+<li><code>cross_limit_order</code> (K 线)<ul>
+<li><code>long_cross_price = self.bar.low_price</code>, 对于 long (下在 bid), 如果最低价大于<strong>买单</strong>，则有成交机会</li>
+<li><code>short_cross_price = self.bar.high_price</code>, 对于 short (下在 ask), 如果最高价大于<strong>卖单</strong>，则有成交机会</li>
+<li><code>long_best_price = self.bar.open_price</code>, <code>short_best_price = self.bar.open_price</code>, 按 taker 模拟撮合, 可能按开盘价成交</li>
+<li>模拟撮合，遍历所有 limit order:<ul>
+<li>对于状态等于 <code>Status.SUBMITTING</code> 的，更新为 <code>Status.NOTTRADED</code>，调用 <code>on_order</code> 回调</li>
+<li>若 <code>order.price &gt;= long_cross_price</code>/<code>order.price &lt;= short_cross_price</code>, 计算是否成交, 不成交则直接 <code>continue</code></li>
+<li>若成交, 则认为全部成交, 更新状态为 <code>Status.ALLTRADED</code>，调用 <code>on_order</code> 回调</li>
+<li>按照限价单的 price, 以及 best_price, 计算成交价格</li>
+<li>生成成交记录 <code>TradeData</code>, 维护 <code>strategy.pos</code>, 调用 <code>on_trade</code> 回调</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>cross_stop_order</code> (K 线)<ul>
+<li><code>long_cross_price = self.bar.high_price</code>, <code>short_cross_price = self.bar.low_price</code>, <code>short_best_price = long_best_price = self.bar.open_price</code></li>
+<li>模拟撮合，遍历所有 stop order:<ul>
+<li>若 <code>order.price &lt;= long_cross_price</code>/<code>order.price &gt;= short_cross_price</code>, 停止单触发，新增一个限价单<code>OrderData</code></li>
+<li>按照停止单的 price, 以及 best_price, 计算成交价格</li>
+<li>生成成交记录 <code>TradeData</code></li>
+<li>更新原停止单状态为, <code>StopOrderStatus.TRIGGERED</code>, 调用 <code>on_stop_order</code> 回调</li>
+<li>对生成的限价单, 调用 <code>on_order</code> 回调</li>
+<li>维护 <code>strategy.pos</code>, 调用 <code>on_trade</code> 回调</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
       
     </div>
@@ -250,18 +291,18 @@
     
 <nav id="article-nav">
   
-    <a href="/2016/06/27/ubuntu-solarized/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/09/22/全实战成长系列-CTA策略-解构CTA策略/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          Set Solarized Color Scheme in Ubuntu
+          【课程笔记】全实战成长系列-30堂实战课跑通量化交易-解构CTA策略
         
       </div>
     </a>
   
   
-    <a href="/2014/07/10/icml-summary/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">ICML参会小结</div>
+    <a href="/2019/09/17/全实战进阶系列-CTA策略-策略的构成（理论总纲）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">【课程笔记】全实战进阶系列-CTA策略-策略的构成（理论总纲）</div>
       <strong class="article-nav-caption">></strong>
     </a>
   

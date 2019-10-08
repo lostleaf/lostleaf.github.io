@@ -4,20 +4,20 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Notes on Vim basics | lostleaf&#39;s Blog</title>
+  <title>【读书笔记】海龟交易法则 | lostleaf&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Vim basic usages">
-<meta name="keywords" content="Vim">
+  <meta name="description" content="《海龟交易法则》，作者柯蒂斯·费思，译者乔江涛">
+<meta name="keywords" content="Quant">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Notes on Vim basics">
-<meta property="og:url" content="http://yoursite.com/2016/04/03/vim-movements/index.html">
+<meta property="og:title" content="【读书笔记】海龟交易法则">
+<meta property="og:url" content="http://yoursite.com/2019/09/22/海龟交易法则/index.html">
 <meta property="og:site_name" content="lostleaf&#39;s Blog">
-<meta property="og:description" content="Vim basic usages">
+<meta property="og:description" content="《海龟交易法则》，作者柯蒂斯·费思，译者乔江涛">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-09-11T02:03:07.711Z">
+<meta property="og:updated_time" content="2019-10-08T01:48:29.936Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Notes on Vim basics">
-<meta name="twitter:description" content="Vim basic usages">
+<meta name="twitter:title" content="【读书笔记】海龟交易法则">
+<meta name="twitter:description" content="《海龟交易法则》，作者柯蒂斯·费思，译者乔江涛">
   
     <link rel="alternative" href="/atom.xml" title="lostleaf&#39;s Blog" type="application/atom+xml">
   
@@ -174,11 +174,11 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-vim-movements" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-海龟交易法则" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/04/03/vim-movements/" class="article-date">
-  	<time datetime="2016-04-02T21:13:44.000Z" itemprop="datePublished">2016-04-02</time>
+      <a href="/2019/09/22/海龟交易法则/" class="article-date">
+  	<time datetime="2019-09-22T14:25:41.000Z" itemprop="datePublished">2019-09-22</time>
 </a>
     </div>
   
@@ -191,7 +191,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Notes on Vim basics
+      【读书笔记】海龟交易法则
     </h1>
   
 
@@ -200,7 +200,7 @@
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vim/">Vim</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Quant/">Quant</a></li></ul>
 	</div>
 
         
@@ -211,36 +211,54 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Vim basic usages</p>
+        <p><a href="https://book.douban.com/subject/24325274/" target="_blank" rel="noopener">《海龟交易法则》</a>，作者柯蒂斯·费思，译者乔江涛</p>
 <a id="more"></a>
-<p><strong>Basics</strong> - Character-wise movements with the home keys: <code>h</code>, <code>j</code>, <code>k</code> and <code>l</code>.</p>
-<p><strong>Line terminus</strong> - Beginning of line: <code>^</code> or <code>0</code>(non-blank). End of line: <code>$</code>.</p>
-<p><strong>Forward word movement</strong> - word and WORD: <code>w</code> and <code>W</code>, <code>e</code> and <code>E</code>.</p>
-<p><strong>Backward word movement</strong> - word and WORD: <code>b</code> and <code>B</code>, <code>ge</code> and <code>gE</code>.</p>
-<p><strong>Move to character</strong> - <code>f</code>, <code>F</code>, <code>t</code>, <code>T</code></p>
-<p><strong>Paging</strong> - Full page: <code>CTRL-f</code> and <code>CTRL-b</code>. Half page: <code>CTRL-u</code> and <code>CTRL-d</code>.</p>
-<p><strong>Scroll</strong> - One line: <code>CTRL-y</code> and <code>CTRL-e</code>.</p>
-<p><strong>Cursor jumping</strong> - Head, middle and last line of a screen: <code>H</code>, <code>M</code> and <code>L</code>.</p>
-<p><strong>Top and Bottom</strong> - <code>gg</code> and <code>G</code>.</p>
-<p><strong>Jumping to a particular line</strong> - <code>(number)G</code> or <code>:(number)</code>.</p>
-<p><strong>Seach current word</strong> - <code>*</code> and <code>#</code>, or <code>g*</code> and <code>g#</code>(no word bounds).</p>
-<p><strong>Regular expression searching</strong> - <code>/</code> and <code>?</code>. Next and pervious: <code>n</code> and <code>N</code>.</p>
-<p><strong>Start of Function or Class Jumping</strong> - Beginning of <em>previous</em> and <em>next</em> functions or classes: <code>[[</code> and <code>]]</code></p>
-<p><strong>End of Function or Class Jumping</strong> - <em>Forwards</em> and <em>backwords</em> to the end of a function or class: <code>][</code> and <code>[]</code>.</p>
-<p><strong>Jumping to Matching Braces</strong> - The fantastic <code>%</code> characters.</p>
-<p><strong>Marks</strong> - Basic mark functionality and how it works with <code>m</code>, <code>&#39;</code> and <code>`</code>.</p>
-<p><strong>Insert</strong> - <code>i</code> and <code>I</code> can bring you into the insert mode. Insert <strong>before</strong> the current character by hitting <code>i</code>. Insert at the beginning of the line by hitting <code>I</code>, which equals to <code>^i</code>.</p>
-<p><strong>Insert with a New Line</strong> - Use <code>o</code>(<code>O</code>) to insert with a <strong>new line</strong> after(before) the current.</p>
-<p><strong>Insert with Append</strong> - Insert <strong>after</strong> the current character by hitting <code>a</code>. Insert at the end of the line by hitting <code>A</code>, which equals to <code>$a</code>.</p>
-<p><strong>Replacing Characters</strong> - Replace single character under cursor by hitting <code>r</code>. Switch to <strong>replace mode</strong> by hitting <code>R</code>.</p>
-<p><strong>Changing Things</strong> - Change things by <code>c + &lt;text object&gt;</code> or <code>c + &lt;motion&gt;</code>. <code>cc</code> to change the whole line and <code>C</code> change from the current character to the end of the line, which equals to <code>^c$</code> and <code>c$</code>.</p>
-<p><strong>Deleting Characters</strong> - Delete a single character under the cursor with <code>x</code> and before the cursor with <code>X</code>.</p>
-<p><strong>Deleting Things</strong> - Delete things with <code>d + &lt;text object&gt;</code> or <code>d + &lt;motion&gt;</code>. Delete a single line with <code>dd</code> and delete to the end of the line with <code>D</code>.</p>
-<p><strong>Repeat</strong> - Repeat the last command by hitting <code>.</code>.</p>
-<p><strong>Yanking</strong> - Yanking means “copying”. Yank(copy) with <code>y + &lt;text object&gt;</code>. Yank the whole line with <code>yy</code>.</p>
-<p><strong>Putting</strong> - Putting means “pasting”. Once you’ve yanked, you can put with the <code>p</code> (put after) or <code>P</code> (put before).</p>
-<p><strong>Joining</strong> - Join lines with the <code>J</code>. But if you don’t want the extra space, you need to use <code>gJ</code>.</p>
-<p><strong>Visual Mode</strong> - Use the <code>v</code> key for character-wise visual selection, <code>V</code> for line-wise selection and <code>ctrl-v</code> for block-mode selection. Use <code>gv</code> to help you re-select an area you just selected.</p>
+<h2 id="引言（海龟的由来）"><a href="#引言（海龟的由来）" class="headerlink" title="引言（海龟的由来）"></a>引言（海龟的由来）</h2><ul>
+<li>起因：两位交易员打赌 — 杰出的交易者是否可以被培养</li>
+<li>经过：作者通过了考试，加入海龟培训，并获得 100 万美元的启动资金用于交易</li>
+<li>结果：作者最相信海龟交易法则，严格遵守法则，赚了最多的钱</li>
+</ul>
+<h2 id="第一章-玩风险游戏的交易者"><a href="#第一章-玩风险游戏的交易者" class="headerlink" title="第一章 玩风险游戏的交易者"></a>第一章 玩风险游戏的交易者</h2><ul>
+<li>交易者 vs 投资者<ul>
+<li>投资者：买入东西，长期持有，等待投资升值。Eg, 巴菲特，买的是股票代表的企业本身，在股票严重低估的时候买入，严重高估的时候卖出</li>
+<li>交易者：买卖股票、期货、期权，并不买卖背后的实物，只关心价格，买卖风险。Eg，交易者将期货合约卖给企业，企业用期货锁定经营风险，交易者承担风险获取超额回报</li>
+</ul>
+</li>
+<li>风险<ul>
+<li>流动性风险：无法买入或卖出的风险；例如 bid-ask spread，经营这种流动性风险的人是做市商；一个变种，套利，涉及不同市场的流动性</li>
+<li>价格风险：价格大幅上涨下跌的风险；交易这种风险的人叫做投机者</li>
+</ul>
+</li>
+<li>三类交易者<ul>
+<li>对冲者：买卖期货合约为企业对冲成本</li>
+<li>做市商（帽客）：同时买入卖出，赚取价差（帮助投机者和对冲者成交）；假如市场出现大行情，可能反而会亏损</li>
+<li>投机者：为企业承担风险，以期获利</li>
+</ul>
+</li>
+</ul>
+<h2 id="第二章-揭秘海龟思维"><a href="#第二章-揭秘海龟思维" class="headerlink" title="第二章 揭秘海龟思维"></a>第二章 揭秘海龟思维</h2><ul>
+<li>行为金融学，在不确定的环境中人类容易犯系统性错误，对风险和概率会有糟糕的判断，成功的交易者（海龟）能从中获利</li>
+<li>人类的情绪和非理性可以制造出重复性的市场模式，形成机会的信号</li>
+<li>认知偏差<ul>
+<li>损失厌恶：对损失的感受强于失去潜在同样多盈利的感受，损失厌恶症会影响一个人使用系统性交易（Eg, 海龟交易法则）的能力，因为遵守规则赔钱比遵守规则踏空或不遵守规则而赔钱更痛。</li>
+<li>沉没成本效应：更重视已经花掉的钱，而不是未来可能要花的钱。市场反方向运行是不止损而是期望反弹</li>
+<li>处置效应：早早兑现利润，却让损失持续下去。总是倾向于卖掉赚钱的股票，死扛亏钱的</li>
+<li>结果偏好：只会根据一个决策的结果来判断它的好坏，而不去考虑决策本身的质量。假如使用正确的决策方法却赔了钱，可能会怀疑自己的决策方法</li>
+<li>近期偏好：更重视近期的数据或经验，忽视早期的数据或经验。哪怕之前一直赚钱，最近的赔钱经历也会使交易者怀疑自己的决策方法</li>
+<li>锚定效应：过于依赖或锚定容易获得的信息。总喜欢将股票与近期高点相比，不愿卖出</li>
+<li>潮流效应：盲目相信一件事，只因为其他很多人相信它。价格在泡沫破裂之前仍然疯长</li>
+<li>小数定律：从太少的信息中得出没有依据的结论。例如一个交易系统在6次交易中成功了4次，就当做是一个好的交易系统</li>
+</ul>
+</li>
+<li></li>
+</ul>
+<h2 id="参考书目"><a href="#参考书目" class="headerlink" title="参考书目"></a>参考书目</h2><p>提到的书籍</p>
+<ul>
+<li>股票作手回忆录</li>
+<li>与天为敌：风险探索传奇</li>
+<li>非理性繁荣</li>
+<li>超越恐惧和贪婪</li>
+</ul>
 
       
     </div>
@@ -250,18 +268,18 @@
     
 <nav id="article-nav">
   
-    <a href="/2016/06/27/ubuntu-solarized/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/10/08/C-11新特性/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          Set Solarized Color Scheme in Ubuntu
+          C++11 新特性
         
       </div>
     </a>
   
   
-    <a href="/2014/07/10/icml-summary/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">ICML参会小结</div>
+    <a href="/2019/09/22/全实战成长系列-CTA策略-解构CTA策略/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">【课程笔记】全实战成长系列-30堂实战课跑通量化交易-解构CTA策略</div>
       <strong class="article-nav-caption">></strong>
     </a>
   

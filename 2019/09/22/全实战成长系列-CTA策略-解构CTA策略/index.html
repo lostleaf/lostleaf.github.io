@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>【课程笔记】全实战成长系列-30堂实战课跑通量化交易-解构CTA策略 | lostleaf&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="全实战成长系列-30堂实战课跑通量化交易, 平台见识（华尔街见闻），by 用 Python 的交易员">
+<meta name="keywords" content="Quant,全实战成长系列-30堂实战课跑通量化交易">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【课程笔记】全实战成长系列-30堂实战课跑通量化交易-解构CTA策略">
+<meta property="og:url" content="http://yoursite.com/2019/09/22/全实战成长系列-CTA策略-解构CTA策略/index.html">
+<meta property="og:site_name" content="lostleaf&#39;s Blog">
+<meta property="og:description" content="全实战成长系列-30堂实战课跑通量化交易, 平台见识（华尔街见闻），by 用 Python 的交易员">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-09-27T08:25:30.969Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【课程笔记】全实战成长系列-30堂实战课跑通量化交易-解构CTA策略">
+<meta name="twitter:description" content="全实战成长系列-30堂实战课跑通量化交易, 平台见识（华尔街见闻），by 用 Python 的交易员">
+  
+    <link rel="alternative" href="/atom.xml" title="lostleaf&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/avatar.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">lostleaf</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						
+						<li>About</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">Home</a></li>
+				        
+							<li><a href="/archives">Archives</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/lostleaf" title="github">github</a>
+					        
+								<a class="linkedin" target="_blank" href="https://www.linkedin.com/in/qinglin-li-29b23364" title="linkedin">linkedin</a>
+					        
+								<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/lostleaf" title="zhihu">zhihu</a>
+					        
+								<a class="twitter" target="_blank" href="https://twitter.com/L0STLEAF" title="twitter">twitter</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/AtrRsi/" style="font-size: 10px;">AtrRsi</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/Compiler/" style="font-size: 10px;">Compiler</a> <a href="/tags/Conference/" style="font-size: 10px;">Conference</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Machine-Learning/" style="font-size: 10px;">Machine Learning</a> <a href="/tags/Quant/" style="font-size: 20px;">Quant</a> <a href="/tags/Sci-Fi/" style="font-size: 12.5px;">Sci-Fi</a> <a href="/tags/Vim/" style="font-size: 10px;">Vim</a> <a href="/tags/Zhihu/" style="font-size: 15px;">Zhihu</a> <a href="/tags/全实战成长系列-30堂实战课跑通量化交易/" style="font-size: 10px;">全实战成长系列-30堂实战课跑通量化交易</a> <a href="/tags/全实战进阶系列-CTA策略/" style="font-size: 17.5px;">全实战进阶系列-CTA策略</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">Machine Learning Enthusiast / Sci-Fi Fan / Programmer</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">lostleaf</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="/img/avatar.jpg" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">lostleaf</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">Home</a></li>
+		        
+					<li><a href="/archives">Archives</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/lostleaf" title="github">github</a>
+			        
+						<a class="linkedin" target="_blank" href="https://www.linkedin.com/in/qinglin-li-29b23364" title="linkedin">linkedin</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/lostleaf" title="zhihu">zhihu</a>
+			        
+						<a class="twitter" target="_blank" href="https://twitter.com/L0STLEAF" title="twitter">twitter</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-全实战成长系列-CTA策略-解构CTA策略" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/09/22/全实战成长系列-CTA策略-解构CTA策略/" class="article-date">
+  	<time datetime="2019-09-21T18:31:49.000Z" itemprop="datePublished">2019-09-21</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      【课程笔记】全实战成长系列-30堂实战课跑通量化交易-解构CTA策略
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Quant/">Quant</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/全实战成长系列-30堂实战课跑通量化交易/">全实战成长系列-30堂实战课跑通量化交易</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="https://jianshiapp.com/courses/64?tab=list" target="_blank" rel="noopener">全实战成长系列-30堂实战课跑通量化交易</a>, 平台见识（华尔街见闻），by 用 Python 的交易员</p>
+<a id="more"></a>
+<h2 id="CTA-策略"><a href="#CTA-策略" class="headerlink" title="CTA 策略"></a>CTA 策略</h2><ul>
+<li>Commodity Trading Advisor, 海外更多成为 Trending Following，追涨杀跌</li>
+<li>适合的品种: 期货，外汇，CFD ( &amp;数字币 Maybe?)<ul>
+<li>多空双向交易，容易做空（A股不适合）</li>
+<li>带有较高杠杆，可以把一份资金分散到更多品种</li>
+<li>流动性较高，建仓的时候不至于造成特别大的 market impact</li>
+<li>波动性明显</li>
+</ul>
+</li>
+<li>交易频率<ul>
+<li>低频：基于日线，持仓在数日到数周</li>
+<li>中频：基于小时线/数分钟线，持仓数小时</li>
+<li>中高频：基于分钟线/秒线，持仓一小时以内</li>
+</ul>
+</li>
+<li>著名机构<ul>
+<li>AHL，英仕曼集团</li>
+<li>Winton，元盛资产</li>
+<li>富善投资</li>
+<li>思勰投资</li>
+</ul>
+</li>
+<li>持续迭代<ul>
+<li>数据研究</li>
+<li>策略开发</li>
+<li>历史回测</li>
+<li>实盘允许</li>
+<li>对比分析</li>
+</ul>
+</li>
+<li>策略构成<ul>
+<li>信号生成<ul>
+<li>基于历史行情数据，进行时间序列分析，生成买卖指令；实盘，历史数据指当前所有的历史数据</li>
+<li>指令的生成过程<ul>
+<li>信号：给出具体的买卖方向和数量: <ul>
+<li>买还是卖（基于技术指标和模型）<ul>
+<li>双均线金叉死叉</li>
+<li>RSI 超买超卖</li>
+<li>收盘价突破布林带下轨</li>
+<li>回归模型上涨/下跌预期高于阈值</li>
+</ul>
+</li>
+<li>买卖时机<ul>
+<li>T 时候(立即执行), T 收盘, T + 1 开盘: 双均线金叉，RSI 跌破 30</li>
+<li>T + n 时刻(未来执行), T 收盘, T + 1 开盘后任意时刻: K 线运行盘中突破通道上轨 </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>过滤：剔除不好的交易机会（震荡市剔除均线缠绕）<ul>
+<li>趋势的本质，是稳定的单边大波动；CTA 的目标是识别趋势同向交易；减少假突破的亏损，需要过滤信号（市场波动不够大，忽略信号）</li>
+<li>独立指标：DMI，ATR</li>
+<li>信号内嵌：通道，RSI 极值区</li>
+</ul>
+</li>
+<li>出场：<ul>
+<li>反向信号：金叉之后死叉，突破上轨买入后，突破下轨，则卖出</li>
+<li>止损逻辑：<ul>
+<li>固定止损：亏损固定金额（比例）之后平仓止损</li>
+<li>移动止损（止盈）：从最高点跌落固定比例</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>组合构建<ul>
+<li>简单组合：直接使用信号给出的交易数量，适用于中高频或中频策略</li>
+<li>风险平衡：结合信号给出的数量和市场风险度调整，适用于低频策略</li>
+</ul>
+</li>
+<li>交易执行<ul>
+<li>信号和执行结合：策略代码直接生成指令并发送委托管理交易（简单组合），交易管理比较细粒度，追求速度，适用于中高频</li>
+<li>信号和执行分离：组合构建支持更加复杂的一些规则，适用于低频（海龟）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="海龟策略"><a href="#海龟策略" class="headerlink" title="海龟策略"></a>海龟策略</h2><ul>
+<li>概念<ul>
+<li>系统化交易策略，按照系统性的规则去执行交易</li>
+<li>1983 年两位交易员的赌约，30 多年历史；柯蒂斯·费思，19 岁加入海龟，4 年狂赚 3150 万美元</li>
+<li>最经典的量化交易策略，低频 CTA</li>
+<li>数量化分析(纸笔计算器) + 系统化执行(打电话交易)</li>
+</ul>
+</li>
+<li>构成<ul>
+<li>交易信号<ul>
+<li>通道突破</li>
+<li>顺势加仓</li>
+<li>风控止损</li>
+</ul>
+</li>
+<li>组合构建<ul>
+<li>品种选择</li>
+<li>单位持仓</li>
+<li>风险分配</li>
+</ul>
+</li>
+<li>交易执行：当年没有自动化交易系统</li>
+</ul>
+</li>
+<li>品种选择<ul>
+<li>期货，包括商品和股指</li>
+<li>杠杆外汇</li>
+<li>数字货币，现货和期货合约</li>
+</ul>
+</li>
+<li>通道突破: <ul>
+<li>Donchian Channel: 本质是找过去 N 日最为重要的支撑和阻力，简单粗暴行之有效</li>
+<li>短周期<ul>
+<li>突破 20 日通道开仓</li>
+<li>过滤上笔盈利</li>
+<li>反向突破 10 日通道平仓</li>
+</ul>
+</li>
+<li>长周期<ul>
+<li>突破 55 日通道开仓</li>
+<li>反向突破 20 日通道平仓</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>单位持仓<ul>
+<li>风险度量 N: True range (真实波动范围) 的指数移动平均 (EMA), 通常用 ATR 代替 (SMA)</li>
+<li>单位持仓 Unit: <code>Unit = (总资金 * 1%) / (N * 合约乘数)</code><ul>
+<li>在特定时间，每个合约有自己特定的 Unit</li>
+<li>信号发出交易指令时，会以 Unit 作为买卖数量单位</li>
+<li>E.g. <code>总资金 = 500万</code>，<code>N = 80</code>, <code>合约乘数 = 300</code> =&gt; <code>Unit = 2.083</code> 约等于 2</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>顺势加仓<ul>
+<li>突破通道，开仓 Unit，记录入场价 Entry 和 N</li>
+<li>价格顺着仓位移动，每移动 <code>0.5N</code>，加仓 Unit</li>
+<li>加仓后将新的加仓价格记为 Entry，用于止损(Entry &gt;= 平均加仓成本, 锁定利润, 降低风险)</li>
+<li>单合约最大持仓，4 Unit，入场后最多加仓 3 次</li>
+</ul>
+</li>
+<li>风控止损（做多为例）<ul>
+<li>价格跌破 <code>Entry - 2N</code>, 平掉全部多头仓位</li>
+<li>因此最多总资金亏损 2% (<code>1% * 总资金 / (N * 合约乘数) * 2N * 合约乘数</code>)</li>
+<li>最新 Entry 高于平均建仓成本，所以整体风险在变小</li>
+<li>最大持仓限制(Units)，单品种4，高关联6，低关联10, 整个组合12</li>
+</ul>
+</li>
+</ul>
+<h2 id="限价单"><a href="#限价单" class="headerlink" title="限价单"></a>限价单</h2><ul>
+<li>常见委托<ul>
+<li>限价单：所有交易所提供</li>
+<li>市价单：绝大部分交易所提供；危险情况：挂单很少的时候，会吃掉所有的对手单，把价格打穿</li>
+<li>停止单：少数交易所提，部分经济商提供<ul>
+<li>本质上是条件委托, 满足条件发出</li>
+<li>为保证成交, 通常会发出市价单或超价停止单</li>
+<li>最早用于止损, Stop Loss Order</li>
+<li>两种不同的停止单<ul>
+<li>交易所（经济商）停止单<ul>
+<li>优点：保存在交易所或券商系统内，不用担心本地状况</li>
+<li>缺点：场内交易员（交易所后台）能够看到，可能被定向爆破</li>
+</ul>
+</li>
+<li>本地停止单<ul>
+<li>优点：只有交易员本人能看到，不用担心泄漏底牌</li>
+<li>缺点：保存在本地电脑，关机失效；触发有延时，会导致滑点</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>海龟和停止单<ul>
+<li>T 日收盘后，计算上下轨作为 T + 1 日的交易依据</li>
+<li>T + 1 日内，突破上下轨立即执行交易</li>
+<li>假如等到收盘，由于 alpha 衰减速度快，可能损失大量利润</li>
+<li>突破后的成交价格需要基于停止单撮合规则</li>
+</ul>
+</li>
+<li>停止单撮合规则<ul>
+<li>买入, T 日收盘挂出停止单价格为 P<ul>
+<li>T + 1 日 K 线 <code>high &lt; P</code>, 停止单未触发</li>
+<li>T + 1 日 K 线 <code>high &gt;= P</code>, 成交价 <code>max(P, open)</code>，假如开盘价已经大于 P, 直接以开盘价成交, 否则会未来函数</li>
+</ul>
+</li>
+<li>卖出, T 日收盘挂出停止单价格为 P<ul>
+<li>T + 1 日 K 线 <code>low &gt; P</code>, 停止单未触发</li>
+<li>T + 1 日 K 线 <code>low &lt;= P</code>, 成交价 <code>min(P, open)</code>，假如开盘价已经小于 P, 直接以开盘价成交, 否则会未来函数</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>难点<ul>
+<li>Ｋ线内部成交<ul>
+<li>无论长短周期，要求在突破通道的瞬间，立即执行交易，而非等到收盘</li>
+<li>K 线周期大, Tick 数据量太大，只能用 K 线数据回测（？）</li>
+<li>ZipLine or 三大矿无法回测</li>
+</ul>
+</li>
+<li>短周期信号的过滤<ul>
+<li>短周期信号用于捕捉短期的快速趋势，缺点是容易出现假突破大量亏损</li>
+<li>为避免假突破，投资组合在，上次盈利时，要放弃本次指令</li>
+<li>需要在信号中统计盈亏, 而不是回测结束后统计, 多次加仓（顺势）&amp;一次平仓要算为一次开平</li>
+</ul>
+</li>
+<li>单位持仓: Unit = (总资本 <em> 1%) / (N </em> 合约乘数)，合约乘数即一个指数跳动对应的钱<ul>
+<li>无持仓时，随 K 线更新 N 和 Unit</li>
+<li>触发开仓是，固定住交易时的 N 和 Unit</li>
+<li>信号层给出买卖指令的具体数量，组合层限制单品种暴露的风险</li>
+<li>平仓后，清除固定的 N 和 Unit</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/09/22/海龟交易法则/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          【读书笔记】海龟交易法则
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/09/21/全实战进阶系列-CTA策略-回测原理/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">【课程笔记】全实战进阶系列-CTA策略-回测原理</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2019 lostleaf
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
