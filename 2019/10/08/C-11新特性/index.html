@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="lostleaf&#39;s Blog">
 <meta property="og:description" content="C++11 新特性笔记">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-08T07:25:41.451Z">
+<meta property="og:updated_time" content="2019-10-08T07:27:33.343Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++11 新特性">
 <meta name="twitter:description" content="C++11 新特性笔记">
@@ -228,6 +228,7 @@
 <li><a href="#constexpr">constexpr</a></li>
 <li><a href="#%e5%ad%97%e7%ac%a6%e4%b8%b2%e5%ad%97%e9%9d%a2%e9%87%8f">字符串字面量</a></li>
 <li><a href="#lambda-%e5%87%bd%e6%95%b0">lambda 函数</a></li>
+<li><a href="#%e5%8f%b3%e5%80%bc%e5%bc%95%e7%94%a8">右值引用</a></li>
 </ul>
 <h2 id="初始化列表"><a href="#初始化列表" class="headerlink" title="初始化列表"></a>初始化列表</h2><p>C++11 添加了 initializer_list 类型，允许使用 initializer_list 初始化对象</p>
 <p>STL 容器例如 map, vector 等都实现了 initalizer_list constructor</p>
@@ -268,6 +269,7 @@
 <h2 id="constexpr"><a href="#constexpr" class="headerlink" title="constexpr"></a>constexpr</h2><p>C++11 中, constexpr 扩展了原有 const 的用法, 允许在编译期对作用于常量的函数求值<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">constexpr</span> <span class="keyword">int</span> <span class="title">a</span><span class="params">()</span> </span>&#123;<span class="keyword">return</span> <span class="number">3</span>;&#125;</span><br><span class="line"><span class="keyword">int</span> A[a() + <span class="number">3</span>]; <span class="comment">// 等价于 int A[6];</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">constexpr</span> <span class="keyword">int</span> <span class="title">cubed</span><span class="params">(<span class="keyword">int</span> a)</span> </span>&#123;<span class="keyword">return</span> a * a * a;&#125;</span><br><span class="line"><span class="keyword">int</span> b = cubed(<span class="number">2</span>); <span class="comment">// 编译期求值, b = 8</span></span><br></pre></td></tr></table></figure></p>
 <h2 id="字符串字面量"><a href="#字符串字面量" class="headerlink" title="字符串字面量"></a>字符串字面量</h2><p>C++11 引入了更多的字面量定义方式，方便定义 unicode 字符串以及正则表达式等<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">char</span>    *a = <span class="string">u8"你好"</span>; <span class="comment">// UTF-8</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char16_t</span> *b = <span class="string">u"你好"</span>; <span class="comment">// UTF-16</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char32_t</span> *c = <span class="string">U"你好"</span>; <span class="comment">// UTF-32</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char</span>  *d = <span class="string">R"(\n\t)"</span>; <span class="comment">// raw string, 括号内不转义，配合正则表达式特别有用</span></span><br></pre></td></tr></table></figure></p>
 <h2 id="lambda-函数"><a href="#lambda-函数" class="headerlink" title="lambda 函数"></a>lambda 函数</h2><p>C++11 引入了 lambda function，方便定义匿名函数<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> f = [](<span class="keyword">int</span> x, <span class="keyword">int</span> y)&#123;<span class="keyword">return</span> x + y;&#125;;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; f(<span class="number">1</span>, <span class="number">2</span>) &lt;&lt; <span class="built_in">endl</span>; <span class="comment">// 输出 3</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v&#123;<span class="number">2</span>,<span class="number">1</span>,<span class="number">3</span>&#125;;</span><br><span class="line">sort(v.begin(), v.end(), [](<span class="keyword">int</span> a, <span class="keyword">int</span> b)&#123;<span class="keyword">return</span> a &gt; b;&#125;); <span class="comment">// v = &#123;3, 2, 1&#125;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="右值引用"><a href="#右值引用" class="headerlink" title="右值引用"></a>右值引用</h2><p>详见 <a href="/2019/10/09/C-左右值/">C++左右值与右值引用</a></p>
 
       
     </div>
