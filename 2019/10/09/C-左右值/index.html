@@ -6,18 +6,18 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>C++左右值与右值引用 | lostleaf&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="左值与右值C++ 中，左右值的简化定义:  左值：占用了一定内存，且拥有可辨认的地址的对象 右值：左值以外的所有对象  典型的左值，C++中绝大部分的变量都是左值123456int i = 1;   // i 是左值int *p = &amp;amp;i; // i 的地址是可辨认的i = 2; // i 在内存中的值可以改变class A;A a; // 用户自定义类实例化的对象也是左值 典型的右值1">
+  <meta name="description" content="总结左右值的定义，和 C++11 中右值引用的用途">
 <meta name="keywords" content="C++">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C++左右值与右值引用">
 <meta property="og:url" content="http://yoursite.com/2019/10/09/C-左右值/index.html">
 <meta property="og:site_name" content="lostleaf&#39;s Blog">
-<meta property="og:description" content="左值与右值C++ 中，左右值的简化定义:  左值：占用了一定内存，且拥有可辨认的地址的对象 右值：左值以外的所有对象  典型的左值，C++中绝大部分的变量都是左值123456int i = 1;   // i 是左值int *p = &amp;amp;i; // i 的地址是可辨认的i = 2; // i 在内存中的值可以改变class A;A a; // 用户自定义类实例化的对象也是左值 典型的右值1">
+<meta property="og:description" content="总结左右值的定义，和 C++11 中右值引用的用途">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-08T07:20:07.397Z">
+<meta property="og:updated_time" content="2019-10-08T07:24:05.710Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++左右值与右值引用">
-<meta name="twitter:description" content="左值与右值C++ 中，左右值的简化定义:  左值：占用了一定内存，且拥有可辨认的地址的对象 右值：左值以外的所有对象  典型的左值，C++中绝大部分的变量都是左值123456int i = 1;   // i 是左值int *p = &amp;amp;i; // i 的地址是可辨认的i = 2; // i 在内存中的值可以改变class A;A a; // 用户自定义类实例化的对象也是左值 典型的右值1">
+<meta name="twitter:description" content="总结左右值的定义，和 C++11 中右值引用的用途">
   
     <link rel="alternative" href="/atom.xml" title="lostleaf&#39;s Blog" type="application/atom+xml">
   
@@ -211,7 +211,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <a id="more"></a>
+        <p>总结左右值的定义，和 C++11 中右值引用的用途<br><a id="more"></a></p>
 <h2 id="左值与右值"><a href="#左值与右值" class="headerlink" title="左值与右值"></a>左值与右值</h2><p>C++ 中，左右值的简化定义:</p>
 <ul>
 <li>左值：占用了一定内存，且拥有可辨认的地址的对象</li>
