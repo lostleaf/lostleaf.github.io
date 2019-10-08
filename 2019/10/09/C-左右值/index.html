@@ -4,18 +4,20 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>lostleaf&#39;s Blog</title>
+  <title>C++左右值与右值引用 | lostleaf&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="The blog of lostleaf">
-<meta property="og:type" content="website">
-<meta property="og:title" content="lostleaf&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="左值与右值C++ 中，左右值的简化定义:  左值：占用了一定内存，且拥有可辨认的地址的对象 右值：左值以外的所有对象  典型的左值，C++中绝大部分的变量都是左值123456int i = 1;   // i 是左值int *p = &amp;amp;i; // i 的地址是可辨认的i = 2; // i 在内存中的值可以改变class A;A a; // 用户自定义类实例化的对象也是左值 典型的右值1">
+<meta name="keywords" content="C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++左右值与右值引用">
+<meta property="og:url" content="http://yoursite.com/2019/10/09/C-左右值/index.html">
 <meta property="og:site_name" content="lostleaf&#39;s Blog">
-<meta property="og:description" content="The blog of lostleaf">
+<meta property="og:description" content="左值与右值C++ 中，左右值的简化定义:  左值：占用了一定内存，且拥有可辨认的地址的对象 右值：左值以外的所有对象  典型的左值，C++中绝大部分的变量都是左值123456int i = 1;   // i 是左值int *p = &amp;amp;i; // i 的地址是可辨认的i = 2; // i 在内存中的值可以改变class A;A a; // 用户自定义类实例化的对象也是左值 典型的右值1">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-10-08T07:20:07.397Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="lostleaf&#39;s Blog">
-<meta name="twitter:description" content="The blog of lostleaf">
+<meta name="twitter:title" content="C++左右值与右值引用">
+<meta name="twitter:description" content="左值与右值C++ 中，左右值的简化定义:  左值：占用了一定内存，且拥有可辨认的地址的对象 右值：左值以外的所有对象  典型的左值，C++中绝大部分的变量都是左值123456int i = 1;   // i 是左值int *p = &amp;amp;i; // i 的地址是可辨认的i = 2; // i 在内存中的值可以改变class A;A a; // 用户自定义类实例化的对象也是左值 典型的右值1">
   
     <link rel="alternative" href="/atom.xml" title="lostleaf&#39;s Blog" type="application/atom+xml">
   
@@ -172,9 +174,7 @@
 	</div>
 </nav>
 
-      <div class="body-wrap">
-  
-    <article id="post-C-左右值" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-C-左右值" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       <a href="/2019/10/09/C-左右值/" class="article-date">
@@ -190,12 +190,23 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/09/C-左右值/">C++左右值与右值引用</a>
+    <h1 class="article-title" itemprop="name">
+      C++左右值与右值引用
     </h1>
   
 
       </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
       
     
     <div class="article-entry" itemprop="articleBody">
@@ -229,594 +240,48 @@
       
     </div>
     
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li></ul>
-	</div>
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/10/08/C-11新特性/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">C++11 新特性</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
   
 </article>
 
 
-
-
-
-
-
-
-
-  
-    <article id="post-C-11新特性" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/10/08/C-11新特性/" class="article-date">
-  	<time datetime="2019-10-08T03:42:45.000Z" itemprop="datePublished">2019-10-07</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/08/C-11新特性/">C++11 新特性</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>C++11 新特性笔记</p>
-<ul>
-<li><a href="#%e5%88%9d%e5%a7%8b%e5%8c%96%e5%88%97%e8%a1%a8">初始化列表</a></li>
-<li><a href="#%e7%bb%9f%e4%b8%80%e5%88%9d%e5%a7%8b%e5%8c%96">统一初始化</a></li>
-<li><a href="#auto">auto</a></li>
-<li><a href="#%e5%9f%ba%e4%ba%8e%e8%8c%83%e5%9b%b4%e7%9a%84for%e5%be%aa%e7%8e%af">基于范围的for循环</a></li>
-<li><a href="#nullptr">nullptr</a></li>
-<li><a href="#%e5%bc%ba%e7%b1%bb%e5%9e%8b%e6%9e%9a%e4%b8%be">强类型枚举</a></li>
-<li><a href="#%e9%9d%99%e6%80%81%e6%96%ad%e8%a8%80">静态断言</a></li>
-<li><a href="#%e5%a7%94%e6%89%98%e6%9e%84%e9%80%a0%e5%87%bd%e6%95%b0">委托构造函数</a></li>
-<li><a href="#override">Override</a></li>
-<li><a href="#final">final</a></li>
-<li><a href="#%e9%bb%98%e8%ae%a4%e6%9e%84%e9%80%a0%e5%87%bd%e6%95%b0">默认构造函数</a></li>
-<li><a href="#%e8%a2%ab%e5%88%a0%e9%99%a4%e7%9a%84%e5%87%bd%e6%95%b0">被删除的函数</a></li>
-<li><a href="#constexpr">constexpr</a></li>
-<li><a href="#%e5%ad%97%e7%ac%a6%e4%b8%b2%e5%ad%97%e9%9d%a2%e9%87%8f">字符串字面量</a></li>
-<li><a href="#lambda-%e5%87%bd%e6%95%b0">lambda 函数</a></li>
-</ul>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li></ul>
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
 	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
 
-      
 
-      
-        <p class="article-more-link">
-          <a  href="/2019/10/08/C-11新特性/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
 
 
 
 
 
 
-
-
-
-  
-    <article id="post-海龟交易法则" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/09/22/海龟交易法则/" class="article-date">
-  	<time datetime="2019-09-22T14:25:41.000Z" itemprop="datePublished">2019-09-22</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/22/海龟交易法则/">【读书笔记】海龟交易法则</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="https://book.douban.com/subject/24325274/" target="_blank" rel="noopener">《海龟交易法则》</a>，作者柯蒂斯·费思，译者乔江涛</p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Quant/">Quant</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2019/09/22/海龟交易法则/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-全实战成长系列-CTA策略-解构CTA策略" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/09/22/全实战成长系列-CTA策略-解构CTA策略/" class="article-date">
-  	<time datetime="2019-09-21T18:31:49.000Z" itemprop="datePublished">2019-09-21</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/22/全实战成长系列-CTA策略-解构CTA策略/">【课程笔记】全实战成长系列-30堂实战课跑通量化交易-解构CTA策略</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="https://jianshiapp.com/courses/64?tab=list" target="_blank" rel="noopener">全实战成长系列-30堂实战课跑通量化交易</a>, 平台见识（华尔街见闻），by 用 Python 的交易员</p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Quant/">Quant</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/全实战成长系列-30堂实战课跑通量化交易/">全实战成长系列-30堂实战课跑通量化交易</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2019/09/22/全实战成长系列-CTA策略-解构CTA策略/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-全实战进阶系列-CTA策略-回测原理" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/09/21/全实战进阶系列-CTA策略-回测原理/" class="article-date">
-  	<time datetime="2019-09-21T04:40:02.000Z" itemprop="datePublished">2019-09-20</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/21/全实战进阶系列-CTA策略-回测原理/">【课程笔记】全实战进阶系列-CTA策略-回测原理</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="https://appszu5scwd6134.h5.xiaoeknow.com/" target="_blank" rel="noopener">全实战进阶系列-CTA策略</a>, 平台小鹅通，by 用 Python 的交易员</p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Quant/">Quant</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/全实战进阶系列-CTA策略/">全实战进阶系列-CTA策略</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2019/09/21/全实战进阶系列-CTA策略-回测原理/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-全实战进阶系列-CTA策略-策略的构成（理论总纲）" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/09/17/全实战进阶系列-CTA策略-策略的构成（理论总纲）/" class="article-date">
-  	<time datetime="2019-09-16T19:42:30.000Z" itemprop="datePublished">2019-09-16</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/17/全实战进阶系列-CTA策略-策略的构成（理论总纲）/">【课程笔记】全实战进阶系列-CTA策略-策略的构成（理论总纲）</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="https://appszu5scwd6134.h5.xiaoeknow.com/" target="_blank" rel="noopener">全实战进阶系列-CTA策略</a>, 平台小鹅通，by 用 Python 的交易员</p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AtrRsi/">AtrRsi</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Quant/">Quant</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/全实战进阶系列-CTA策略/">全实战进阶系列-CTA策略</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2019/09/17/全实战进阶系列-CTA策略-策略的构成（理论总纲）/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-全实战进阶系列-CTA策略-K线逻辑" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/09/16/全实战进阶系列-CTA策略-K线逻辑/" class="article-date">
-  	<time datetime="2019-09-15T22:28:12.000Z" itemprop="datePublished">2019-09-15</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/16/全实战进阶系列-CTA策略-K线逻辑/">【课程笔记】全实战进阶系列-CTA策略-K线逻辑</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="https://appszu5scwd6134.h5.xiaoeknow.com/" target="_blank" rel="noopener">全实战进阶系列-CTA策略</a>, 平台小鹅通，by 用 Python 的交易员</p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Quant/">Quant</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/全实战进阶系列-CTA策略/">全实战进阶系列-CTA策略</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2019/09/16/全实战进阶系列-CTA策略-K线逻辑/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-全实战进阶系列-CTA策略-基础操作" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/09/12/全实战进阶系列-CTA策略-基础操作/" class="article-date">
-  	<time datetime="2019-09-11T19:52:50.000Z" itemprop="datePublished">2019-09-11</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/12/全实战进阶系列-CTA策略-基础操作/">【课程笔记】全实战进阶系列-CTA策略-基础操作</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="https://appszu5scwd6134.h5.xiaoeknow.com/" target="_blank" rel="noopener">全实战进阶系列-CTA策略</a>, 平台小鹅通，by 用 Python 的交易员</p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Quant/">Quant</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/全实战进阶系列-CTA策略/">全实战进阶系列-CTA策略</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2019/09/12/全实战进阶系列-CTA策略-基础操作/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-带你重新认识海龟交易策略" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/09/11/带你重新认识海龟交易策略/" class="article-date">
-  	<time datetime="2019-09-10T22:58:26.000Z" itemprop="datePublished">2019-09-10</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/11/带你重新认识海龟交易策略/">【live笔记】带你重新认识海龟交易策略</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>知乎live：<a href="https://www.zhihu.com/lives/1053322888899342336" target="_blank" rel="noopener">带你重新认识海龟交易策略</a>, by 用Python的交易员</p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Quant/">Quant</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Zhihu/">Zhihu</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2019/09/11/带你重新认识海龟交易策略/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-阅读：交易员的内功修炼" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/09/11/阅读：交易员的内功修炼/" class="article-date">
-  	<time datetime="2019-09-10T16:27:54.000Z" itemprop="datePublished">2019-09-10</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/11/阅读：交易员的内功修炼/">【live笔记】阅读：交易员的内功修炼</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>知乎live：<a href="https://www.zhihu.com/lives/819952218865287168" target="_blank" rel="noopener">阅读：交易员的内功修炼</a>, by 用Python的交易员<br>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Quant/">Quant</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Zhihu/">Zhihu</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2019/09/11/阅读：交易员的内功修炼/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-  
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
-    </nav>
-  
 </div>
       <footer id="footer">
   <div class="outer">
@@ -840,8 +305,8 @@
 		fancybox: true,
 		mathjax: true,
 		animate: true,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
