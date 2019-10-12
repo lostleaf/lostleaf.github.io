@@ -70,3 +70,14 @@ tags:
     - 更新原停止单状态为, `StopOrderStatus.TRIGGERED`, 调用 `on_stop_order` 回调
     - 对生成的限价单, 调用 `on_order` 回调
     - 维护 `strategy.pos`, 调用 `on_trade` 回调
+
+## [Dual Thrust](https://github.com/vnpy/vnpy/blob/master/vnpy/app/cta_strategy/strategies/dual_thrust_strategy.py)
+- 根据上一天的 K 线, 定义多空入场位置(`long_entry`, `short_entry`)
+- 收到每一根 K 线
+  - 如果开没有开过仓
+    - 价格到了开盘价以上, 在 `long_entry` 下买入停止单
+    - 价格到了开盘价以下, 在 `short_entry` 下卖出停止单
+  - 如果已经开仓
+    - 持多仓, 在 `short_entry` 下卖出停止单平仓
+    - 持空仓, 在 `long_entry` 下买入停止单平仓
+  - 对于每日要收盘的品种，如果时间到达了快要收盘的时候，无论如何，都要平仓
