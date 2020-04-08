@@ -25,6 +25,9 @@ C++11，我们可以用 `tuple` 来实现这种功能
 tuple<int, double, char> t(1, 2.0, 'a');
 auto t2 = make_tuple(1, 2.0, 'b'); // 类似于 make_pair
 
+// tuple 的比较也是按字典序的
+if (t < t2) cout << "t < t2\n"; // t < t2
+
 // 用 get<index>(tuple) 来获取 tuple 中第 index 个元素
 cout << get<0>(t) << ", " << get<2>(t) << endl; // 1, a
 
