@@ -1,6 +1,6 @@
 ---
 title: Hello World
-date: 2000-01-01
+date: 0000-01-01
 ---
 Welcome to my new [Hexo](https://hexo.io/) blog!
 
