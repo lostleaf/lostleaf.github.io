@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>C++11新特性 - 容器与拥有指针属性的类 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="本文主要介绍 C++ 中使用容器和拥有指针作为属性的类容易遇到的问题，以及 C++11 新的解决思路">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++11新特性 - 容器与拥有指针属性的类">
+<meta property="og:url" content="http://yoursite.com/2020/03/09/C-11%E6%96%B0%E7%89%B9%E6%80%A7-%E7%AE%A1%E7%90%86%E8%B5%84%E6%BA%90%E7%9A%84%E7%B1%BB/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="本文主要介绍 C++ 中使用容器和拥有指针作为属性的类容易遇到的问题，以及 C++11 新的解决思路">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-03-09T13:11:49.000Z">
+<meta property="article:modified_time" content="2020-04-16T06:05:32.253Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="C++11">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-C-11新特性-管理资源的类" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/09/C-11%E6%96%B0%E7%89%B9%E6%80%A7-%E7%AE%A1%E7%90%86%E8%B5%84%E6%BA%90%E7%9A%84%E7%B1%BB/" class="article-date">
+  <time datetime="2020-03-09T13:11:49.000Z" itemprop="datePublished">2020-03-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      C++11新特性 - 容器与拥有指针属性的类
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文主要介绍 C++ 中使用容器和拥有指针作为属性的类容易遇到的问题，以及 C++11 新的解决思路</p>
+<a id="more"></a>
+
+<h2 id="在-C-03-中使用带指针属性的类"><a href="#在-C-03-中使用带指针属性的类" class="headerlink" title="在 C++03 中使用带指针属性的类"></a>在 C++03 中使用带指针属性的类</h2><p>假如我们定义了这样一个类</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  Person(<span class="keyword">const</span> <span class="built_in">string</span>&amp; name) &#123;pName = <span class="keyword">new</span> <span class="built_in">string</span>(name);&#125;</span><br><span class="line">  ~Person() &#123;<span class="keyword">delete</span> pName;&#125;</span><br><span class="line">  <span class="built_in">string</span> *pName;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>我们希望把这个类放到 <code>vector</code> 里面，于是写出了一段看上去似乎没问题，但事实上会崩溃的代码</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="built_in">vector</span>&lt;Person&gt; persons;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/*</span></span><br><span class="line"><span class="comment">  这里会发生三件事情:</span></span><br><span class="line"><span class="comment">  1. 构造一个 pName 指向 "Bob" 的 Person 对象</span></span><br><span class="line"><span class="comment">  2. 讲这个对象浅拷贝到 persons[0] 位置</span></span><br><span class="line"><span class="comment">  3. 析构生成 1 中生成的 Person 对象 ("Bob" 被释放)</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line">  persons.push_back(Person(<span class="string">"Bob"</span>));</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125; <span class="comment">// persons 析构，已被释放的 "Bob" 再次被释放，程序崩溃</span></span><br></pre></td></tr></table></figure>
+
+<p>为了避免这个问题，在 C++03 中，常见的解决方法是给 Person 添加一个拷贝构造函数</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Person(<span class="keyword">const</span> Person&amp; rhs) &#123;pName = <span class="keyword">new</span> <span class="built_in">string</span>(*rhs.pName);&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然而，使用这种方法时，”Bob” 被多余地构造和释放了一次，造成了浪费</p>
+<h2 id="C-11-的解决方法"><a href="#C-11-的解决方法" class="headerlink" title="C++11 的解决方法"></a>C++11 的解决方法</h2><p>C++11 中，解决这个问题最简单的方法是，使用 <code>emplace_back</code> 替换 <code>push_back</code>，让容器自己来构造对象</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="built_in">vector</span>&lt;Person&gt; persons;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 在 persons 内部生成 Bob</span></span><br><span class="line">  persons.emplace_back(<span class="string">"Bob"</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>C++11 中，各种容器的插入，都实现了 emplace 版本</p>
+<p>然而，如果我们一定要使用 <code>push_back</code>，注意到 <code>Person(&quot;Bob&quot;)</code> 是个右值，由于 C++11 重载了右值版本的 <code>push_back(T&amp;&amp;)</code>，我们给 <code>Person</code> 添加移动构造函数</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Person(Person&amp;&amp; rhs) &#123;pName = rhs.pName; rhs.pName = <span class="literal">nullptr</span>;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样，<code>push_back</code> 内部只会发生两次指针赋值操作，而不是重新构造一个字符串</p>
+<p>那么，使用智能指针能不能解决这个问题呢？答案是可以的，两种解决方法</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. 使用 shared_ptr</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  Person(<span class="keyword">const</span> <span class="built_in">string</span>&amp; name):pName(<span class="keyword">new</span> <span class="built_in">string</span>(name)) &#123;&#125;</span><br><span class="line">  <span class="built_in">shared_ptr</span>&lt;<span class="built_in">string</span>&gt; pName;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. 使用 unique_ptr</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  Person(<span class="keyword">const</span> <span class="built_in">string</span>&amp; name):pName(<span class="keyword">new</span> <span class="built_in">string</span>(name)) &#123;&#125;</span><br><span class="line">  <span class="built_in">unique_ptr</span>&lt;<span class="built_in">string</span>&gt; pName;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>要注意的是, 如果使用 <code>shared_ptr</code>，每次拷贝之后 <code>pName</code> 指向的字符串事实上是共享的；如果使用 <code>unique_ptr</code>，则 <code>Person</code> 是不可拷贝只可移动的</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/09/C-11%E6%96%B0%E7%89%B9%E6%80%A7-%E7%AE%A1%E7%90%86%E8%B5%84%E6%BA%90%E7%9A%84%E7%B1%BB/" data-id="ckbbzl3ir0007jcgv8wy16h8b" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-11/" rel="tag">C++11</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/03/10/C-11%E6%96%B0%E7%89%B9%E6%80%A7-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          C++11新特性 - 正则表达式
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/03/08/C-11%E6%96%B0%E7%89%B9%E6%80%A7-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">C++11新特性 - 智能指针</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AtrRsi/" rel="tag">AtrRsi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-11/" rel="tag">C++11</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Compiler/" rel="tag">Compiler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Conference/" rel="tag">Conference</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Quant/" rel="tag">Quant</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sci-Fi/" rel="tag">Sci-Fi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vim/" rel="tag">Vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Zhihu/" rel="tag">Zhihu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%85%A8%E5%AE%9E%E6%88%98%E6%88%90%E9%95%BF%E7%B3%BB%E5%88%97-30%E5%A0%82%E5%AE%9E%E6%88%98%E8%AF%BE%E8%B7%91%E9%80%9A%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/" rel="tag">全实战成长系列-30堂实战课跑通量化交易</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%85%A8%E5%AE%9E%E6%88%98%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97-CTA%E7%AD%96%E7%95%A5/" rel="tag">全实战进阶系列-CTA策略</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AtrRsi/" style="font-size: 10px;">AtrRsi</a> <a href="/tags/C/" style="font-size: 18px;">C++</a> <a href="/tags/C-11/" style="font-size: 18px;">C++11</a> <a href="/tags/Compiler/" style="font-size: 10px;">Compiler</a> <a href="/tags/Conference/" style="font-size: 10px;">Conference</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Machine-Learning/" style="font-size: 10px;">Machine Learning</a> <a href="/tags/Quant/" style="font-size: 20px;">Quant</a> <a href="/tags/Sci-Fi/" style="font-size: 12px;">Sci-Fi</a> <a href="/tags/Vim/" style="font-size: 10px;">Vim</a> <a href="/tags/Zhihu/" style="font-size: 14px;">Zhihu</a> <a href="/tags/%E5%85%A8%E5%AE%9E%E6%88%98%E6%88%90%E9%95%BF%E7%B3%BB%E5%88%97-30%E5%A0%82%E5%AE%9E%E6%88%98%E8%AF%BE%E8%B7%91%E9%80%9A%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/" style="font-size: 10px;">全实战成长系列-30堂实战课跑通量化交易</a> <a href="/tags/%E5%85%A8%E5%AE%9E%E6%88%98%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97-CTA%E7%AD%96%E7%95%A5/" style="font-size: 16px;">全实战进阶系列-CTA策略</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1900/01/">January 1900</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/04/08/%E6%95%99%E7%88%B6%E7%9A%84%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93%E7%AC%94%E8%AE%B0/">教父的量化交易笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/14/C-11%E6%96%B0%E7%89%B9%E6%80%A7-tuple/">C++11新特性 - tuple</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/12/C-11%E6%96%B0%E7%89%B9%E6%80%A7-%E9%9A%8F%E6%9C%BA%E6%95%B0/">C++11新特性 - 随机数</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/10/C-11%E6%96%B0%E7%89%B9%E6%80%A7-%E6%97%B6%E9%92%9F%E4%B8%8E%E8%AE%A1%E6%97%B6%E5%99%A8/">C++11新特性 - 时钟与计时器</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/10/C-11%E6%96%B0%E7%89%B9%E6%80%A7-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">C++11新特性 - 正则表达式</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

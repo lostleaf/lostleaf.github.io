@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Notes on Vim basics | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Vim basic usages">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Notes on Vim basics">
+<meta property="og:url" content="http://yoursite.com/2016/04/02/vim-movements/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Vim basic usages">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2016-04-02T08:13:44.000Z">
+<meta property="article:modified_time" content="2019-09-11T02:03:07.711Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Vim">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-vim-movements" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/02/vim-movements/" class="article-date">
+  <time datetime="2016-04-02T08:13:44.000Z" itemprop="datePublished">2016-04-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Notes on Vim basics
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Vim basic usages</p>
+<a id="more"></a>
+
+<p><strong>Basics</strong> - Character-wise movements with the home keys: <code>h</code>, <code>j</code>, <code>k</code> and <code>l</code>.</p>
+<p><strong>Line terminus</strong> - Beginning of line: <code>^</code> or <code>0</code>(non-blank). End of line: <code>$</code>.</p>
+<p><strong>Forward word movement</strong> - word and WORD: <code>w</code> and <code>W</code>, <code>e</code> and <code>E</code>.</p>
+<p><strong>Backward word movement</strong> - word and WORD: <code>b</code> and <code>B</code>, <code>ge</code> and <code>gE</code>.</p>
+<p><strong>Move to character</strong> - <code>f</code>, <code>F</code>, <code>t</code>, <code>T</code></p>
+<p><strong>Paging</strong> - Full page: <code>CTRL-f</code> and <code>CTRL-b</code>. Half page: <code>CTRL-u</code> and <code>CTRL-d</code>.</p>
+<p><strong>Scroll</strong> - One line: <code>CTRL-y</code> and <code>CTRL-e</code>.</p>
+<p><strong>Cursor jumping</strong> - Head, middle and last line of a screen: <code>H</code>, <code>M</code> and <code>L</code>.</p>
+<p><strong>Top and Bottom</strong> - <code>gg</code> and <code>G</code>.</p>
+<p><strong>Jumping to a particular line</strong> - <code>(number)G</code> or <code>:(number)</code>.</p>
+<p><strong>Seach current word</strong> - <code>*</code> and <code>#</code>, or <code>g*</code> and <code>g#</code>(no word bounds).</p>
+<p><strong>Regular expression searching</strong> - <code>/</code> and <code>?</code>. Next and pervious: <code>n</code> and <code>N</code>.</p>
+<p><strong>Start of Function or Class Jumping</strong> - Beginning of <em>previous</em> and <em>next</em> functions or classes: <code>[[</code> and <code>]]</code></p>
+<p><strong>End of Function or Class Jumping</strong> - <em>Forwards</em> and <em>backwords</em> to the end of a function or class: <code>][</code> and <code>[]</code>.</p>
+<p><strong>Jumping to Matching Braces</strong> - The fantastic <code>%</code> characters.</p>
+<p><strong>Marks</strong> - Basic mark functionality and how it works with <code>m</code>, <code>&#39;</code> and <code>`</code>.</p>
+<p><strong>Insert</strong> - <code>i</code> and <code>I</code> can bring you into the insert mode. Insert <strong>before</strong> the current character by hitting <code>i</code>. Insert at the beginning of the line by hitting <code>I</code>, which equals to <code>^i</code>.</p>
+<p><strong>Insert with a New Line</strong> - Use <code>o</code>(<code>O</code>) to insert with a <strong>new line</strong> after(before) the current.</p>
+<p><strong>Insert with Append</strong> - Insert <strong>after</strong> the current character by hitting <code>a</code>. Insert at the end of the line by hitting <code>A</code>, which equals to <code>$a</code>.</p>
+<p><strong>Replacing Characters</strong> - Replace single character under cursor by hitting <code>r</code>. Switch to <strong>replace mode</strong> by hitting <code>R</code>.</p>
+<p><strong>Changing Things</strong> - Change things by <code>c + &lt;text object&gt;</code> or <code>c + &lt;motion&gt;</code>. <code>cc</code> to change the whole line and <code>C</code> change from the current character to the end of the line, which equals to <code>^c$</code> and <code>c$</code>.</p>
+<p><strong>Deleting Characters</strong> - Delete a single character under the cursor with <code>x</code> and before the cursor with <code>X</code>.</p>
+<p><strong>Deleting Things</strong> - Delete things with <code>d + &lt;text object&gt;</code> or <code>d + &lt;motion&gt;</code>. Delete a single line with <code>dd</code> and delete to the end of the line with <code>D</code>.</p>
+<p><strong>Repeat</strong> - Repeat the last command by hitting <code>.</code>.</p>
+<p><strong>Yanking</strong> - Yanking means “copying”. Yank(copy) with <code>y + &lt;text object&gt;</code>. Yank the whole line with <code>yy</code>.</p>
+<p><strong>Putting</strong> - Putting means “pasting”. Once you’ve yanked, you can put with the <code>p</code> (put after) or <code>P</code> (put before).</p>
+<p><strong>Joining</strong> - Join lines with the <code>J</code>. But if you don’t want the extra space, you need to use <code>gJ</code>.</p>
+<p><strong>Visual Mode</strong> - Use the <code>v</code> key for character-wise visual selection, <code>V</code> for line-wise selection and <code>ctrl-v</code> for block-mode selection. Use <code>gv</code> to help you re-select an area you just selected.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/04/02/vim-movements/" data-id="ckbbzl3j0000qjcgvgs5d2xgd" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vim/" rel="tag">Vim</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/06/27/ubuntu-solarized/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Set Solarized Color Scheme in Ubuntu
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/07/09/icml-summary/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">ICML参会小结</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AtrRsi/" rel="tag">AtrRsi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-11/" rel="tag">C++11</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Compiler/" rel="tag">Compiler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Conference/" rel="tag">Conference</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Quant/" rel="tag">Quant</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sci-Fi/" rel="tag">Sci-Fi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vim/" rel="tag">Vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Zhihu/" rel="tag">Zhihu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%85%A8%E5%AE%9E%E6%88%98%E6%88%90%E9%95%BF%E7%B3%BB%E5%88%97-30%E5%A0%82%E5%AE%9E%E6%88%98%E8%AF%BE%E8%B7%91%E9%80%9A%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/" rel="tag">全实战成长系列-30堂实战课跑通量化交易</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%85%A8%E5%AE%9E%E6%88%98%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97-CTA%E7%AD%96%E7%95%A5/" rel="tag">全实战进阶系列-CTA策略</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AtrRsi/" style="font-size: 10px;">AtrRsi</a> <a href="/tags/C/" style="font-size: 18px;">C++</a> <a href="/tags/C-11/" style="font-size: 18px;">C++11</a> <a href="/tags/Compiler/" style="font-size: 10px;">Compiler</a> <a href="/tags/Conference/" style="font-size: 10px;">Conference</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Machine-Learning/" style="font-size: 10px;">Machine Learning</a> <a href="/tags/Quant/" style="font-size: 20px;">Quant</a> <a href="/tags/Sci-Fi/" style="font-size: 12px;">Sci-Fi</a> <a href="/tags/Vim/" style="font-size: 10px;">Vim</a> <a href="/tags/Zhihu/" style="font-size: 14px;">Zhihu</a> <a href="/tags/%E5%85%A8%E5%AE%9E%E6%88%98%E6%88%90%E9%95%BF%E7%B3%BB%E5%88%97-30%E5%A0%82%E5%AE%9E%E6%88%98%E8%AF%BE%E8%B7%91%E9%80%9A%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/" style="font-size: 10px;">全实战成长系列-30堂实战课跑通量化交易</a> <a href="/tags/%E5%85%A8%E5%AE%9E%E6%88%98%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97-CTA%E7%AD%96%E7%95%A5/" style="font-size: 16px;">全实战进阶系列-CTA策略</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1900/01/">January 1900</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/04/08/%E6%95%99%E7%88%B6%E7%9A%84%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93%E7%AC%94%E8%AE%B0/">教父的量化交易笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/14/C-11%E6%96%B0%E7%89%B9%E6%80%A7-tuple/">C++11新特性 - tuple</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/12/C-11%E6%96%B0%E7%89%B9%E6%80%A7-%E9%9A%8F%E6%9C%BA%E6%95%B0/">C++11新特性 - 随机数</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/10/C-11%E6%96%B0%E7%89%B9%E6%80%A7-%E6%97%B6%E9%92%9F%E4%B8%8E%E8%AE%A1%E6%97%B6%E5%99%A8/">C++11新特性 - 时钟与计时器</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/10/C-11%E6%96%B0%E7%89%B9%E6%80%A7-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">C++11新特性 - 正则表达式</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

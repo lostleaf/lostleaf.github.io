@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>ICML参会小结 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="今年(2014年)的国际机器学习大会（ICML）已经基本结束了，在新的时代里，机器学习也有了新的变化。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ICML参会小结">
+<meta property="og:url" content="http://yoursite.com/2014/07/09/icml-summary/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="今年(2014年)的国际机器学习大会（ICML）已经基本结束了，在新的时代里，机器学习也有了新的变化。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2014-07-09T06:22:00.000Z">
+<meta property="article:modified_time" content="2019-09-11T02:03:07.707Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Machine Learning">
+<meta property="article:tag" content="Conference">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-icml-summary" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/07/09/icml-summary/" class="article-date">
+  <time datetime="2014-07-09T06:22:00.000Z" itemprop="datePublished">2014-07-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ICML参会小结
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今年(2014年)的国际机器学习大会（ICML）已经基本结束了，在新的时代里，机器学习也有了新的变化。</p>
+<a id="more"></a>
+
+<h2 id="大数据，新的挑战和机遇"><a href="#大数据，新的挑战和机遇" class="headerlink" title="大数据，新的挑战和机遇"></a>大数据，新的挑战和机遇</h2><p>当今互联网时代，越来越多的数据产生了出来，“大数据”、“云”等概念被炒得火热。ICML 作为顶级学术会议，似乎也不能免俗，今年的 tutorial 就有一半与大数据相关。</p>
+<p>第一天的会议在 TPAMI 副主编 Max Welling 教授富有吸引力的 Introduction 中拉开了帷幕。 Welling 教授首先介绍了贝叶斯后验推断（Bayesian Posterior Inference）的诸多优点，例如可以量化数据的不确定性以及易于避免过拟合（Overfitting）等，以及该方法在面临大量数据时所遇到的挑战——分析计算比较复杂，特别是在解决复杂问题时或数据量很大的时候，这个问题就尤为突出。</p>
+<p>Welling 教授同时也谈到了解决问题的两大途径：</p>
+<ol>
+<li>利用分布式系统运行算法</li>
+<li>每次迭代只使用一部分数据</li>
+</ol>
+<p>此后，Welling 教授具体讲了Variational Bayes 和 MCMC这两种算法的加速方法（比较偏向于如何使用部分数据来加速）。</p>
+<ul>
+<li><p>对于 Variational Bayes ，由于每一步需要利用所有数据，复杂度较高，可以使用随机梯度下降（Stochastic Gradient Descent）方法，每次使用随机子集来近似计算梯度来加速。</p>
+</li>
+<li><p>对于 MCMC，在经典的 M-H 算法中，由于每一次计算 M-H Test 的复杂度为 O(n)，不太适用于大数据，于是就有两种策略来避免这一问题：使用一种“好的” proposal 方法，从而不需要计算 M-H Test；或者每次使用少量数据去近似 M-H Test。</p>
+</li>
+</ul>
+<p>总体来说，Welling 教授提到的方法中间蕴含的 Idea 大多是传统的机器学习，最优化中就已经存在的 Idea，而现在随着时代发展，这些方法又被结合了起来，焕发出了新的光彩，最近几年过于热门的 Deep Learning 也属于这一类。</p>
+<p>第一天下午 Joseph Gonzalez 的讲座则更偏工程一些。Gonzalez 博士是 GraphLab 公司的联合创始人，他们主要致力于使用并行系统高效率地实现机器学习算法，这算是在大数据时代兴起的机器学习与分布式系统交叉产生的新兴研究方向。</p>
+<p>Gonzalez 博士以自身经历入手，讲到机器学习算法并行化所面临的种种困境：实现这样一种算法必须同时考虑机器学习方面和大型系统方面的问题，增加了设计以及调试的复杂度；同时由于特定机器学习算法难以扩展，使得机器学习学者需要一遍又一遍地面临同样地系统问题。他认为如果在机器学习和系统之间提供一层很好地抽象，就可以将所有的问题分解为机器学习学者擅长的问题和计算机系统学者擅长的问题。</p>
+<p>Gonzalez 博士随后报告了并行学习算法框架的最新进展，其中主要介绍了 Map-Reduce, Spark, Parameter Server, GraphLab, GraphX等框架。其中，后两者是他们自己的产品和研究重点，所以他花了大量的时间来介绍这两个框架与讲解相关测试结果。我做了一下调查，定性地来看他的测试结果，与大部分人的看法还是一致的，同时他也敢于指出自己的东西的缺点，应该来说还比较公正。</p>
+<h2 id="深度学习持续热门"><a href="#深度学习持续热门" class="headerlink" title="深度学习持续热门"></a>深度学习持续热门</h2><p>第一天最后一个 tutorial 来自于 Li Deng 教授，主要为大家回顾了深度学习的历史与进展，被大家称作“深度学习故事会”。Deng 教授首先带领大家回顾了深度学习在最近几年取得的最新成果以及产生的巨大影响。随后，Deng 教授从深度学习在语音方面的应用入手，从语音中堪称经典的高斯混合模型-隐马尔科夫模型，语者适应技术，讲到如今基于深度学习的语音识别，并通过 MSR 在天津的一个自动同声传译的 Demo 向大家展示了深度学习对该领域的巨大影响。之后，Deng 教授也展示了深度学习在计算视觉的影响和在自然语言处理方面以及一些新的挑战——我们需要去创造一套能够对现实世界的复杂事物关系和语义概念等进行 Reasoning 和 Inference 的系统。最后他展示了一个非常 Exciting 的新兴研究方向 Multimodal Processing，同时利用文本和图片/视频数据去学习图片/视频的语义。</p>
+<p>Deng 教授说到的一点让我感触很深。一点是深度学习早起在语音识别方面的效果并不比传统方法好太多，当年的 IEEE 审稿人看结果不好直接将论文 reject 掉，但他凭借语音领域的丰富经验，不断优化结果，最后做出了高质量的工作。这告诉我们，做科研要有恒心，不能轻易放弃。</p>
+<p>值得提出的是，Google 近年来在深度学习方面投入确实比较大，今年的 ICML 上 Google 发了好几篇深度学习相关的论文。Bengio 的存在感也很强，深度学习 Session 的每个 Talk 他都提出了问题。</p>
+<h2 id="人和机器"><a href="#人和机器" class="headerlink" title="人和机器"></a>人和机器</h2><p>第二天的会议以微软雷德蒙研究院院长 Eric Horvitz 的 Keynote 作为开始。他围绕未来机器被大量数据增强之后，可能更加紧密地辅助人类这一主题，为大家介绍了微软过去几年里在人机互动、人工智能等方面的一些例子。 Horvitz 首先提到了微软将机器学习应用在生物医药信息学和临床医疗等方面。在 MSR，这些成果目前已经应用到其周边的医院，提高了它们的医疗服务水平和决策能力。在他的演讲中，也提到了一些其他的非常惊讶的结果，包括之前天津的实时翻译 Demo 以及 Horvitz 自己办公室里已经投入使用的一套智能化系统的 Demo，这些综合了人工智能方向多个领域的成果让人感觉 AI Dream 又更近了一步。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2014/07/09/icml-summary/" data-id="ckbbzl3ix000gjcgv1cfza87u" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Conference/" rel="tag">Conference</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/04/02/vim-movements/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Notes on Vim basics
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/01/09/about-scifi/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">科幻：科学的预言，现实思想的延伸</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AtrRsi/" rel="tag">AtrRsi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-11/" rel="tag">C++11</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Compiler/" rel="tag">Compiler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Conference/" rel="tag">Conference</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Quant/" rel="tag">Quant</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sci-Fi/" rel="tag">Sci-Fi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vim/" rel="tag">Vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Zhihu/" rel="tag">Zhihu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%85%A8%E5%AE%9E%E6%88%98%E6%88%90%E9%95%BF%E7%B3%BB%E5%88%97-30%E5%A0%82%E5%AE%9E%E6%88%98%E8%AF%BE%E8%B7%91%E9%80%9A%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/" rel="tag">全实战成长系列-30堂实战课跑通量化交易</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%85%A8%E5%AE%9E%E6%88%98%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97-CTA%E7%AD%96%E7%95%A5/" rel="tag">全实战进阶系列-CTA策略</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AtrRsi/" style="font-size: 10px;">AtrRsi</a> <a href="/tags/C/" style="font-size: 18px;">C++</a> <a href="/tags/C-11/" style="font-size: 18px;">C++11</a> <a href="/tags/Compiler/" style="font-size: 10px;">Compiler</a> <a href="/tags/Conference/" style="font-size: 10px;">Conference</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Machine-Learning/" style="font-size: 10px;">Machine Learning</a> <a href="/tags/Quant/" style="font-size: 20px;">Quant</a> <a href="/tags/Sci-Fi/" style="font-size: 12px;">Sci-Fi</a> <a href="/tags/Vim/" style="font-size: 10px;">Vim</a> <a href="/tags/Zhihu/" style="font-size: 14px;">Zhihu</a> <a href="/tags/%E5%85%A8%E5%AE%9E%E6%88%98%E6%88%90%E9%95%BF%E7%B3%BB%E5%88%97-30%E5%A0%82%E5%AE%9E%E6%88%98%E8%AF%BE%E8%B7%91%E9%80%9A%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/" style="font-size: 10px;">全实战成长系列-30堂实战课跑通量化交易</a> <a href="/tags/%E5%85%A8%E5%AE%9E%E6%88%98%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97-CTA%E7%AD%96%E7%95%A5/" style="font-size: 16px;">全实战进阶系列-CTA策略</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1900/01/">January 1900</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/04/08/%E6%95%99%E7%88%B6%E7%9A%84%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93%E7%AC%94%E8%AE%B0/">教父的量化交易笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/14/C-11%E6%96%B0%E7%89%B9%E6%80%A7-tuple/">C++11新特性 - tuple</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/12/C-11%E6%96%B0%E7%89%B9%E6%80%A7-%E9%9A%8F%E6%9C%BA%E6%95%B0/">C++11新特性 - 随机数</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/10/C-11%E6%96%B0%E7%89%B9%E6%80%A7-%E6%97%B6%E9%92%9F%E4%B8%8E%E8%AE%A1%E6%97%B6%E5%99%A8/">C++11新特性 - 时钟与计时器</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/10/C-11%E6%96%B0%E7%89%B9%E6%80%A7-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">C++11新特性 - 正则表达式</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

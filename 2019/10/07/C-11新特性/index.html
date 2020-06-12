@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>C++11新特性 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="C++11 新特性笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++11新特性">
+<meta property="og:url" content="http://yoursite.com/2019/10/07/C-11%E6%96%B0%E7%89%B9%E6%80%A7/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="C++11 新特性笔记">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-10-07T14:42:45.000Z">
+<meta property="article:modified_time" content="2020-03-09T03:12:23.572Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="C++11">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-C-11新特性" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/07/C-11%E6%96%B0%E7%89%B9%E6%80%A7/" class="article-date">
+  <time datetime="2019-10-07T14:42:45.000Z" itemprop="datePublished">2019-10-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      C++11新特性
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>C++11 新特性笔记</p>
+<a id="more"></a>
+
+<ul>
+<li><a href="#%e5%88%9d%e5%a7%8b%e5%8c%96%e5%88%97%e8%a1%a8">初始化列表</a></li>
+<li><a href="#%e7%bb%9f%e4%b8%80%e5%88%9d%e5%a7%8b%e5%8c%96">统一初始化</a></li>
+<li><a href="#auto">auto</a></li>
+<li><a href="#%e5%9f%ba%e4%ba%8e%e8%8c%83%e5%9b%b4%e7%9a%84for%e5%be%aa%e7%8e%af">基于范围的for循环</a></li>
+<li><a href="#nullptr">nullptr</a></li>
+<li><a href="#%e5%bc%ba%e7%b1%bb%e5%9e%8b%e6%9e%9a%e4%b8%be">强类型枚举</a></li>
+<li><a href="#%e9%9d%99%e6%80%81%e6%96%ad%e8%a8%80">静态断言</a></li>
+<li><a href="#%e5%a7%94%e6%89%98%e6%9e%84%e9%80%a0%e5%87%bd%e6%95%b0">委托构造函数</a></li>
+<li><a href="#override">Override</a></li>
+<li><a href="#final">final</a></li>
+<li><a href="#%e9%bb%98%e8%ae%a4%e6%9e%84%e9%80%a0%e5%87%bd%e6%95%b0">默认构造函数</a></li>
+<li><a href="#%e8%a2%ab%e5%88%a0%e9%99%a4%e7%9a%84%e5%87%bd%e6%95%b0">被删除的函数</a></li>
+<li><a href="#constexpr">constexpr</a></li>
+<li><a href="#%e5%ad%97%e7%ac%a6%e4%b8%b2%e5%ad%97%e9%9d%a2%e9%87%8f">字符串字面量</a></li>
+<li><a href="#lambda-%e5%87%bd%e6%95%b0">lambda 函数</a></li>
+</ul>
+<h2 id="初始化列表"><a href="#初始化列表" class="headerlink" title="初始化列表"></a>初始化列表</h2><p>C++11 添加了 initializer_list 类型，允许使用 initializer_list 初始化对象</p>
+<p>STL 容器例如 map, vector 等都实现了 initalizer_list constructor</p>
+<p>自定义的对象也可以使用 initalizer_list 作为构造函数的参数</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyVector</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v_;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    MyVector(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">initializer_list</span>&lt;<span class="keyword">int</span>&gt; &amp;v) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> a : v) v_.push_back(a);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="统一初始化"><a href="#统一初始化" class="headerlink" title="统一初始化"></a>统一初始化</h2><p>C++03 中，可以使用集合初始化</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">A</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> x;</span><br><span class="line">    <span class="keyword">float</span> y;</span><br><span class="line">&#125;;</span><br><span class="line">A a = &#123;<span class="number">1</span>, <span class="number">2.0</span>&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>C++11 允许通过同样的方式调用构造函数</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">A</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> x;</span><br><span class="line">    <span class="keyword">float</span> y;</span><br><span class="line">    A(<span class="keyword">int</span> x, <span class="keyword">float</span> y) &#123;<span class="comment">/* Do something */</span>&#125;</span><br><span class="line">&#125;;</span><br><span class="line">A a = &#123;<span class="number">1</span>, <span class="number">2.0</span>&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>连同初始化列表，统称为统一初始化</p>
+<p>统一初始化调用顺序优先级：</p>
+<ol>
+<li>initalizer_list constructor</li>
+<li>构造函数</li>
+<li>集合初始化</li>
+</ol>
+<h2 id="auto"><a href="#auto" class="headerlink" title="auto"></a>auto</h2><p>非常实用的功能, 从复制操作的右值直接推断变量类型</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">auto</span> b = <span class="number">2.0</span>;</span><br></pre></td></tr></table></figure>
+
+<p>在 C++03 中，一个痛点：要迭代一个容器，需要</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="built_in">std</span>::<span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt;::iterator it = <span class="built_in">map</span>.<span class="built_in">begin</span>(); it != <span class="built_in">map</span>.<span class="built_in">end</span>(); ++it) &#123;<span class="comment">/* Do something */</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在 C++11 中，可以直接使用 auto</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">auto</span> it = <span class="built_in">map</span>.<span class="built_in">begin</span>(); it != <span class="built_in">map</span>.<span class="built_in">end</span>(); ++it) &#123;<span class="comment">/* Do something */</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="基于范围的for循环"><a href="#基于范围的for循环" class="headerlink" title="基于范围的for循环"></a>基于范围的for循环</h2><p>对于任何一个带有 begin() 和 end() 方法的对象，例如 vector</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i: v) &#123;<span class="built_in">cout</span> &lt;&lt; i &lt;&lt; <span class="built_in">endl</span>;&#125;</span><br></pre></td></tr></table></figure>
+<p>配合 auto 使用效果更佳</p>
+<h2 id="nullptr"><a href="#nullptr" class="headerlink" title="nullptr"></a>nullptr</h2><p>在 C++03 中, 使用 NULL 代表空指针, NULL 被定义为 0, 有时候会有歧义  </p>
+<p>在 C++11 中, 使用专门的 nullptr 代表空指针, 用以解决以下问题</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">(<span class="keyword">char</span>* p)</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    func(<span class="literal">NULL</span>); <span class="comment">// 有歧义, 编译器报错</span></span><br><span class="line">    func(<span class="literal">nullptr</span>); <span class="comment">// C++11, 调用 func(char* p)</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="强类型枚举"><a href="#强类型枚举" class="headerlink" title="强类型枚举"></a>强类型枚举</h2><p>C++03 中，枚举常量被暴露在同一作用域中，且被隐式转化为整形</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> Color&#123;red, blue&#125;;</span><br><span class="line"><span class="keyword">enum</span> Animal&#123;dog, cat&#125;;</span><br><span class="line">red == dog <span class="comment">// True!!</span></span><br></pre></td></tr></table></figure>
+
+<p>C++11 引入了 enum class 解决这个问题</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> Color&#123;red, blue&#125;;</span><br><span class="line"><span class="keyword">enum</span> Animal&#123;dog, cat&#125;;</span><br><span class="line">Color::red == Animal::dog <span class="comment">// 编译器报错，Color 和 Animal 不可比较</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="静态断言"><a href="#静态断言" class="headerlink" title="静态断言"></a>静态断言</h2><p>C++11 允许使用 static_assert 在编译期执行断言</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">assert(myPointer != <span class="literal">nullptr</span>); <span class="comment">// 运行期断言</span></span><br><span class="line"><span class="keyword">static_assert</span>(<span class="keyword">sizeof</span>(<span class="keyword">int</span>) == <span class="number">4</span>); <span class="comment">// C++11 新增, 编译期断言</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="委托构造函数"><a href="#委托构造函数" class="headerlink" title="委托构造函数"></a>委托构造函数</h2><p>在 C++03 中，如果两个构造函数都需要执行相同的操作，只能</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> &#123;</span></span><br><span class="line">    init() &#123;<span class="comment">/*Do something*/</span>&#125;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    A() &#123;init();&#125;</span><br><span class="line">    A(<span class="keyword">int</span> a) &#123;init(); <span class="comment">/* Do something with a */</span>&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>额外定义的 init() 函数可能被误调用</p>
+<p>C++11 则允许在构造函数开头调用另一个构造函数, 也允许在声明时初始化成员变量</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> x = <span class="number">1</span>; <span class="comment">// C++11 新增, 任意构造函数都会初始化 x = 1</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    A() &#123;<span class="comment">/* Do something */</span>&#125;</span><br><span class="line">    A(<span class="keyword">int</span> a): A() &#123;<span class="comment">/* Do something with a */</span>&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Override"><a href="#Override" class="headerlink" title="Override"></a>Override</h2><p>C++11 引入了 override 关键字，避免继承时错误的创造新函数</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">a</span><span class="params">(<span class="keyword">int</span>)</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AA</span>:</span> <span class="keyword">public</span> A &#123;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">a</span><span class="params">(<span class="keyword">float</span>)</span></span>; <span class="comment">// 创建一个新函数</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">a</span><span class="params">(<span class="keyword">float</span>)</span> <span class="keyword">override</span></span>; <span class="comment">// 编译期报错</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="final"><a href="#final" class="headerlink" title="final"></a>final</h2><p>C++11 引入 final 关键字，用于修饰类和虚函数，表示不允许继承/重载</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span> <span class="title">final</span> &#123;</span>    <span class="comment">// Dog 不可继承</span></span><br><span class="line">   ...</span><br><span class="line">&#125;;</span><br><span class="line">   </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span> &#123;</span></span><br><span class="line">   <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">bark</span><span class="params">()</span> <span class="keyword">final</span></span>;  <span class="comment">// bark() 不可重载</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="默认构造函数"><a href="#默认构造函数" class="headerlink" title="默认构造函数"></a>默认构造函数</h2><p>C++11 允许使用 default 关键字，由编译器自动生成默认构造函数</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// C++03</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    dog(<span class="keyword">int</span> age) &#123;&#125; <span class="comment">// 不会生成默认构造函数</span></span><br><span class="line">&#125;;</span><br><span class="line">Dog dog; <span class="comment">// 编译器报错</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// C++11</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    dog(<span class="keyword">int</span> age) &#123;&#125;</span><br><span class="line">    dog() = <span class="keyword">default</span>; <span class="comment">// 编译器自动生成默认构造函数</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="被删除的函数"><a href="#被删除的函数" class="headerlink" title="被删除的函数"></a>被删除的函数</h2><p>C++03 中, delete 关键字仅用于释放动态分配的内存</p>
+<p>C++11 允许使用 =delete 将函数标记为被删除的, 可以用来阻止隐式类型转换等</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    dog(<span class="keyword">int</span> age) &#123;&#125;</span><br><span class="line">    dog(<span class="keyword">double</span>) = <span class="keyword">delete</span>;</span><br><span class="line">&#125;;</span><br><span class="line">Dog(<span class="number">1</span>);</span><br><span class="line">Dog(<span class="number">2.0</span>); <span class="comment">// 编译器报错</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="constexpr"><a href="#constexpr" class="headerlink" title="constexpr"></a>constexpr</h2><p>C++11 中, constexpr 扩展了原有 const 的用法, 允许在编译期对作用于常量的函数求值</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">constexpr</span> <span class="keyword">int</span> <span class="title">a</span><span class="params">()</span> </span>&#123;<span class="keyword">return</span> <span class="number">3</span>;&#125;</span><br><span class="line"><span class="keyword">int</span> A[a() + <span class="number">3</span>]; <span class="comment">// 等价于 int A[6];</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">constexpr</span> <span class="keyword">int</span> <span class="title">cubed</span><span class="params">(<span class="keyword">int</span> a)</span> </span>&#123;<span class="keyword">return</span> a * a * a;&#125;</span><br><span class="line"><span class="keyword">int</span> b = cubed(<span class="number">2</span>); <span class="comment">// 编译期求值, b = 8</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="字符串字面量"><a href="#字符串字面量" class="headerlink" title="字符串字面量"></a>字符串字面量</h2><p>C++11 引入了更多的字面量定义方式，方便定义 unicode 字符串以及正则表达式等</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">char</span>    *a = <span class="string">u8"你好"</span>; <span class="comment">// UTF-8</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char16_t</span> *b = <span class="string">u"你好"</span>; <span class="comment">// UTF-16</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char32_t</span> *c = <span class="string">U"你好"</span>; <span class="comment">// UTF-32</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char</span>  *d = <span class="string">R"(\n\t)"</span>; <span class="comment">// raw string, 括号内不转义，配合正则表达式特别有用</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="lambda-函数"><a href="#lambda-函数" class="headerlink" title="lambda 函数"></a>lambda 函数</h2><p>C++11 引入了 lambda function，方便定义匿名函数</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> f = [](<span class="keyword">int</span> x, <span class="keyword">int</span> y)&#123;<span class="keyword">return</span> x + y;&#125;;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; f(<span class="number">1</span>, <span class="number">2</span>) &lt;&lt; <span class="built_in">endl</span>; <span class="comment">// 输出 3</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v&#123;<span class="number">2</span>,<span class="number">1</span>,<span class="number">3</span>&#125;;</span><br><span class="line">sort(v.<span class="built_in">begin</span>(), v.<span class="built_in">end</span>(), [](<span class="keyword">int</span> a, <span class="keyword">int</span> b)&#123;<span class="keyword">return</span> a &gt; b;&#125;); <span class="comment">// v = &#123;3, 2, 1&#125;</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/07/C-11%E6%96%B0%E7%89%B9%E6%80%A7/" data-id="ckbbzl3iu000bjcgvfdvc8a48" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-11/" rel="tag">C++11</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/10/08/C-%E5%B7%A6%E5%8F%B3%E5%80%BC/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          C++11新特性 - 左右值与右值引用
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/09/22/%E6%B5%B7%E9%BE%9F%E4%BA%A4%E6%98%93%E6%B3%95%E5%88%99/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">【读书笔记】海龟交易法则</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AtrRsi/" rel="tag">AtrRsi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-11/" rel="tag">C++11</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Compiler/" rel="tag">Compiler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Conference/" rel="tag">Conference</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Quant/" rel="tag">Quant</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sci-Fi/" rel="tag">Sci-Fi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vim/" rel="tag">Vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Zhihu/" rel="tag">Zhihu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%85%A8%E5%AE%9E%E6%88%98%E6%88%90%E9%95%BF%E7%B3%BB%E5%88%97-30%E5%A0%82%E5%AE%9E%E6%88%98%E8%AF%BE%E8%B7%91%E9%80%9A%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/" rel="tag">全实战成长系列-30堂实战课跑通量化交易</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%85%A8%E5%AE%9E%E6%88%98%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97-CTA%E7%AD%96%E7%95%A5/" rel="tag">全实战进阶系列-CTA策略</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AtrRsi/" style="font-size: 10px;">AtrRsi</a> <a href="/tags/C/" style="font-size: 18px;">C++</a> <a href="/tags/C-11/" style="font-size: 18px;">C++11</a> <a href="/tags/Compiler/" style="font-size: 10px;">Compiler</a> <a href="/tags/Conference/" style="font-size: 10px;">Conference</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Machine-Learning/" style="font-size: 10px;">Machine Learning</a> <a href="/tags/Quant/" style="font-size: 20px;">Quant</a> <a href="/tags/Sci-Fi/" style="font-size: 12px;">Sci-Fi</a> <a href="/tags/Vim/" style="font-size: 10px;">Vim</a> <a href="/tags/Zhihu/" style="font-size: 14px;">Zhihu</a> <a href="/tags/%E5%85%A8%E5%AE%9E%E6%88%98%E6%88%90%E9%95%BF%E7%B3%BB%E5%88%97-30%E5%A0%82%E5%AE%9E%E6%88%98%E8%AF%BE%E8%B7%91%E9%80%9A%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/" style="font-size: 10px;">全实战成长系列-30堂实战课跑通量化交易</a> <a href="/tags/%E5%85%A8%E5%AE%9E%E6%88%98%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97-CTA%E7%AD%96%E7%95%A5/" style="font-size: 16px;">全实战进阶系列-CTA策略</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1900/01/">January 1900</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/04/08/%E6%95%99%E7%88%B6%E7%9A%84%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93%E7%AC%94%E8%AE%B0/">教父的量化交易笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/14/C-11%E6%96%B0%E7%89%B9%E6%80%A7-tuple/">C++11新特性 - tuple</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/12/C-11%E6%96%B0%E7%89%B9%E6%80%A7-%E9%9A%8F%E6%9C%BA%E6%95%B0/">C++11新特性 - 随机数</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/10/C-11%E6%96%B0%E7%89%B9%E6%80%A7-%E6%97%B6%E9%92%9F%E4%B8%8E%E8%AE%A1%E6%97%B6%E5%99%A8/">C++11新特性 - 时钟与计时器</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/10/C-11%E6%96%B0%E7%89%B9%E6%80%A7-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">C++11新特性 - 正则表达式</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
