@@ -98,4 +98,7 @@ theme: landscape
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type: ''
+  type: git
+  repo: git@github.com:lostleaf/lostleaf.github.io.git
+  # example, https://github.com/hexojs/hexojs.github.io
+  branch: gh-pages
