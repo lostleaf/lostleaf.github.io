@@ -4,6 +4,8 @@ date: 2019-09-21 13:31:49
 tags:
 - Quant
 - 全实战成长系列-30堂实战课跑通量化交易
+categories:
+- Vnpy-30堂实战课跑通量化交易 课程笔记
 ---
 
 [全实战成长系列-30堂实战课跑通量化交易](https://jianshiapp.com/courses/64?tab=list), 平台见识（华尔街见闻），by 用 Python 的交易员

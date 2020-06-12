@@ -3,6 +3,8 @@ title: "编译器(翻译维基百科)"
 date: 2013-06-01 01:13
 tags:
 - Compiler
+categories:
+- Misc
 ---
 
 ## 编译器

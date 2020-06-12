@@ -4,7 +4,8 @@ date: 2019-09-16 14:42:30
 tags:
 - Quant
 - 全实战进阶系列-CTA策略
-- AtrRsi
+categories:
+- Vnpy-CTA策略 课程笔记
 ---
 
 [全实战进阶系列-CTA策略](https://appszu5scwd6134.h5.xiaoeknow.com/), 平台小鹅通，by 用 Python 的交易员

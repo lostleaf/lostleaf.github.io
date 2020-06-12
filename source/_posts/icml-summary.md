@@ -4,6 +4,8 @@ date: 2014-07-09 14:22
 tags:
 - Machine Learning
 - Conference
+categories:
+- Misc
 ---
 
 今年(2014年)的国际机器学习大会（ICML）已经基本结束了，在新的时代里，机器学习也有了新的变化。

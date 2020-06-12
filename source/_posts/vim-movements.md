@@ -3,6 +3,9 @@ title: "Notes on Vim basics"
 date: 2016-04-02 16:13:44
 tags:
 - Vim
+
+categories:
+- Vim笔记
 ---
 
 Vim basic usages
