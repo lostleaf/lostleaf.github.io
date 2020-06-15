@@ -2,8 +2,8 @@
 title: 【课程笔记】全实战进阶系列-CTA策略-K线逻辑
 date: 2019-09-15 17:28:12
 tags:
-- Quant
-- 全实战进阶系列-CTA策略
+- 量化交易
+- CTA
 categories:
 - Vnpy-CTA策略 课程笔记
 ---

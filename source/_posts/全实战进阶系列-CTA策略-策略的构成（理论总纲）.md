@@ -2,8 +2,8 @@
 title: 【课程笔记】全实战进阶系列-CTA策略-策略的构成（理论总纲）
 date: 2019-09-16 14:42:30
 tags:
-- Quant
-- 全实战进阶系列-CTA策略
+- 量化交易
+- CTA
 categories:
 - Vnpy-CTA策略 课程笔记
 ---

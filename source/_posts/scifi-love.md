@@ -2,7 +2,7 @@
 title: "爱情插上科幻的翅膀"
 date: 2013-05-27 01:45
 tags:
-- Sci-Fi
+- 科幻
 categories:
 - 科幻随笔
 ---

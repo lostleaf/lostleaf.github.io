@@ -2,8 +2,8 @@
 title: 【课程笔记】全实战进阶系列-CTA策略-通道突破
 date: 2020-03-06 14:51:30
 tags:
-- Quant
-- 全实战进阶系列-CTA策略
+- 量化交易
+- CTA
 categories:
 - Vnpy-CTA策略 课程笔记
 ---

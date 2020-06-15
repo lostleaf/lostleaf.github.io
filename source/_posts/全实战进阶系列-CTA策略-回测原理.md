@@ -2,8 +2,8 @@
 title: 【课程笔记】全实战进阶系列-CTA策略-回测原理
 date: 2019-09-20 23:40:02
 tags:
-- Quant
-- 全实战进阶系列-CTA策略
+- 量化交易
+- CTA
 categories:
 - Vnpy-CTA策略 课程笔记
 ---
