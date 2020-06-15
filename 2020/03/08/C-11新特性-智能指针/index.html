@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>C++11新特性 - 智能指针 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="C++11 新增的智能指针">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++11新特性 - 智能指针">
+<meta property="og:url" content="http://yoursite.com/2020/03/08/C-11%E6%96%B0%E7%89%B9%E6%80%A7-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="C++11 新增的智能指针">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-03-08T12:43:36.000Z">
+<meta property="article:modified_time" content="2020-06-08T16:50:35.227Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="C++11">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-C-11新特性-智能指针" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/08/C-11%E6%96%B0%E7%89%B9%E6%80%A7-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/" class="article-date">
+  <time datetime="2020-03-08T12:43:36.000Z" itemprop="datePublished">2020-03-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      C++11新特性 - 智能指针
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>C++11 新增的智能指针</p>
+<a id="more"></a>
+
+<h2 id="不当释放指针带来的问题"><a href="#不当释放指针带来的问题" class="headerlink" title="不当释放指针带来的问题"></a>不当释放指针带来的问题</h2><p>指针是 C++ 非常强大的功能，但是在实践中，不正确地使用指针会造成一系列的问题</p>
+<p>例如，我们定义了一个类 <code>Dog</code></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  <span class="built_in">string</span> m_name;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">bark</span><span class="params">()</span> </span>&#123; <span class="built_in">cout</span> &lt;&lt; <span class="string">"Dog "</span> &lt;&lt; m_name &lt;&lt; <span class="string">" rules!"</span> &lt;&lt; <span class="built_in">endl</span>; &#125;</span><br><span class="line">  Dog(<span class="built_in">string</span> name) &#123;<span class="built_in">cout</span> &lt;&lt; <span class="string">"Dog is created: "</span> &lt;&lt; name &lt;&lt; <span class="built_in">endl</span>; m_name = name; &#125;</span><br><span class="line">  Dog() &#123; <span class="built_in">cout</span> &lt;&lt; <span class="string">"Nameless dog created."</span> &lt;&lt; <span class="built_in">endl</span>; m_name = <span class="string">"nameless"</span>; &#125;</span><br><span class="line">  ~Dog() &#123; <span class="built_in">cout</span> &lt;&lt; <span class="string">"dog is destroyed: "</span> &lt;&lt; m_name &lt;&lt; <span class="built_in">endl</span>; &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>在使用指针的过程中，常见的不当释放指针会造成两种后果: <em>悬空指针</em> 和 <em>内存泄漏</em></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">foo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Dog *p= new Dog('Gunner');</span><br><span class="line">  <span class="comment">/*Do something*/</span></span><br><span class="line">  <span class="keyword">delete</span> p;</span><br><span class="line">  <span class="comment">/*Do something else*/</span></span><br><span class="line">  p-&gt;bark(); <span class="comment">// 悬空指针 - 未定义行为</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">foo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Dog *p= new Dog('Gunner');</span><br><span class="line">  <span class="comment">/*Do something*/</span></span><br><span class="line">&#125; <span class="comment">// 忘记 delete p, 内存泄漏</span></span><br></pre></td></tr></table></figure>
+
+<p>正确地释放指针通常是一件麻烦且乏味的工作，C++11 引入了智能指针来帮助程序员正确地释放指针</p>
+<h2 id="shared-ptr"><a href="#shared-ptr" class="headerlink" title="shared_ptr"></a><code>shared_ptr</code></h2><p><code>shared_ptr</code> 的原理是，在内部维护了一个对象的引用计数，但引用计数归零，即最后一个指向对象的 <code>shared_ptr</code> 被销毁时，将指向的对象也释放掉</p>
+<h3 id="基本使用方法"><a href="#基本使用方法" class="headerlink" title="基本使用方法"></a>基本使用方法</h3><p>shared_ptr 使用非常简单</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">foo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="built_in">shared_ptr</span>&lt;Dog&gt; <span class="title">p</span><span class="params">(<span class="keyword">new</span> Dog(<span class="string">"Gunner"</span>))</span></span>; <span class="comment">// 引用计数 = 1</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">shared_ptr</span>&lt;Dog&gt; p2 = p; <span class="comment">// 引用计数 = 2</span></span><br><span class="line">    p2-&gt;bark();</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; p.use_count() &lt;&lt; <span class="built_in">endl</span>; <span class="comment">// 输出 2</span></span><br><span class="line">  &#125; <span class="comment">// 引用计数 = 1</span></span><br><span class="line">  p-&gt;bark();</span><br><span class="line">&#125; <span class="comment">// 引用计数 = 0，释放 Dog</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="不当使用方法"><a href="#不当使用方法" class="headerlink" title="不当使用方法"></a>不当使用方法</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">foo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Dog *d = <span class="keyword">new</span> Dog();</span><br><span class="line">  <span class="function"><span class="built_in">shared_ptr</span>&lt;Dog&gt; <span class="title">p</span><span class="params">(d)</span></span>; <span class="comment">// p 引用计数 = 1</span></span><br><span class="line">  <span class="function"><span class="built_in">shared_ptr</span>&lt;Dog&gt; <span class="title">p2</span><span class="params">(d)</span></span>; <span class="comment">// p2 引用计数 = 1</span></span><br><span class="line">&#125; <span class="comment">// p 和 p2 分别释放 Dog, 未定义行为</span></span><br></pre></td></tr></table></figure>
+
+<p>因此，我们应该牢记，使用智能指针时，一个对象被创建的时候就应该被赋值给智能指针，而不应该使用原生指针</p>
+<h3 id="使用-make-shared-生成-shared-ptr"><a href="#使用-make-shared-生成-shared-ptr" class="headerlink" title="使用 make_shared 生成 shared_ptr"></a>使用 <code>make_shared</code> 生成 <code>shared_ptr</code></h3><p>在使用 <code>shared_ptr</code> 时，C++ 推荐使用 <code>make_shared</code> 函数来生成 <code>shared_ptr</code>，更快更安全</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">shared_ptr</span>&lt;Dog&gt; p = make_shared&lt;Dog&gt;(<span class="string">"Tank"</span>);</span><br></pre></td></tr></table></figure>
+
+<p>推荐这样做的原因是，<code>shared_ptr&lt;Dog&gt; p(new Dog(&quot;Gunner&quot;))</code> 包含两个步骤：1. 生成 <code>Dog</code>; 2. 生成 <code>p</code>；而 <code>make_shared</code> 把这两部合并成了一步</p>
+<h3 id="释放对象"><a href="#释放对象" class="headerlink" title="释放对象"></a>释放对象</h3><p>shared_ptr 在这些场景下会释放对象：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">foo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="built_in">shared_ptr</span>&lt;Dog&gt; p1 = make_shared&lt;Dog&gt;(<span class="string">"Gunner"</span>);</span><br><span class="line">  <span class="built_in">shared_ptr</span>&lt;Dog&gt; p2 = make_shared&lt;Dog&gt;(<span class="string">"Tank"</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 以下三种情况均会释放 Gunner</span></span><br><span class="line">  p1 = p2; </span><br><span class="line">  p1 = <span class="literal">nullptr</span>;</span><br><span class="line">  p1.reset();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="自定义-deleter"><a href="#自定义-deleter" class="headerlink" title="自定义 deleter"></a>自定义 deleter</h3><p>默认情况下，<code>shared_ptr</code> 的会使用 <code>delete</code> 运算符作为 deleter，但是我们也可以自定义 deleter，例如使用 lambda 函数:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">shared_ptr</span>&lt;Dog&gt; <span class="title">pD4</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">  <span class="keyword">new</span> Dog(<span class="string">"Victor"</span>), </span></span></span><br><span class="line"><span class="function"><span class="params">  [](Dog* p) &#123;<span class="built_in">cout</span> &lt;&lt; <span class="string">"deleting a dog.\n"</span>; <span class="keyword">delete</span> p;&#125;</span></span></span><br><span class="line"><span class="function"><span class="params">)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>当我们使用 <code>shared_ptr</code> 指向数组时，自定义的 deleter 就非常有用了，否则，如果使用默认的 <code>delete</code> 而非 <code>delete[]</code> 除第一个意外的 Dog 就内存泄漏了 </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">shared_ptr</span>&lt;Dog&gt; <span class="title">pDD</span><span class="params">(<span class="keyword">new</span> Dog[<span class="number">3</span>], [](Dog* p) &#123;<span class="keyword">delete</span>[] p;&#125; )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="从-shared-ptr-获取原生指针"><a href="#从-shared-ptr-获取原生指针" class="headerlink" title="从 shared_ptr 获取原生指针"></a>从 <code>shared_ptr</code> 获取原生指针</h3><p>我们可以使用 <code>shared_ptr.get()</code> 方法获取原生指针</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">shared_ptr</span>&lt;Dog&gt; p1 = make_shared&lt;Dog&gt;(<span class="string">"Gunner"</span>);</span><br><span class="line">Dog *d = p1.<span class="built_in">get</span>();</span><br></pre></td></tr></table></figure>
+
+<p>如果一定要使用这种方法，要非常小心，否则会带来问题，例如我们引入一个新的类 DogHouse</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DogHouse</span> &#123;</span></span><br><span class="line">    Dog *m_pD;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">saveDog</span><span class="params">(Dog *p)</span> </span>&#123; m_pD = p; <span class="built_in">cout</span> &lt;&lt; <span class="string">"Dog entered house."</span> &lt;&lt; <span class="built_in">endl</span>;&#125;</span><br><span class="line">&#125;;</span><br><span class="line">&#123;</span><br><span class="line">DogHouse doghouse;</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">shared_ptr</span>&lt;Dog&gt; p = make_shared&lt;Dog&gt;(<span class="string">"Gunner"</span>);</span><br><span class="line">    Dog *d = p.<span class="built_in">get</span>();</span><br><span class="line">    doghouse.saveDog(d);</span><br><span class="line">  &#125;<span class="comment">// p 释放 Gunner</span></span><br><span class="line">  <span class="comment">// 这里 doghouse.m_pD 会成为一个空悬指针</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="weak-ptr"><a href="#weak-ptr" class="headerlink" title="weak_ptr"></a><code>weak_ptr</code></h2><h3 id="weak-ptr-的使用场景"><a href="#weak-ptr-的使用场景" class="headerlink" title="weak_ptr 的使用场景"></a><code>weak_ptr</code> 的使用场景</h3><p>如果我们按照这种方法使用 <code>shared_ptr</code>, 那么 <code>pD</code> 和 <code>pD2</code> 都不会被释放，造成内存泄漏</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span> &#123;</span></span><br><span class="line">      <span class="built_in">shared_ptr</span>&lt;Dog&gt; m_pFriend;</span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">      <span class="built_in">string</span> m_name;</span><br><span class="line">      <span class="function"><span class="keyword">void</span> <span class="title">bark</span><span class="params">()</span> </span>&#123; <span class="built_in">cout</span> &lt;&lt; <span class="string">"Dog "</span> &lt;&lt; m_name &lt;&lt; <span class="string">" rules!"</span> &lt;&lt; <span class="built_in">endl</span>; &#125;</span><br><span class="line">      Dog(<span class="built_in">string</span> name) &#123; <span class="built_in">cout</span> &lt;&lt; <span class="string">"Dog is created: "</span> &lt;&lt; name &lt;&lt; <span class="built_in">endl</span>; m_name = name; &#125;</span><br><span class="line">     ~Dog() &#123; <span class="built_in">cout</span> &lt;&lt; <span class="string">"dog is destroyed: "</span> &lt;&lt; m_name &lt;&lt; <span class="built_in">endl</span>; &#125;</span><br><span class="line">     <span class="function"><span class="keyword">void</span> <span class="title">makeFriend</span><span class="params">(<span class="built_in">shared_ptr</span>&lt;Dog&gt; f)</span> </span>&#123; m_pFriend = f; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="function"><span class="built_in">shared_ptr</span>&lt;Dog&gt; <span class="title">pD</span><span class="params">(<span class="keyword">new</span> Dog(<span class="string">"Gunner"</span>))</span></span>;</span><br><span class="line">    <span class="function"><span class="built_in">shared_ptr</span>&lt;Dog&gt; <span class="title">pD2</span><span class="params">(<span class="keyword">new</span> Dog(<span class="string">"Smokey"</span>))</span></span>;</span><br><span class="line">    pD-&gt;makeFriend(pD2);</span><br><span class="line">    pD2-&gt;makeFriend(pD);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>原因是 <code>pD-&gt;m_pFriend = pD2</code> 且 <code>pD2-&gt;m_pFriend = pD</code>，这里构成了循环引用，即使出了 <code>main</code> 函数的作用域后 Gunner 和 Smokey 这两个对象仍然保持着一个对方的引用，于是他们两个都不会被释放</p>
+<p>为了解决这个问题，我们需要使用 <code>weak_ptr</code>，<code>weak_ptr</code> 并不会增加 <code>shared_ptr</code> 的引用计数</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span> &#123;</span></span><br><span class="line">  weak_ptr&lt;Dog&gt; m_pFriend; <span class="comment">// 将 shared_ptr 替换为 weak_ptr</span></span><br><span class="line"><span class="comment">//....</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="访问-weak-ptr-指向的对象"><a href="#访问-weak-ptr-指向的对象" class="headerlink" title="访问 weak_ptr 指向的对象"></a>访问 <code>weak_ptr</code> 指向的对象</h3><p><code>shared_ptr</code> 代表了一种对象的共享所有权，而 <code>weak_ptr</code> 这不拥有对象的所有权，只是保留了一种访问对象的能力，即 <code>weak_ptr</code> 并不关心对象何时以何种方法被释放</p>
+<p>因此，<code>weak_ptr</code> 可能会指向一个已经被删除的对象，所以我们想访问 <code>weak_ptr</code> 指向的对象时，必须使用过 <code>weak_ptr.lock()</code> 方法，例如我们要给 <code>Dog</code> 类添加一个 <code>showFriend</code> 方法</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span> &#123;</span></span><br><span class="line"><span class="comment">//...</span></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">showFriend</span><span class="params">()</span> </span>&#123; </span><br><span class="line">    <span class="keyword">if</span> (!m_pFriend.expired()) &#123;</span><br><span class="line">      <span class="built_in">cout</span> &lt;&lt; <span class="string">"My friend is: "</span> &lt;&lt; m_pFriend.lock()-&gt;m_name &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，我们首先使用 <code>weak_ptr.expired()</code> 方法，检查指向的对象是否已被释放了，如果没被释放，则通过 <code>weak_ptr.lock()</code> 方法，生成一个 <code>shared_ptr</code> 方法对象，这样，保证了我们在访问 <code>m_name</code> 属性时，该对象不会被释放</p>
+<p>我们同样也可以对 weak_ptr 调用 use_count 方法</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cout</span> &lt;&lt; m_pFriend.use_count() &lt;&lt; <span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="unique-ptr"><a href="#unique-ptr" class="headerlink" title="unique_ptr"></a><code>unique_ptr</code></h3><h3 id="unique-ptr-的使用场景"><a href="#unique-ptr-的使用场景" class="headerlink" title="unique_ptr 的使用场景"></a><code>unique_ptr</code> 的使用场景</h3><p><code>unique_ptr</code> 代表了对象的独有所有权，是一种轻量级的智能指针</p>
+<p>在老式的 C++ 中，我们经常使用这样的写法，处理不当，可能内存泄漏</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">  Dog *pD = <span class="keyword">new</span> Dog(<span class="string">"Gunner"</span>);</span><br><span class="line">  pD-&gt;bark();</span><br><span class="line"></span><br><span class="line">  <span class="comment">/*Do something with pD*/</span></span><br><span class="line">  <span class="comment">//内存泄漏 Case 1, 中途 return</span></span><br><span class="line">  <span class="keyword">if</span> (condition) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//内存泄漏 Case 2，异常</span></span><br><span class="line">  <span class="keyword">throw</span> runtime_error(<span class="string">"error"</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">delete</span> pD;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  test();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在 C++11 中，我们只需把原生指针替换为 unique_ptr 即可高枕无忧</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="built_in">unique_ptr</span>&lt;Dog&gt; <span class="title">pD</span><span class="params">(<span class="keyword">new</span> Dog(<span class="string">"Gunner"</span>))</span></span>;</span><br><span class="line">  pD-&gt;bark();</span><br><span class="line">  <span class="comment">/*Do something else with pD*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当然，这里我们也可以用 <code>shared_ptr</code>，但是 <code>unique_ptr</code> 更加轻量级</p>
+<h3 id="从-shared-ptr-获取原生指针-1"><a href="#从-shared-ptr-获取原生指针-1" class="headerlink" title="从 shared_ptr 获取原生指针"></a>从 <code>shared_ptr</code> 获取原生指针</h3><p>类似 <code>shared_ptr.get()</code>，我们可以调用 <code>unique_ptr.release()</code> 来获取原生指针，要注意的是，调用之后该 <code>unique_ptr</code> 会变成空指针</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="built_in">unique_ptr</span>&lt;Dog&gt; <span class="title">pD</span><span class="params">(<span class="keyword">new</span> Dog(<span class="string">"Gunner"</span>))</span></span>;</span><br><span class="line">  Dog *d = pD.<span class="built_in">release</span>();</span><br><span class="line">  <span class="keyword">if</span> (!pD) <span class="built_in">cout</span> &lt;&lt; <span class="string">"empty\n"</span>; <span class="comment">// 输出 empty</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>类似的，如果我们对 <code>weak_ptr</code> 调用 <code>reset()</code> 函数或赋值为 <code>nullptr</code>, 也会导致指向的对象被删除</p>
+<h3 id="unique-ptr-之间转移所有权"><a href="#unique-ptr-之间转移所有权" class="headerlink" title="unique_ptr 之间转移所有权"></a><code>unique_ptr</code> 之间转移所有权</h3><p>由于 <code>unique_ptr</code> 代表了对象的独有所有权，因此只能被移动不能被拷贝</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="built_in">unique_ptr</span>&lt;Dog&gt; <span class="title">pD</span><span class="params">(<span class="keyword">new</span> Dog(<span class="string">"Gunner"</span>))</span></span>;</span><br><span class="line">    <span class="function"><span class="built_in">unique_ptr</span>&lt;Dog&gt; <span class="title">pD2</span><span class="params">(<span class="keyword">new</span> Dog(<span class="string">"Smokey"</span>))</span></span>;</span><br><span class="line">    pD-&gt;bark();</span><br><span class="line"></span><br><span class="line">    pD2 = pD; <span class="comment">// 编译器报错</span></span><br><span class="line"></span><br><span class="line">    pD2 = <span class="built_in">move</span>(pD);</span><br><span class="line">    <span class="comment">// 1. Smokey 被释放</span></span><br><span class="line">    <span class="comment">// 2. pD 变成空指针</span></span><br><span class="line">    <span class="comment">// 3. pD2 指向 Gunner.</span></span><br><span class="line"></span><br><span class="line">    pD2-&gt;bark();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="unique-ptr-作为参数和返回值"><a href="#unique-ptr-作为参数和返回值" class="headerlink" title="unique_ptr 作为参数和返回值"></a><code>unique_ptr</code> 作为参数和返回值</h3><p><code>unique_ptr</code> 作为参数时，出了函数作用域会释放对象，作为返回值时，会制动使用移动语义</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">(<span class="built_in">unique_ptr</span>&lt;Dog&gt; p)</span> </span>&#123;</span><br><span class="line">    p-&gt;bark();</span><br><span class="line">&#125; <span class="comment">// 释放 p 指向的 Dog 对象</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="built_in">unique_ptr</span>&lt;Dog&gt; <span class="title">getDog</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="built_in">unique_ptr</span>&lt;Dog&gt; <span class="title">p</span><span class="params">(<span class="keyword">new</span> Dog(<span class="string">"Smokey"</span>))</span></span>;</span><br><span class="line">    <span class="keyword">return</span> p; <span class="comment">// 自动使用移动语义</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="built_in">unique_ptr</span>&lt;Dog&gt; <span class="title">pD</span><span class="params">(<span class="keyword">new</span> Dog(<span class="string">"Gunner"</span>))</span></span>;</span><br><span class="line">    f(<span class="built_in">move</span>(pD)); <span class="comment">// Gunner 已经被释放了</span></span><br><span class="line">    <span class="keyword">if</span> (!pD) <span class="built_in">cout</span> &lt;&lt; <span class="string">"empty\n"</span>; <span class="comment">// 输出 empty</span></span><br><span class="line">    </span><br><span class="line">    <span class="built_in">unique_ptr</span>&lt;Dog&gt; pD2 = getDog();</span><br><span class="line">    pD2-&gt;bark();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/08/C-11%E6%96%B0%E7%89%B9%E6%80%A7-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/" data-id="ckb6qf7wv0004wmtb0ci60p8p" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-11/" rel="tag">C++11</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/03/09/C-11%E6%96%B0%E7%89%B9%E6%80%A7-%E7%AE%A1%E7%90%86%E8%B5%84%E6%BA%90%E7%9A%84%E7%B1%BB/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          C++11新特性 - 容器与拥有指针属性的类
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/03/08/C-11%E6%96%B0%E7%89%B9%E6%80%A7-%E7%BC%96%E8%AF%91%E5%99%A8%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">C++11新特性 - 编译器自动生成函数</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AtrRsi/" rel="tag">AtrRsi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-11/" rel="tag">C++11</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Compiler/" rel="tag">Compiler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Conference/" rel="tag">Conference</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Quant/" rel="tag">Quant</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sci-Fi/" rel="tag">Sci-Fi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vim/" rel="tag">Vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Zhihu/" rel="tag">Zhihu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%85%A8%E5%AE%9E%E6%88%98%E6%88%90%E9%95%BF%E7%B3%BB%E5%88%97-30%E5%A0%82%E5%AE%9E%E6%88%98%E8%AF%BE%E8%B7%91%E9%80%9A%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/" rel="tag">全实战成长系列-30堂实战课跑通量化交易</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%85%A8%E5%AE%9E%E6%88%98%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97-CTA%E7%AD%96%E7%95%A5/" rel="tag">全实战进阶系列-CTA策略</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AtrRsi/" style="font-size: 10px;">AtrRsi</a> <a href="/tags/C/" style="font-size: 18px;">C++</a> <a href="/tags/C-11/" style="font-size: 18px;">C++11</a> <a href="/tags/Compiler/" style="font-size: 10px;">Compiler</a> <a href="/tags/Conference/" style="font-size: 10px;">Conference</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Machine-Learning/" style="font-size: 10px;">Machine Learning</a> <a href="/tags/Quant/" style="font-size: 20px;">Quant</a> <a href="/tags/Sci-Fi/" style="font-size: 12px;">Sci-Fi</a> <a href="/tags/Vim/" style="font-size: 10px;">Vim</a> <a href="/tags/Zhihu/" style="font-size: 14px;">Zhihu</a> <a href="/tags/%E5%85%A8%E5%AE%9E%E6%88%98%E6%88%90%E9%95%BF%E7%B3%BB%E5%88%97-30%E5%A0%82%E5%AE%9E%E6%88%98%E8%AF%BE%E8%B7%91%E9%80%9A%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/" style="font-size: 10px;">全实战成长系列-30堂实战课跑通量化交易</a> <a href="/tags/%E5%85%A8%E5%AE%9E%E6%88%98%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97-CTA%E7%AD%96%E7%95%A5/" style="font-size: 16px;">全实战进阶系列-CTA策略</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1900/01/">January 1900</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/04/08/%E6%95%99%E7%88%B6%E7%9A%84%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93%E7%AC%94%E8%AE%B0/">教父的量化交易笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/14/C-11%E6%96%B0%E7%89%B9%E6%80%A7-tuple/">C++11新特性 - tuple</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/12/C-11%E6%96%B0%E7%89%B9%E6%80%A7-%E9%9A%8F%E6%9C%BA%E6%95%B0/">C++11新特性 - 随机数</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/10/C-11%E6%96%B0%E7%89%B9%E6%80%A7-%E6%97%B6%E9%92%9F%E4%B8%8E%E8%AE%A1%E6%97%B6%E5%99%A8/">C++11新特性 - 时钟与计时器</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/10/C-11%E6%96%B0%E7%89%B9%E6%80%A7-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">C++11新特性 - 正则表达式</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

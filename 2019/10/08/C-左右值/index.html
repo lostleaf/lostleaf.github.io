@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>C++11新特性 - 左右值与右值引用 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="总结左右值的定义，和 C++11 中右值引用的用途">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++11新特性 - 左右值与右值引用">
+<meta property="og:url" content="http://yoursite.com/2019/10/08/C-%E5%B7%A6%E5%8F%B3%E5%80%BC/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="总结左右值的定义，和 C++11 中右值引用的用途">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-10-08T05:08:56.000Z">
+<meta property="article:modified_time" content="2020-06-08T16:50:35.233Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="C++11">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-C-左右值" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/08/C-%E5%B7%A6%E5%8F%B3%E5%80%BC/" class="article-date">
+  <time datetime="2019-10-08T05:08:56.000Z" itemprop="datePublished">2019-10-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      C++11新特性 - 左右值与右值引用
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>总结左右值的定义，和 C++11 中右值引用的用途</p>
+<a id="more"></a>
+
+<h2 id="左值与右值"><a href="#左值与右值" class="headerlink" title="左值与右值"></a>左值与右值</h2><p>C++ 中，左右值的简化定义:</p>
+<ul>
+<li>左值：占用了一定内存，且拥有可辨认的地址的对象</li>
+<li>右值：左值以外的所有对象</li>
+</ul>
+<p>典型的左值，C++中绝大部分的变量都是左值</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">1</span>;   <span class="comment">// i 是左值</span></span><br><span class="line"><span class="keyword">int</span> *p = &amp;i; <span class="comment">// i 的地址是可辨认的</span></span><br><span class="line">i = <span class="number">2</span>; <span class="comment">// i 在内存中的值可以改变</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>;</span></span><br><span class="line">A a; <span class="comment">// 用户自定义类实例化的对象也是左值</span></span><br></pre></td></tr></table></figure>
+
+<p>典型的右值</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">2</span>; <span class="comment">// 2 是右值</span></span><br><span class="line"><span class="keyword">int</span> x = i + <span class="number">2</span>; <span class="comment">// (i + 2) 是右值</span></span><br><span class="line"><span class="keyword">int</span> *p = &amp;(i + <span class="number">2</span>); <span class="comment">// 错误，不能对右值取地址</span></span><br><span class="line">i + <span class="number">2</span> = <span class="number">4</span>; <span class="comment">// 错误，不能对右值赋值</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>;</span></span><br><span class="line">A a = A(); <span class="comment">// A() 是右值</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;<span class="keyword">return</span> a + b;&#125;</span><br><span class="line"><span class="keyword">int</span> i = sum(<span class="number">1</span>, <span class="number">2</span>) <span class="comment">// sum(1, 2) 是右值</span></span><br></pre></td></tr></table></figure>
+
+<p>引用（左值引用）</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i;</span><br><span class="line"><span class="keyword">int</span> &amp;r = i;</span><br><span class="line"><span class="keyword">int</span> &amp;r = <span class="number">5</span>; <span class="comment">// 错误，不能左值引用绑定右值</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// const 引用是例外</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> &amp;r = <span class="number">5</span>; <span class="comment">// 可以认为指向一个临时左值的引用，临时左值为5</span></span><br></pre></td></tr></table></figure>
+
+<p>对于函数，类似地有</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">square</span><span class="params">(<span class="keyword">int</span>&amp; a)</span> </span>&#123;<span class="keyword">return</span> a * a;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> i = <span class="number">2</span>;</span><br><span class="line">square(i); <span class="comment">// 正确</span></span><br><span class="line">square(<span class="number">2</span>); <span class="comment">// 报错，左值引用绑定右值</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 变通一下</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">square</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span>&amp; a)</span> </span>&#123;<span class="keyword">return</span> a * a;&#125; <span class="comment">// 可以调用 square(2)</span></span><br></pre></td></tr></table></figure>
+
+<p>左值可以创造右值, 右值也可创造左值</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">int</span> x = i + <span class="number">2</span>; <span class="comment">// i + 2 是右值</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> v[<span class="number">3</span>];</span><br><span class="line">*(v + <span class="number">1</span>) = <span class="number">2</span>; <span class="comment">// 指针解引用可以把右值转化为左值</span></span><br></pre></td></tr></table></figure>
+
+<p>一些注意事项</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. 函数也可以返回左值</span></span><br><span class="line"><span class="keyword">int</span> myglobal ;</span><br><span class="line"><span class="function"><span class="keyword">int</span>&amp; <span class="title">foo</span><span class="params">()</span> </span>&#123;<span class="keyword">return</span> myglobal;&#125;</span><br><span class="line">foo() = <span class="number">50</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">array</span>[<span class="number">3</span>] = <span class="number">50</span>; <span class="comment">// 一个更常见的例子，[]操作符几乎总是返回左值</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. 左值并不总是可修改的</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> i = <span class="number">1</span>;  <span class="comment">// i是左值, 但不可修改</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 3. 右值有时是可修改的</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">dog</span>;</span></span><br><span class="line">dog().bark();  <span class="comment">// bark() 可能会修改 dog() 对象</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="右值引用"><a href="#右值引用" class="headerlink" title="右值引用"></a>右值引用</h2><p>右值引用的两大用途：</p>
+<ul>
+<li>移动语意</li>
+<li>完美转发</li>
+</ul>
+<h3 id="移动语意"><a href="#移动语意" class="headerlink" title="移动语意"></a>移动语意</h3><p>移动语意(std::move)，可以将左值转化为右值引用</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a = <span class="number">1</span>; <span class="comment">// 左值</span></span><br><span class="line"><span class="keyword">int</span> &amp;b = a; <span class="comment">// 左值引用</span></span><br><span class="line"><span class="keyword">int</span> &amp;&amp;c = <span class="built_in">std</span>::<span class="built_in">move</span>(a); <span class="comment">// 右值引用，移动语意</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printInt</span><span class="params">(<span class="keyword">int</span>&amp; i)</span> </span>&#123; <span class="built_in">cout</span> &lt;&lt; <span class="string">"lvalue reference: "</span> &lt;&lt; i &lt;&lt; <span class="built_in">endl</span>; &#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printInt</span><span class="params">(<span class="keyword">int</span>&amp;&amp; i)</span> </span>&#123; <span class="built_in">cout</span> &lt;&lt; <span class="string">"rvalue reference: "</span> &lt;&lt; i &lt;&lt; <span class="built_in">endl</span>; &#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">   <span class="keyword">int</span> i = <span class="number">1</span>;</span><br><span class="line">   printInt(i);   <span class="comment">// 调用 printInt(int&amp;), i是左值</span></span><br><span class="line">   printInt(<span class="number">6</span>);   <span class="comment">// 调用 printInt(int&amp;&amp;), 6是右值</span></span><br><span class="line">   printInt(<span class="built_in">std</span>::<span class="built_in">move</span>(i));   <span class="comment">// 调用 printInt(int&amp;&amp;)，移动语意</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>由于编译器调用时无法区分 <code>printInt(int) 与 printInt(int&amp;)</code> 以及 <code>printInt(int) 与 printInt(int&amp;&amp;)</code>，如果再定义 printInt(int) 函数，会报错</p>
+<p>为什么需要移动语意</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">myVector</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> <span class="built_in">size</span>;</span><br><span class="line">    <span class="keyword">double</span>* <span class="built_in">array</span>;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	myVector(<span class="keyword">const</span> myVector&amp; rhs) &#123;  <span class="comment">// 复制构造函数</span></span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Copy Constructor\n"</span>;</span><br><span class="line">        <span class="built_in">size</span> = rhs.<span class="built_in">size</span>; </span><br><span class="line">        <span class="built_in">array</span> = <span class="keyword">new</span> <span class="keyword">double</span>[<span class="built_in">size</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="built_in">size</span>; i++) &#123; <span class="built_in">array</span>[i] = rhs.<span class="built_in">array</span>[i]; &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    myVector(<span class="keyword">int</span> n) &#123;</span><br><span class="line">        <span class="built_in">size</span> = n;</span><br><span class="line">        <span class="built_in">array</span> = <span class="keyword">new</span> <span class="keyword">double</span>[n];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">foo</span><span class="params">(myVector v)</span> </span>&#123;<span class="comment">/* Do something */</span>&#125;</span><br><span class="line"><span class="function">myVector <span class="title">createMyVector</span><span class="params">()</span></span>;  <span class="comment">// Creates a myVector</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    myVector reusable = createMyVector();</span><br><span class="line">    <span class="comment">// 这里会调用 myVector 的复制构造函数，如果我们不希望 foo 乱动 reusable，这种情况下是 ok 的</span></span><br><span class="line">    foo(reusable); </span><br><span class="line">    <span class="comment">/* Do something else with reusable */</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 这里 createMyVector 会返回一个临时的右值，传参过程中会多余地被复制一次</span></span><br><span class="line">    <span class="comment">// 虽然大部分情况下会被编译器优化掉</span></span><br><span class="line">    foo(createMyVector());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>解决方法, 添加一个移动构造函数</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">myVector(myVector&amp;&amp; rhs) &#123;  <span class="comment">// 移动构造函数</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Move Constructor\n"</span>;</span><br><span class="line">    <span class="built_in">size</span> = rhs.<span class="built_in">size</span>; </span><br><span class="line">    <span class="built_in">array</span> = rhs.<span class="built_in">array</span>;</span><br><span class="line">    rhs.<span class="built_in">size</span> = <span class="number">0</span>;</span><br><span class="line">    rhs.<span class="built_in">array</span> = <span class="literal">nullptr</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在 C++03 中，可能需要定义两个 foo 函数来解决这种问题：<code>foo_by_value(myVector)</code> 和 <code>foo_by_ref(myVector&amp;)</code></p>
+<p>但是，假如我们在调用 foo 之后，reusable 就没用了, 可以使用移动语意</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">    myVector reusable = createMyVector();</span><br><span class="line">    <span class="comment">// 这里会调用 myVector 的移动构造函数</span></span><br><span class="line">    foo(<span class="built_in">std</span>::<span class="built_in">move</span>(reusable));</span><br><span class="line">    <span class="comment">/* No use of reusable anymore */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>另一个有用之处在于重载赋值运算符</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">X&amp; X::<span class="keyword">operator</span>=(X <span class="keyword">const</span> &amp; rhs); </span><br><span class="line">X&amp; X::<span class="keyword">operator</span>=(X&amp;&amp; rhs);</span><br></pre></td></tr></table></figure>
+
+<p>自从 C++11，所有的 STL 都实现了移动构造</p>
+<h3 id="完美转发"><a href="#完美转发" class="headerlink" title="完美转发"></a>完美转发</h3><p>完美转发是指</p>
+<ul>
+<li>只有在需要的时候，才调用复制构造函数</li>
+<li>左值被转发为左值，右值被转发为右值</li>
+</ul>
+<p>参数转发</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">foo</span><span class="params">(myVector&amp; v)</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 参数转发</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">relay</span><span class="params">(T arg)</span> </span>&#123;</span><br><span class="line">    foo(arg);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    myVector reusable = createMyVector();</span><br><span class="line">    relay(reusable); <span class="comment">// 拷贝构造函数</span></span><br><span class="line"></span><br><span class="line">    relay(createMyVector()); <span class="comment">// 移动构造函数</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个实现有个问题，假如定义了两个版本的 foo</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">foo</span><span class="params">(myVector&amp; v)</span> </span>&#123;&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">foo</span><span class="params">(myVector&amp;&amp; v)</span> </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>永远只有 foo(myVector&amp; v) 会被调用</p>
+<p>所以，我们需要改写上文的 relay 函数，借助 std::forward</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">relay</span><span class="params">(T&amp;&amp; arg)</span> </span>&#123;</span><br><span class="line">    foo(<span class="built_in">std</span>::forward&lt;T&gt;(arg));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>于是就有</p>
+<ul>
+<li>relay(reusable) 调用 foo(myVector&amp;)</li>
+<li>relay(createMyVector()) 调用 foo(myVector&amp;&amp;)</li>
+</ul>
+<p>要解释完美转发的原理，首先引入 C++11 的引用折叠原则</p>
+<ul>
+<li>T&amp; &amp; =&gt; T&amp;</li>
+<li>T&amp; &amp;&amp; =&gt; T&amp;</li>
+<li>T&amp;&amp; &amp; =&gt; T&amp;</li>
+<li>T&amp;&amp; &amp;&amp; =&gt; T&amp;&amp;</li>
+</ul>
+<p>所以，在 relay 函数中</p>
+<ul>
+<li>relay(9); =&gt; T = int&amp;&amp; =&gt; T&amp;&amp; = int&amp;&amp; &amp;&amp; = int&amp;&amp;</li>
+<li>relay(x); =&gt; T = int&amp; =&gt; T&amp;&amp; = int&amp; &amp;&amp; = int &amp;</li>
+</ul>
+<p>因此，在这种情况下，T&amp;&amp; 被称作 universal reference，即满足</p>
+<ul>
+<li>T 是模板类型</li>
+<li>T 是被推导出来的，适用引用折叠，即 T 是一个函数模板类型，而不是类模板类型</li>
+</ul>
+<p>然后，C++11 定义了 remove_reference，用于返回引用指向的类型</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt; <span class="title">struct</span> <span class="title">remove_reference</span>;</span> </span><br><span class="line"></span><br><span class="line">remove_reference&lt;<span class="keyword">int</span>&amp;&gt;::type == <span class="keyword">int</span></span><br><span class="line">remove_reference&lt;<span class="keyword">int</span>&gt;::type  == <span class="keyword">int</span></span><br></pre></td></tr></table></figure>
+
+<p>于是，std::forword 的实现如下</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">T</span>&amp;&amp; <span class="title">forward</span>(<span class="title">typename</span> <span class="title">remove_reference</span>&lt;T&gt;:</span>:type&amp; arg) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">static_cast</span>&lt;T&amp;&amp;&gt;(arg);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>等于是把右值引用(右值引用本身是个左值)转成了右值，左值保持不变</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>std::move 对比 std::forward</p>
+<ul>
+<li>std::move(arg) 将 arg 转化为右值</li>
+<li>std::forward(arg) 将 arg 转化为 T&amp;&amp;</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/08/C-%E5%B7%A6%E5%8F%B3%E5%80%BC/" data-id="ckb6qf7x3000gwmtb0qnm651z" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-11/" rel="tag">C++11</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/03/06/%E5%85%A8%E5%AE%9E%E6%88%98%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97-CTA%E7%AD%96%E7%95%A5-%E9%80%9A%E9%81%93%E7%AA%81%E7%A0%B4/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          【课程笔记】全实战进阶系列-CTA策略-通道突破
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/10/07/C-11%E6%96%B0%E7%89%B9%E6%80%A7/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">C++11新特性</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AtrRsi/" rel="tag">AtrRsi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-11/" rel="tag">C++11</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Compiler/" rel="tag">Compiler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Conference/" rel="tag">Conference</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Quant/" rel="tag">Quant</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sci-Fi/" rel="tag">Sci-Fi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vim/" rel="tag">Vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Zhihu/" rel="tag">Zhihu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%85%A8%E5%AE%9E%E6%88%98%E6%88%90%E9%95%BF%E7%B3%BB%E5%88%97-30%E5%A0%82%E5%AE%9E%E6%88%98%E8%AF%BE%E8%B7%91%E9%80%9A%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/" rel="tag">全实战成长系列-30堂实战课跑通量化交易</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%85%A8%E5%AE%9E%E6%88%98%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97-CTA%E7%AD%96%E7%95%A5/" rel="tag">全实战进阶系列-CTA策略</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AtrRsi/" style="font-size: 10px;">AtrRsi</a> <a href="/tags/C/" style="font-size: 18px;">C++</a> <a href="/tags/C-11/" style="font-size: 18px;">C++11</a> <a href="/tags/Compiler/" style="font-size: 10px;">Compiler</a> <a href="/tags/Conference/" style="font-size: 10px;">Conference</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Machine-Learning/" style="font-size: 10px;">Machine Learning</a> <a href="/tags/Quant/" style="font-size: 20px;">Quant</a> <a href="/tags/Sci-Fi/" style="font-size: 12px;">Sci-Fi</a> <a href="/tags/Vim/" style="font-size: 10px;">Vim</a> <a href="/tags/Zhihu/" style="font-size: 14px;">Zhihu</a> <a href="/tags/%E5%85%A8%E5%AE%9E%E6%88%98%E6%88%90%E9%95%BF%E7%B3%BB%E5%88%97-30%E5%A0%82%E5%AE%9E%E6%88%98%E8%AF%BE%E8%B7%91%E9%80%9A%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/" style="font-size: 10px;">全实战成长系列-30堂实战课跑通量化交易</a> <a href="/tags/%E5%85%A8%E5%AE%9E%E6%88%98%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97-CTA%E7%AD%96%E7%95%A5/" style="font-size: 16px;">全实战进阶系列-CTA策略</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1900/01/">January 1900</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/04/08/%E6%95%99%E7%88%B6%E7%9A%84%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93%E7%AC%94%E8%AE%B0/">教父的量化交易笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/14/C-11%E6%96%B0%E7%89%B9%E6%80%A7-tuple/">C++11新特性 - tuple</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/12/C-11%E6%96%B0%E7%89%B9%E6%80%A7-%E9%9A%8F%E6%9C%BA%E6%95%B0/">C++11新特性 - 随机数</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/10/C-11%E6%96%B0%E7%89%B9%E6%80%A7-%E6%97%B6%E9%92%9F%E4%B8%8E%E8%AE%A1%E6%97%B6%E5%99%A8/">C++11新特性 - 时钟与计时器</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/10/C-11%E6%96%B0%E7%89%B9%E6%80%A7-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">C++11新特性 - 正则表达式</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

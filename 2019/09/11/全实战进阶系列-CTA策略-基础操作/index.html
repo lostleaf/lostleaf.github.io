@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>【课程笔记】全实战进阶系列-CTA策略-基础操作 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="全实战进阶系列-CTA策略, 平台小鹅通，by 用 Python 的交易员">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【课程笔记】全实战进阶系列-CTA策略-基础操作">
+<meta property="og:url" content="http://yoursite.com/2019/09/11/%E5%85%A8%E5%AE%9E%E6%88%98%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97-CTA%E7%AD%96%E7%95%A5-%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="全实战进阶系列-CTA策略, 平台小鹅通，by 用 Python 的交易员">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/2019/09/11/%E5%85%A8%E5%AE%9E%E6%88%98%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97-CTA%E7%AD%96%E7%95%A5-%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C/demo_backtesting.jpg">
+<meta property="article:published_time" content="2019-09-11T06:52:50.000Z">
+<meta property="article:modified_time" content="2020-06-08T16:50:35.242Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Quant">
+<meta property="article:tag" content="全实战进阶系列-CTA策略">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2019/09/11/%E5%85%A8%E5%AE%9E%E6%88%98%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97-CTA%E7%AD%96%E7%95%A5-%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C/demo_backtesting.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-全实战进阶系列-CTA策略-基础操作" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/09/11/%E5%85%A8%E5%AE%9E%E6%88%98%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97-CTA%E7%AD%96%E7%95%A5-%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C/" class="article-date">
+  <time datetime="2019-09-11T06:52:50.000Z" itemprop="datePublished">2019-09-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      【课程笔记】全实战进阶系列-CTA策略-基础操作
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="https://appszu5scwd6134.h5.xiaoeknow.com/" target="_blank" rel="noopener">全实战进阶系列-CTA策略</a>, 平台小鹅通，by 用 Python 的交易员</p>
+<a id="more"></a>
+<p>进阶课程计划</p>
+<ul>
+<li>CTA：50集，两个月</li>
+<li>价差交易</li>
+<li>算法交易</li>
+<li>波动率交易</li>
+<li>复杂系统：分布式部署</li>
+</ul>
+<p>通过vnpy公众号问问题</p>
+<h2 id="开发环境"><a href="#开发环境" class="headerlink" title="开发环境"></a>开发环境</h2><p>云：</p>
+<ul>
+<li>阿里云上海二区</li>
+<li>2 Core 4G</li>
+<li>Windows 2012 数据中心版</li>
+<li>VnStudio</li>
+<li>VsCode</li>
+</ul>
+<p>或本地Win10</p>
+<h2 id="策略模板"><a href="#策略模板" class="headerlink" title="策略模板"></a>策略模板</h2><p>继承 <code>CtaTemplate</code></p>
+<p><code>Ctrl-k Ctrl-r</code> 折叠所有函数</p>
+<ul>
+<li><code>parameters</code>: 策略参数的名称，外部指定的数值, e.g. ma_windows</li>
+<li><code>variables</code>: 策略变量的名称, 内部计算的数值，e.g. ma_value</li>
+<li>类型只支持 <code>int</code>, <code>str</code>, <code>float</code>, <code>bool</code></li>
+<li><code>list</code>, <code>dict</code> 等放到 <code>__init__</code></li>
+</ul>
+<p>所有加了 <code>@virtual</code> 的，都是 callback，用户自己实现</p>
+<ul>
+<li><code>on_init</code>: 在图形化界面上点了启动按钮</li>
+<li><code>on_start</code>: 点了启动按钮</li>
+<li><code>on_stop</code>: 点了停止按钮</li>
+<li><code>on_tick</code>: 收到 tick 数据</li>
+<li><code>on_bar</code>: 收到 K 线数据</li>
+<li><code>on_trade</code>: 成交</li>
+<li><code>on_order</code>: 委托推送，订单状态变化</li>
+<li><code>on_stop_order</code>: 停止单推送</li>
+</ul>
+<p>交易类函数: <code>buy</code>, <code>sell</code>, <code>short</code>, <code>cover</code>, <code>send_order</code>, <code>cancel_order</code>, <code>cancel_all</code></p>
+<p>交易以外功能函数: <code>write_log</code>, <code>get_engine_type</code>(区分回测和实盘), <code>load_bar</code>, <code>load_tick</code>, <code>put_event</code>(通知图形界面变化), <code>send_email</code>, <code>sync_data</code>(状态写入硬盘，恢复交易状态)</p>
+<h2 id="策略开发"><a href="#策略开发" class="headerlink" title="策略开发"></a>策略开发</h2><p>策略目录 <code>~/strategies</code>，双均线为例</p>
+<p>首先定义参数和变量</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DemoStrategy</span><span class="params">(CTaTemplate)</span>:</span></span><br><span class="line">    <span class="comment"># params</span></span><br><span class="line">    fast_window, slow_window = <span class="number">10</span>, <span class="number">20</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># vars</span></span><br><span class="line">    fast_ma0, fast_ma1, slow_ma0, slow_ma1 = <span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span></span><br><span class="line"></span><br><span class="line">    parameters = [<span class="string">'fast_window'</span>, <span class="string">'slow_windos'</span>]</span><br><span class="line">    variables = [<span class="string">'fast_ma0'</span>, <span class="string">'fast_ma1'</span>, <span class="string">'slow_ma0'</span>, <span class="string">'slow_ma1'</span>]</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, ...)</span>:</span></span><br><span class="line">        super().__init__(self, ...)</span><br><span class="line">        self.bg = BarGenerator(self.on_bar)</span><br><span class="line">        self.am = ArrayManager() <span class="comment"># default size 100</span></span><br></pre></td></tr></table></figure>
+
+<p>初始化</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">on_init</span><span class="params">(self)</span>:</span></span><br><span class="line">    self.write_log(<span class="string">'Initialized'</span>)</span><br><span class="line">    self.load_bar(<span class="number">10</span>) <span class="comment"># 10 days</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">on_start</span><span class="params">(self)</span>:</span></span><br><span class="line">    self.write_log(<span class="string">'Started'</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">on_stop</span><span class="params">(self)</span>:</span></span><br><span class="line">    self.write_log(<span class="string">'Stopped'</span>)</span><br></pre></td></tr></table></figure>
+
+<p>双均线逻辑</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">on_bar</span><span class="params">(self, bar: BarData)</span>:</span></span><br><span class="line">    am = self.am</span><br><span class="line">    am.update_bar(bar)</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> am.inited:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    fast_ma = am.sma(self.fast_window, array=<span class="literal">True</span>)</span><br><span class="line">    self.fast_ma0 = fast_ma[<span class="number">-1</span>]</span><br><span class="line">    self.fast_ma1 = fast_ma[<span class="number">-2</span>]</span><br><span class="line">    slow_ma = am.sma(self.slow_window, array=<span class="literal">True</span>)</span><br><span class="line">    self.slow_ma0 = slow_ma[<span class="number">-1</span>]</span><br><span class="line">    self.slow_ma1 = slow_ma[<span class="number">-2</span>]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 金叉</span></span><br><span class="line">    cross_over = (self.fast_ma0 &gt;= self.slow_ma0) <span class="keyword">and</span> (self.fast_ma1 &lt; self.slow_ma1)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 死叉</span></span><br><span class="line">    cross_below = (self.fast_ma0 &lt;= self.slow_ma0) <span class="keyword">and</span> (self.fast_ma1 &gt; self.slow_ma1)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> cross_over:</span><br><span class="line">        price = bar.close_price + <span class="number">5</span> <span class="comment"># just for example</span></span><br><span class="line">        <span class="keyword">if</span> self.pos &lt; <span class="number">0</span>:</span><br><span class="line">            self.cover(price, <span class="number">1</span>)</span><br><span class="line">        self.buy(price, <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">elif</span> cross_below:</span><br><span class="line">        price = bar.close_price - <span class="number">5</span> <span class="comment"># just for example</span></span><br><span class="line">        <span class="keyword">if</span> self.pos &gt; <span class="number">0</span>:</span><br><span class="line">            self.sell(price, <span class="number">1</span>)</span><br><span class="line">        self.short(price, <span class="number">1</span>)</span><br><span class="line">    </span><br><span class="line">    self.put_event() <span class="comment"># update GUI</span></span><br></pre></td></tr></table></figure>
+
+<p>实盘 K 线合成</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">on_tick</span><span class="params">(self, tick: TickData)</span>:</span></span><br><span class="line">    self.bg.update_tick(tick)</span><br></pre></td></tr></table></figure>
+
+<h2 id="历史回测"><a href="#历史回测" class="headerlink" title="历史回测"></a>历史回测</h2><ul>
+<li><code>VnStation</code> 加载 CTA 策略，CTA 回测</li>
+<li>点配置，配置 rqdate 账号密码，重启</li>
+<li>点 CTA 回测，看到 RQData 数据初始化成功</li>
+<li>交易策略，选DemoStrategy，开始回测，设置参数</li>
+<li>亏钱策略</li>
+</ul>
+<p><img src="demo_backtesting.jpg" alt=""></p>
+<h2 id="参数优化"><a href="#参数优化" class="headerlink" title="参数优化"></a>参数优化</h2><ul>
+<li>去掉手续费，不那么亏钱</li>
+<li>回测设置，合约代码，手续费滑点，开始结束时间</li>
+<li>点参数优化，设置搜索区间，多进程优化，网格搜索</li>
+<li>优化完成，点优化结果，排序，寻找参数平原</li>
+<li>双均线策略在 IF88 上最好的参数为 <code>fast_window=6, slow_window=80</code>(无手续费滑点)</li>
+</ul>
+<h2 id="自动交易-基于-simnow"><a href="#自动交易-基于-simnow" class="headerlink" title="自动交易(基于 simnow)"></a>自动交易(基于 simnow)</h2><ul>
+<li>加载 CTP gateway</li>
+<li>连接 7*24 小时环境</li>
+<li>若连接成功，则显示合约信息查询成功、资金信息等</li>
+<li>点CTA策略，实盘自动交易<ul>
+<li>strategy_name: 实例名称</li>
+<li>vt_symbol: IF1909.CFFEX</li>
+<li>… 其他 parameters</li>
+</ul>
+</li>
+<li>初始化-&gt;启动 …. 收盘之后-&gt;结束, variables 缓存到 cta_strategy_data.json</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/09/11/%E5%85%A8%E5%AE%9E%E6%88%98%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97-CTA%E7%AD%96%E7%95%A5-%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C/" data-id="ckb6qf7xe0015wmtbfbryal5m" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Quant/" rel="tag">Quant</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%85%A8%E5%AE%9E%E6%88%98%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97-CTA%E7%AD%96%E7%95%A5/" rel="tag">全实战进阶系列-CTA策略</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/09/15/%E5%85%A8%E5%AE%9E%E6%88%98%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97-CTA%E7%AD%96%E7%95%A5-K%E7%BA%BF%E9%80%BB%E8%BE%91/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          【课程笔记】全实战进阶系列-CTA策略-K线逻辑
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/09/10/%E5%B8%A6%E4%BD%A0%E9%87%8D%E6%96%B0%E8%AE%A4%E8%AF%86%E6%B5%B7%E9%BE%9F%E4%BA%A4%E6%98%93%E7%AD%96%E7%95%A5/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">【live笔记】带你重新认识海龟交易策略</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AtrRsi/" rel="tag">AtrRsi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-11/" rel="tag">C++11</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Compiler/" rel="tag">Compiler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Conference/" rel="tag">Conference</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Quant/" rel="tag">Quant</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sci-Fi/" rel="tag">Sci-Fi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vim/" rel="tag">Vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Zhihu/" rel="tag">Zhihu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%85%A8%E5%AE%9E%E6%88%98%E6%88%90%E9%95%BF%E7%B3%BB%E5%88%97-30%E5%A0%82%E5%AE%9E%E6%88%98%E8%AF%BE%E8%B7%91%E9%80%9A%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/" rel="tag">全实战成长系列-30堂实战课跑通量化交易</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%85%A8%E5%AE%9E%E6%88%98%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97-CTA%E7%AD%96%E7%95%A5/" rel="tag">全实战进阶系列-CTA策略</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AtrRsi/" style="font-size: 10px;">AtrRsi</a> <a href="/tags/C/" style="font-size: 18px;">C++</a> <a href="/tags/C-11/" style="font-size: 18px;">C++11</a> <a href="/tags/Compiler/" style="font-size: 10px;">Compiler</a> <a href="/tags/Conference/" style="font-size: 10px;">Conference</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Machine-Learning/" style="font-size: 10px;">Machine Learning</a> <a href="/tags/Quant/" style="font-size: 20px;">Quant</a> <a href="/tags/Sci-Fi/" style="font-size: 12px;">Sci-Fi</a> <a href="/tags/Vim/" style="font-size: 10px;">Vim</a> <a href="/tags/Zhihu/" style="font-size: 14px;">Zhihu</a> <a href="/tags/%E5%85%A8%E5%AE%9E%E6%88%98%E6%88%90%E9%95%BF%E7%B3%BB%E5%88%97-30%E5%A0%82%E5%AE%9E%E6%88%98%E8%AF%BE%E8%B7%91%E9%80%9A%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/" style="font-size: 10px;">全实战成长系列-30堂实战课跑通量化交易</a> <a href="/tags/%E5%85%A8%E5%AE%9E%E6%88%98%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97-CTA%E7%AD%96%E7%95%A5/" style="font-size: 16px;">全实战进阶系列-CTA策略</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1900/01/">January 1900</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/04/08/%E6%95%99%E7%88%B6%E7%9A%84%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93%E7%AC%94%E8%AE%B0/">教父的量化交易笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/14/C-11%E6%96%B0%E7%89%B9%E6%80%A7-tuple/">C++11新特性 - tuple</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/12/C-11%E6%96%B0%E7%89%B9%E6%80%A7-%E9%9A%8F%E6%9C%BA%E6%95%B0/">C++11新特性 - 随机数</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/10/C-11%E6%96%B0%E7%89%B9%E6%80%A7-%E6%97%B6%E9%92%9F%E4%B8%8E%E8%AE%A1%E6%97%B6%E5%99%A8/">C++11新特性 - 时钟与计时器</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/10/C-11%E6%96%B0%E7%89%B9%E6%80%A7-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">C++11新特性 - 正则表达式</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

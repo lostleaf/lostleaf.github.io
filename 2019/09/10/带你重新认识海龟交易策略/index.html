@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>【live笔记】带你重新认识海龟交易策略 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="知乎live：带你重新认识海龟交易策略, by 用Python的交易员">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【live笔记】带你重新认识海龟交易策略">
+<meta property="og:url" content="http://yoursite.com/2019/09/10/%E5%B8%A6%E4%BD%A0%E9%87%8D%E6%96%B0%E8%AE%A4%E8%AF%86%E6%B5%B7%E9%BE%9F%E4%BA%A4%E6%98%93%E7%AD%96%E7%95%A5/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="知乎live：带你重新认识海龟交易策略, by 用Python的交易员">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-09-10T09:58:26.000Z">
+<meta property="article:modified_time" content="2020-06-08T16:50:35.248Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Quant">
+<meta property="article:tag" content="Zhihu">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-带你重新认识海龟交易策略" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/09/10/%E5%B8%A6%E4%BD%A0%E9%87%8D%E6%96%B0%E8%AE%A4%E8%AF%86%E6%B5%B7%E9%BE%9F%E4%BA%A4%E6%98%93%E7%AD%96%E7%95%A5/" class="article-date">
+  <time datetime="2019-09-10T09:58:26.000Z" itemprop="datePublished">2019-09-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      【live笔记】带你重新认识海龟交易策略
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>知乎live：<a href="https://www.zhihu.com/lives/1053322888899342336" target="_blank" rel="noopener">带你重新认识海龟交易策略</a>, by 用Python的交易员</p>
+<a id="more"></a>
+
+<h2 id="海龟的传奇"><a href="#海龟的传奇" class="headerlink" title="海龟的传奇"></a>海龟的传奇</h2><ul>
+<li>起源于 1983 年两位交易员的赌约，“海龟”并没有特殊的含义</li>
+<li>最经典的量化交易策略，属于 CTA 策略，中低频趋势跟踪，策略包含投资组合管理</li>
+<li>柯蒂斯，19岁加入海龟计划，没有做过交易，没有先入为主的观念，效果反而最好，四年狂赚 3000 万美元</li>
+<li>意识到量化分析的重要性，通过表格卡纸手动计算交易信号，到了盘中通过打电话跟场内 Broker 交易，系统化交易</li>
+</ul>
+<h2 id="完整的海龟交易策略"><a href="#完整的海龟交易策略" class="headerlink" title="完整的海龟交易策略"></a>完整的海龟交易策略</h2><h3 id="交易品种"><a href="#交易品种" class="headerlink" title="交易品种"></a>交易品种</h3><p>一般选择期货，也可以 CFD、杠杆外汇、数字币期货</p>
+<ol>
+<li>流动性足够</li>
+<li>带杠杆 —— 最好是期货，股票可能不太适合，股指期货可以</li>
+<li>可以做空，做空成本不大，融券做空不合适</li>
+<li>波动足够大，足够追涨杀跌</li>
+</ol>
+<h3 id="单位持仓"><a href="#单位持仓" class="headerlink" title="单位持仓"></a>单位持仓</h3><ol>
+<li>单位持仓 = (总资本 * 1%) / (N * 合约乘数)，合约乘数即一个指数跳动对应的钱</li>
+<li>N = TR 的 20 日 EMA，可以用 ATR 代替（SMA）</li>
+<li>ATR 衡量风险，单位持仓和风险反向相关</li>
+</ol>
+<h3 id="风险分配"><a href="#风险分配" class="headerlink" title="风险分配"></a>风险分配</h3><ol>
+<li>强制分散风险，限制同向持仓，有效管理 CTA 策略风险</li>
+<li>同向风险：单一品种上，不能超过 4 单位持仓；高度相关的，不能超过 6 单位；低关联的，不超过 10 单位；整个投资组合，不超过 12 单位</li>
+</ol>
+<h3 id="策略入场"><a href="#策略入场" class="headerlink" title="策略入场"></a>策略入场</h3><ol>
+<li>信号：唐奇安通道</li>
+<li>长周期通道：55 日通道，突破上轨就做多，突破下轨就做空</li>
+<li>短周期通道：20 日通道，突破上轨做多/空；但是如果上一次短周期信号赚了钱，就要过滤这一次的信号；原因是趋势追踪短周期连续出现两次赚钱的情况比较少</li>
+</ol>
+<h3 id="顺势加仓"><a href="#顺势加仓" class="headerlink" title="顺势加仓"></a>顺势加仓</h3><ol>
+<li>逆市加仓非常危险，只在持有仓位盈利的时候才加仓</li>
+<li>交易入场的时候立即记录当时 ATR</li>
+<li>价格顺着建仓方向增加 0.5 * ATR 时，加 1 单位持仓，直到达到上限</li>
+</ol>
+<h3 id="出场信号"><a href="#出场信号" class="headerlink" title="出场信号"></a>出场信号</h3><ol>
+<li>短周期信号：反向突破 10 日通道</li>
+<li>长周期信号：反向突破 20 日通道</li>
+<li>本质上是一种移动止损</li>
+</ol>
+<h3 id="交易止损"><a href="#交易止损" class="headerlink" title="交易止损"></a>交易止损</h3><ol>
+<li>从入场价格算起，最多允许亏 2 * ATR，即每次亏最多亏 2% </li>
+<li>每次加仓之后，将整体入场价格调到最新入场价，而不是平均数，强制锁定一部分利润</li>
+<li>同向风险：单合约4，高关联6，低关联10，整体12</li>
+</ol>
+<h2 id="海龟回测的逻辑拆分"><a href="#海龟回测的逻辑拆分" class="headerlink" title="海龟回测的逻辑拆分"></a>海龟回测的逻辑拆分</h2><h3 id="策略信号"><a href="#策略信号" class="headerlink" title="策略信号"></a>策略信号</h3><p>单合约</p>
+<ol>
+<li>策略入场</li>
+<li>策略出场</li>
+<li>交易止损</li>
+<li>顺势加仓</li>
+</ol>
+<h3 id="策略组合"><a href="#策略组合" class="headerlink" title="策略组合"></a>策略组合</h3><p>整个投资组合</p>
+<ol>
+<li>单位持仓，最大12</li>
+<li>风险分配</li>
+<li>短周期过滤</li>
+</ol>
+<h3 id="回测引擎"><a href="#回测引擎" class="headerlink" title="回测引擎"></a>回测引擎</h3><ol>
+<li>品种选择</li>
+<li>数据回放</li>
+<li>成交记录</li>
+<li>统计分析</li>
+</ol>
+<h2 id="难点"><a href="#难点" class="headerlink" title="难点"></a>难点</h2><h3 id="K线内部成交"><a href="#K线内部成交" class="headerlink" title="Ｋ线内部成交"></a>Ｋ线内部成交</h3><ol>
+<li>无论长短周期，要求在突破通道的瞬间，立即执行交易，而非等到收盘</li>
+<li>Tick 数据量太大，只能用 K 线数据回测（？）</li>
+<li>ZipLine or 三大矿无法回测</li>
+</ol>
+<p>实现逻辑（Stop Order）:</p>
+<ol>
+<li>T-1 时刻 K 线走完后，计算 T 时刻上下轨（可以用 TA-lib），买入价 M</li>
+<li>T 时刻 K 线，如果开盘价 O 高于 M，以 O 成交；否则，如果最高价高于 M，以 M 成交；实际回测时还要考虑滑点</li>
+<li>绝不能以 T 时刻的收盘价成交，否则会错过巨大的 Alpha</li>
+</ol>
+<h3 id="短周期信号的过滤"><a href="#短周期信号的过滤" class="headerlink" title="短周期信号的过滤"></a>短周期信号的过滤</h3><ol>
+<li>短周期通道，容易被频繁触发</li>
+<li>为避免假突破，上次盈利时，要放弃本次指令</li>
+<li>需要在信号中统计，多次加仓（顺势）&amp;一次平仓要算为一次开平</li>
+</ol>
+<p>实现逻辑：vnpy1.9.2 <code>examples/TurtleStrategy/turtleStrategy.py</code> TurtleResult</p>
+<h3 id="多空仓位限制"><a href="#多空仓位限制" class="headerlink" title="多空仓位限制"></a>多空仓位限制</h3><ol>
+<li>单位持仓是由 ATR 计算出来的，是动态的</li>
+<li>策略组合需要将单位持仓，转化为实际持仓</li>
+</ol>
+<p>实现逻辑：vnpy1.9.2 <code>examples/TurtleStrategy/turtleStrategy.py</code> TurtlePortfolio.newSignal</p>
+<h2 id="回测"><a href="#回测" class="headerlink" title="回测"></a>回测</h2><h3 id="准备数据"><a href="#准备数据" class="headerlink" title="准备数据"></a>准备数据</h3><ol>
+<li>海龟基于日线，主力合约存在换月跳空</li>
+<li>跳空可能给出错误的信号，需要进行平滑或者指数合成</li>
+<li>可以使用 RQData</li>
+</ol>
+<h3 id="回测参数"><a href="#回测参数" class="headerlink" title="回测参数"></a>回测参数</h3><ol>
+<li>上期所热门品种：RB ZN CU AL RU</li>
+<li>原始海龟参数：由上世纪美国市场确定，可视为全样本外数据</li>
+<li>2014-2018日线数据：使用产品指数数据</li>
+<li>交易成本：交易所手续费 +10%，滑点 1tick</li>
+<li>起始资金 1000 万，单位仓位使用固定 1000 万</li>
+</ol>
+<h3 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h3><ol>
+<li>5 年时间，收益回测比 10</li>
+<li>sharpe 接近 1</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/09/10/%E5%B8%A6%E4%BD%A0%E9%87%8D%E6%96%B0%E8%AE%A4%E8%AF%86%E6%B5%B7%E9%BE%9F%E4%BA%A4%E6%98%93%E7%AD%96%E7%95%A5/" data-id="ckb6qf7xk001hwmtb8vhq4dsi" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Quant/" rel="tag">Quant</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Zhihu/" rel="tag">Zhihu</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/09/11/%E5%85%A8%E5%AE%9E%E6%88%98%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97-CTA%E7%AD%96%E7%95%A5-%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          【课程笔记】全实战进阶系列-CTA策略-基础操作
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/09/10/%E9%98%85%E8%AF%BB%EF%BC%9A%E4%BA%A4%E6%98%93%E5%91%98%E7%9A%84%E5%86%85%E5%8A%9F%E4%BF%AE%E7%82%BC/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">【live笔记】阅读：交易员的内功修炼</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AtrRsi/" rel="tag">AtrRsi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-11/" rel="tag">C++11</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Compiler/" rel="tag">Compiler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Conference/" rel="tag">Conference</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Quant/" rel="tag">Quant</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sci-Fi/" rel="tag">Sci-Fi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vim/" rel="tag">Vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Zhihu/" rel="tag">Zhihu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%85%A8%E5%AE%9E%E6%88%98%E6%88%90%E9%95%BF%E7%B3%BB%E5%88%97-30%E5%A0%82%E5%AE%9E%E6%88%98%E8%AF%BE%E8%B7%91%E9%80%9A%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/" rel="tag">全实战成长系列-30堂实战课跑通量化交易</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%85%A8%E5%AE%9E%E6%88%98%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97-CTA%E7%AD%96%E7%95%A5/" rel="tag">全实战进阶系列-CTA策略</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AtrRsi/" style="font-size: 10px;">AtrRsi</a> <a href="/tags/C/" style="font-size: 18px;">C++</a> <a href="/tags/C-11/" style="font-size: 18px;">C++11</a> <a href="/tags/Compiler/" style="font-size: 10px;">Compiler</a> <a href="/tags/Conference/" style="font-size: 10px;">Conference</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Machine-Learning/" style="font-size: 10px;">Machine Learning</a> <a href="/tags/Quant/" style="font-size: 20px;">Quant</a> <a href="/tags/Sci-Fi/" style="font-size: 12px;">Sci-Fi</a> <a href="/tags/Vim/" style="font-size: 10px;">Vim</a> <a href="/tags/Zhihu/" style="font-size: 14px;">Zhihu</a> <a href="/tags/%E5%85%A8%E5%AE%9E%E6%88%98%E6%88%90%E9%95%BF%E7%B3%BB%E5%88%97-30%E5%A0%82%E5%AE%9E%E6%88%98%E8%AF%BE%E8%B7%91%E9%80%9A%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/" style="font-size: 10px;">全实战成长系列-30堂实战课跑通量化交易</a> <a href="/tags/%E5%85%A8%E5%AE%9E%E6%88%98%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97-CTA%E7%AD%96%E7%95%A5/" style="font-size: 16px;">全实战进阶系列-CTA策略</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1900/01/">January 1900</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/04/08/%E6%95%99%E7%88%B6%E7%9A%84%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93%E7%AC%94%E8%AE%B0/">教父的量化交易笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/14/C-11%E6%96%B0%E7%89%B9%E6%80%A7-tuple/">C++11新特性 - tuple</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/12/C-11%E6%96%B0%E7%89%B9%E6%80%A7-%E9%9A%8F%E6%9C%BA%E6%95%B0/">C++11新特性 - 随机数</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/10/C-11%E6%96%B0%E7%89%B9%E6%80%A7-%E6%97%B6%E9%92%9F%E4%B8%8E%E8%AE%A1%E6%97%B6%E5%99%A8/">C++11新特性 - 时钟与计时器</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/10/C-11%E6%96%B0%E7%89%B9%E6%80%A7-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">C++11新特性 - 正则表达式</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
