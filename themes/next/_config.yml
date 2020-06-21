@@ -347,11 +347,11 @@ codeblock:
   # Code Highlight theme
   # See: https://github.com/highlightjs/highlight.js/tree/master/src/styles
   theme:
-    light: default
-    dark: dark
+    light: github-gist
+    dark: tomorrow-night
   # Add copy button on codeblock
   copy_button:
-    enable: false
+    enable: true
     # Show text copy result.
     show_result: false
     # Available values: default | flat | mac
