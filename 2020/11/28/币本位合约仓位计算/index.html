@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"8.0.0-rc.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="数字货币合约等价于什么假设当前币价 1BTC&#x3D;10000USD, 我们在 OKEX 交易所开多一张 BTCUSD 合约, 合约面值 100USD, 当 BTC 币价达到 20000USD 时平仓,根据 OKEX 收益计算规则(不考虑升贴水和手续费), 则有 12345平仓收益&#x3D; 合约面值 * (1&#x2F;开仓价格 - 1&#x2F;平仓价格) BTC&#x3D; 100 * (1&amp;#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="币本位合约仓位计算">
+<meta property="og:url" content="http://yoursite.com/2020/11/28/%E5%B8%81%E6%9C%AC%E4%BD%8D%E5%90%88%E7%BA%A6%E4%BB%93%E4%BD%8D%E8%AE%A1%E7%AE%97/index.html">
+<meta property="og:site_name" content="lostleaf&#39;s blog">
+<meta property="og:description" content="数字货币合约等价于什么假设当前币价 1BTC&#x3D;10000USD, 我们在 OKEX 交易所开多一张 BTCUSD 合约, 合约面值 100USD, 当 BTC 币价达到 20000USD 时平仓,根据 OKEX 收益计算规则(不考虑升贴水和手续费), 则有 12345平仓收益&#x3D; 合约面值 * (1&#x2F;开仓价格 - 1&#x2F;平仓价格) BTC&#x3D; 100 * (1&amp;#">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-11-28T04:28:17.000Z">
+<meta property="article:modified_time" content="2020-11-28T10:18:03.046Z">
+<meta property="article:author" content="lostleaf">
+<meta property="article:tag" content="数字货币">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/11/28/%E5%B8%81%E6%9C%AC%E4%BD%8D%E5%90%88%E7%BA%A6%E4%BB%93%E4%BD%8D%E8%AE%A1%E7%AE%97/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>币本位合约仓位计算 | lostleaf's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+        <span class="toggle-line toggle-line-first"></span>
+        <span class="toggle-line toggle-line-middle"></span>
+        <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">lostleaf's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/11/28/%E5%B8%81%E6%9C%AC%E4%BD%8D%E5%90%88%E7%BA%A6%E4%BB%93%E4%BD%8D%E8%AE%A1%E7%AE%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="lostleaf">
+      <meta itemprop="description" content="Data Scientist / Scifi Fan">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lostleaf's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          币本位合约仓位计算
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-11-28 12:28:17 / Modified: 18:18:03" itemprop="dateCreated datePublished" datetime="2020-11-28T12:28:17+08:00">2020-11-28</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="数字货币合约等价于什么"><a href="#数字货币合约等价于什么" class="headerlink" title="数字货币合约等价于什么"></a>数字货币合约等价于什么</h2><p>假设当前币价 <code>1BTC=10000USD</code>, 我们在 OKEX 交易所开多一张 BTCUSD 合约, 合约面值 100USD, 当 BTC 币价达到 20000USD 时平仓,<br>根据 OKEX <a href="https://www.okex.com/support/hc/en-us/articles/360000104591-Futures-Account-Profit-Loss" target="_blank" rel="noopener">收益计算规则</a><br>(不考虑升贴水和手续费), 则有</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">平仓收益</span><br><span class="line">&#x3D; 合约面值 * (1&#x2F;开仓价格 - 1&#x2F;平仓价格) BTC</span><br><span class="line">&#x3D; 100 * (1&#x2F;10000 - 1&#x2F;20000) BTC</span><br><span class="line">&#x3D; 0.005BTC</span><br><span class="line">&#x3D; 100USD</span><br></pre></td></tr></table></figure>
+
+<p>假设在一个平行世界里, 人类没有发明期货合约这种衍生品, 但是可以以零利率随意借入美元和 BTC, 考虑如下操作:</p>
+<ol>
+<li>在币价 10000USD 时, 借入 100USD, 买入 0.01BTC</li>
+<li>在币价 20000USD 时, 卖出 0.01BTC, 获得 200USD, 偿还 100USD 贷款</li>
+</ol>
+<p>盈利同样为 100USD</p>
+<p>我们可以带入其他平仓价, 可以发现: 一份<code>0.01BTC+100USD贷款</code>所组成的资产, 和1张开仓价为 10000USD 的 100USD 面值 BTCUSD 期货多头合约, 总是拥有相同的收益</p>
+<p>一般而言, 假设开仓币价=<code>open</code>USD, 平仓币价=<code>close</code>USD, 则</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">平仓PNL</span><br><span class="line">&#x3D; 合约面值 * (1&#x2F;开仓价格 - 1&#x2F;平仓价格) BTC</span><br><span class="line">&#x3D; 100 * (1&#x2F;open - 1&#x2F;close) BTC</span><br><span class="line">&#x3D; 100 * (1&#x2F;open - 1&#x2F;close) * close USD</span><br><span class="line">&#x3D; 100 * (close&#x2F;open - 1) USD</span><br></pre></td></tr></table></figure>
+
+<p>同时, 对于以下操作</p>
+<ol>
+<li>在币价 <code>open</code>USD 时, 借入 100USD, 买入 <code>100/open</code>BTC</li>
+<li>在币价 <code>close</code>USD 时, 卖出 BTC, 获得 <code>100/open*close</code>USD, 偿还 100USD 贷款</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PNL &#x3D; 100&#x2F;open*close - 100 USD &#x3D; 100 * (close&#x2F;open - 1) USD</span><br></pre></td></tr></table></figure>
+
+<p>至此, 我们可以得出结论: 在币价 <code>open</code>USD时, 1张100USD面值的 BTCUSD 多头合约, 和1份由 <code>100/open</code>BTC现货 + 100USD贷款所组合而成的资产, 总是拥有相同的平仓收益</p>
+<p>反之, 易得: 在币价 <code>open</code>USD时, 1张100USD面值的 BTCUSD 空头合约, 和1份由 <code>100/open</code>BTC贷款 + 100USD所组合而成的资产, 总是拥有相同的平仓收益</p>
+<p>于是, 我们用 BTC 现货和 USD 这两种基础资产, “合成” 了 BTCUSD 合约这种衍生品</p>
+<p>事实上, 在金融工程中, 使用基础资产”合成”复杂衍生品, 是衍生品定价的重要手段; 就好像我们要对一盘沙拉定价, 只需要对其中的每种蔬菜和沙拉酱分别定价, 它们的价值加起来, 就是这盘沙拉的价值</p>
+<h2 id="币本位合约的USD本位等效仓位计算"><a href="#币本位合约的USD本位等效仓位计算" class="headerlink" title="币本位合约的USD本位等效仓位计算"></a>币本位合约的USD本位等效仓位计算</h2><p>仍然假定当前币价 <code>1BTC=10000USD</code>, BTCUSD 币本位合约面值为 100USD, 我们持有 0.01BTC 的保证金, 并做空 5 张 BTCUSD 合约</p>
+<p>将 5 张 BTCUSD 合约”分解”为 0.05BTC + 500USD贷款, 对整个账户记账, 则有</p>
+<ul>
+<li>Asset(资产): 0.01BTC(保证金) + 500 USD</li>
+<li>Liability(债务): 0.05BTC(贷款)</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Balance sheet</th>
+<th>Asset</th>
+<th>Liability</th>
+<th>Equity</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>BTC</td>
+<td>0.01</td>
+<td>0.05</td>
+<td>-0.04</td>
+</tr>
+<tr>
+<td>USD</td>
+<td>500</td>
+<td>0</td>
+<td>500</td>
+</tr>
+</tbody></table>
+<p>我们可以看出, 此时的账户权益(Equity)=500USD-0.04BTC, 将 500USD 转化为当前币价下 BTC 的数量, 这个 Equity 就是当前账户的剩余保证金</p>
+<p>同时, 在USD本位下, 此时持有 5 张 BTCUSD 空头合约的收益, 等价于持有 0.04 个 BTC 空头资产的收益, 这就是所谓的 “币本位自带一倍杠杆”</p>
+<p>一般情况下, 假设目前币价为 <code>p</code>USD, 账户保证金为 <code>n</code>BTC</p>
+<p>做多 <code>m</code> 张 BTCUSD合约:</p>
+<ul>
+<li>Asset: <code>n</code>BTC(保证金) + <code>m*100/p</code>BTC(等效买入的现货)</li>
+<li>Liability: <code>m*100</code>USD(贷款)</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Balance sheet</th>
+<th>Asset</th>
+<th>Liability</th>
+<th>Equity</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>BTC</td>
+<td><code>n + m*100/p</code></td>
+<td>0</td>
+<td><code>n + m*100/p</code></td>
+</tr>
+<tr>
+<td>USD</td>
+<td>0</td>
+<td><code>m*100</code></td>
+<td><code>-m*100</code></td>
+</tr>
+</tbody></table>
+<p>做空 <code>m</code> 张 BTCUSD合约:</p>
+<ul>
+<li>Asset: <code>n</code>BTC(保证金) + <code>m*100</code>USD</li>
+<li>Liability:  <code>m*100/p</code>BTC(贷款)</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Balance sheet</th>
+<th>Asset</th>
+<th>Liability</th>
+<th>Equity</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>BTC</td>
+<td>n</td>
+<td><code>m*100/p</code></td>
+<td><code>n - m*100/p</code></td>
+</tr>
+<tr>
+<td>USD</td>
+<td><code>m*100</code></td>
+<td>0</td>
+<td><code>m*100</code></td>
+</tr>
+</tbody></table>
+<p>于是我们可得:</p>
+<ul>
+<li>做多: 账户权益 = <code>(n + m*100/p)</code> BTC - <code>m*100</code> USD</li>
+<li>做空: 账户权益 = <code>(n - m*100/p)</code> BTC + <code>m*100</code> USD</li>
+</ul>
+<p>此处 <code>(n + m*100/p)</code> BTC 和 <code>(n - m*100/p)</code> BTC, 分别代表做多和多空情况下, 等效的 USD 本位 BTC 持仓</p>
+<p>如果将 BTC 和 USD 相互转换, 则分别可得 BTC 和 USD 本位下的账户权益</p>
+<p>一个特殊的例子: 假如 <code>n = m*100/p</code>, 即我们开空等与保证金等量的合约, 则有账户权益 = <code>m*100</code> USD, 即账户权益恒为 <code>m*100</code> USD, 这就是所谓的套期保值, 也是期现套利永不会爆仓的原理</p>
+<p>至此, 我们可以对 BTC 和 USD 本位的持仓相互转换, 妈妈再也不用担心我算不清自己的持仓了</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%95%B0%E5%AD%97%E8%B4%A7%E5%B8%81/" rel="tag"># 数字货币</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/04/08/%E6%95%99%E7%88%B6%E7%9A%84%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93%E7%AC%94%E8%AE%B0/" rel="prev" title="【live笔记】手把手入门量化交易">
+      <i class="fa fa-chevron-left"></i> 【live笔记】手把手入门量化交易
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数字货币合约等价于什么"><span class="nav-number">1.</span> <span class="nav-text">数字货币合约等价于什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#币本位合约的USD本位等效仓位计算"><span class="nav-number">2.</span> <span class="nav-text">币本位合约的USD本位等效仓位计算</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="lostleaf"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">lostleaf</p>
+  <div class="site-description" itemprop="description">Data Scientist / Scifi Fan</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lostleaf</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
