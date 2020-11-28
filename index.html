@@ -156,6 +156,188 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/11/28/%E5%B8%81%E6%9C%AC%E4%BD%8D%E5%90%88%E7%BA%A6%E4%BB%93%E4%BD%8D%E8%AE%A1%E7%AE%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="lostleaf">
+      <meta itemprop="description" content="Data Scientist / Scifi Fan">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lostleaf's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/28/%E5%B8%81%E6%9C%AC%E4%BD%8D%E5%90%88%E7%BA%A6%E4%BB%93%E4%BD%8D%E8%AE%A1%E7%AE%97/" class="post-title-link" itemprop="url">币本位合约仓位计算</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-11-28 12:28:17" itemprop="dateCreated datePublished" datetime="2020-11-28T12:28:17+08:00">2020-11-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-11-29 00:48:51" itemprop="dateModified" datetime="2020-11-29T00:48:51+08:00">2020-11-29</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="数字货币合约等价于什么"><a href="#数字货币合约等价于什么" class="headerlink" title="数字货币合约等价于什么"></a>数字货币合约等价于什么</h2><p>假设当前币价 <code>1BTC=10000USD</code>, 我们在 OKEX 交易所开多一张 BTCUSD 合约, 合约面值 100USD, 当 BTC 币价达到 20000USD 时平仓, 根据 OKEX <a href="https://www.okex.com/support/hc/en-us/articles/360000104591-Futures-Account-Profit-Loss" target="_blank" rel="noopener">收益计算规则</a>(不考虑升贴水和手续费), 则有</p>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">平仓收益</span><br><span class="line"><span class="section">= 合约面值 * (1/开仓价格 - 1/平仓价格) BTC</span></span><br><span class="line"><span class="section">= 100 * (1/10000 - 1/20000) BTC</span></span><br><span class="line"><span class="section">= 0.005BTC</span></span><br><span class="line"><span class="section">= 100USD</span></span><br></pre></td></tr></table></figure>
+
+<p>假设在一个平行世界里, 人类没有发明期货合约这种衍生品, 但是可以以零利率随意借入美元和 BTC, 考虑如下操作:</p>
+<ol>
+<li>在币价 10000USD 时, 借入 100USD, 买入 0.01BTC</li>
+<li>在币价 20000USD 时, 卖出 0.01BTC, 获得 200USD, 偿还 100USD 贷款</li>
+</ol>
+<p>盈利同样为 100USD</p>
+<p>我们可以带入其他平仓价, 可以发现: 一份<code>0.01BTC+100USD贷款</code>所组成的资产, 和1张开仓价为 10000USD 的 100USD 面值 BTCUSD 期货多头合约, 总是拥有相同的收益</p>
+<p>一般而言, 假设开仓币价=<code>open</code>USD, 平仓币价=<code>close</code>USD, 则</p>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">平仓PNL</span><br><span class="line"><span class="section">= 合约面值 * (1/开仓价格 - 1/平仓价格) BTC</span></span><br><span class="line"><span class="section">= 100 * (1/open - 1/close) BTC</span></span><br><span class="line"><span class="section">= 100 * (1/open - 1/close) * close USD</span></span><br><span class="line"><span class="section">= 100 * (close/open - 1) USD</span></span><br></pre></td></tr></table></figure>
+
+<p>同时, 对于以下操作</p>
+<ol>
+<li>在币价 <code>open</code>USD 时, 借入 100USD, 买入 <code>100/open</code>BTC</li>
+<li>在币价 <code>close</code>USD 时, 卖出 BTC, 获得 <code>100/open*close</code>USD, 偿还 100USD 贷款</li>
+</ol>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PNL = <span class="number">100</span>/open*close - <span class="number">100</span> USD = <span class="number">100</span> * (close/open - <span class="number">1</span>) USD</span><br></pre></td></tr></table></figure>
+
+<p>至此, 我们可以得出结论: 在币价 <code>open</code>USD时, 1张100USD面值的 BTCUSD 多头合约, 和1份由 <code>100/open</code>BTC现货 + 100USD贷款所组合而成的资产, 总是拥有相同的平仓收益</p>
+<p>反之, 易得: 在币价 <code>open</code>USD时, 1张100USD面值的 BTCUSD 空头合约, 和1份由 <code>100/open</code>BTC贷款 + 100USD所组合而成的资产, 总是拥有相同的平仓收益</p>
+<p>于是, 我们用 BTC 现货和 USD 这两种基础资产, “合成” 了 BTCUSD 合约这种衍生品</p>
+<p>事实上, 在金融工程中, 使用基础资产”合成”复杂衍生品, 是衍生品定价的重要手段; 就好像我们要对一盘沙拉定价, 只需要对其中的每种蔬菜和沙拉酱分别定价, 它们的价值加起来, 就是这盘沙拉的价值</p>
+<h2 id="币本位合约的USD本位等效仓位计算"><a href="#币本位合约的USD本位等效仓位计算" class="headerlink" title="币本位合约的USD本位等效仓位计算"></a>币本位合约的USD本位等效仓位计算</h2><p>仍然假定当前币价 <code>1BTC=10000USD</code>, BTCUSD 币本位合约面值为 100USD, 我们持有 0.01BTC 的保证金, 并做空 5 张 BTCUSD 合约</p>
+<p>将 5 张 BTCUSD 合约”分解”为 0.05BTC + 500USD贷款, 对整个账户记账, 则有</p>
+<ul>
+<li>Asset(资产): 0.01BTC(保证金) + 500 USD</li>
+<li>Liability(债务): 0.05BTC(贷款)</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Balance sheet</th>
+<th>Asset</th>
+<th>Liability</th>
+<th>Equity</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>BTC</td>
+<td>0.01</td>
+<td>0.05</td>
+<td>-0.04</td>
+</tr>
+<tr>
+<td>USD</td>
+<td>500</td>
+<td>0</td>
+<td>500</td>
+</tr>
+</tbody></table>
+<p>我们可以看出, 此时的账户权益(Equity)=500USD-0.04BTC, 将 500USD 转化为当前币价下 BTC 的数量, 这个 Equity 就是当前账户的剩余保证金</p>
+<p>同时, 在USD本位下, 此时持有 5 张 BTCUSD 空头合约的收益, 等价于持有 0.04 个 BTC 空头资产的收益, 这就是所谓的 “币本位自带一倍杠杆”</p>
+<p>一般情况下, 假设目前币价为 <code>p</code>USD, 账户保证金为 <code>n</code>BTC</p>
+<p>做多 <code>m</code> 张 BTCUSD合约:</p>
+<ul>
+<li>Asset: <code>n</code>BTC(保证金) + <code>m*100/p</code>BTC(等效买入的现货)</li>
+<li>Liability: <code>m*100</code>USD(贷款)</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Balance sheet</th>
+<th>Asset</th>
+<th>Liability</th>
+<th>Equity</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>BTC</td>
+<td><code>n + m*100/p</code></td>
+<td>0</td>
+<td><code>n + m*100/p</code></td>
+</tr>
+<tr>
+<td>USD</td>
+<td>0</td>
+<td><code>m*100</code></td>
+<td><code>-m*100</code></td>
+</tr>
+</tbody></table>
+<p>做空 <code>m</code> 张 BTCUSD合约:</p>
+<ul>
+<li>Asset: <code>n</code>BTC(保证金) + <code>m*100</code>USD</li>
+<li>Liability:  <code>m*100/p</code>BTC(贷款)</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Balance sheet</th>
+<th>Asset</th>
+<th>Liability</th>
+<th>Equity</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>BTC</td>
+<td>n</td>
+<td><code>m*100/p</code></td>
+<td><code>n - m*100/p</code></td>
+</tr>
+<tr>
+<td>USD</td>
+<td><code>m*100</code></td>
+<td>0</td>
+<td><code>m*100</code></td>
+</tr>
+</tbody></table>
+<p>于是我们可得:</p>
+<ul>
+<li>做多: 账户权益 = <code>(n + m*100/p)</code> BTC - <code>m*100</code> USD</li>
+<li>做空: 账户权益 = <code>(n - m*100/p)</code> BTC + <code>m*100</code> USD</li>
+</ul>
+<p>此处 <code>(n + m*100/p)</code> BTC 和 <code>(n - m*100/p)</code> BTC, 分别代表做多和多空情况下, 等效的 USD 本位 BTC 持仓</p>
+<p>如果将 BTC 和 USD 相互转换, 则分别可得 BTC 和 USD 本位下的账户权益</p>
+<p>一个特殊的例子: 假如 <code>n = m*100/p</code>, 即我们开空等与保证金等量的合约, 则有账户权益 = <code>m*100</code> USD, 即账户权益恒为 <code>m*100</code> USD, 这就是所谓的套期保值, 也是期现套利永不会爆仓的原理</p>
+<p>至此, 我们可以对 BTC 和 USD 本位的持仓相互转换, 妈妈再也不用担心我算不清自己的持仓了</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/21/%E5%85%A8%E5%AE%9E%E6%88%98%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97-CTA%E7%AD%96%E7%95%A5-%E6%AD%A2%E7%9B%88%E6%AD%A2%E6%8D%9F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -882,87 +1064,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/06/C-11%E6%96%B0%E7%89%B9%E6%80%A7-%E7%94%A8%E6%88%B7%E5%AE%9A%E4%B9%89%E5%AD%97%E9%9D%A2%E9%87%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="lostleaf">
-      <meta itemprop="description" content="Data Scientist / Scifi Fan">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="lostleaf's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/06/C-11%E6%96%B0%E7%89%B9%E6%80%A7-%E7%94%A8%E6%88%B7%E5%AE%9A%E4%B9%89%E5%AD%97%E9%9D%A2%E9%87%8F/" class="post-title-link" itemprop="url">C++11新特性 - 用户定义字面量</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-03-06 16:55:57" itemprop="dateCreated datePublished" datetime="2020-03-06T16:55:57+08:00">2020-03-06</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-06-15 21:49:06" itemprop="dateModified" datetime="2020-06-15T21:49:06+08:00">2020-06-15</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C-11%E6%96%B0%E7%89%B9%E6%80%A7/" itemprop="url" rel="index"><span itemprop="name">C++11新特性</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>C++11 的用户自定义字面量新特性</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/03/06/C-11%E6%96%B0%E7%89%B9%E6%80%A7-%E7%94%A8%E6%88%B7%E5%AE%9A%E4%B9%89%E5%AD%97%E9%9D%A2%E9%87%8F/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1034,7 +1135,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-count">30</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1047,7 +1148,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
